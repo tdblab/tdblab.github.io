@@ -2,37 +2,161 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Research | Tirtha Das Banerjee</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="relative bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
 
-  <!-- Navbar -->
+<body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
+
+  <!-- NAVBAR -->
   <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 z-50 backdrop-blur-md">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="index.html" class="text-xl font-semibold text-purple-700">Home</a>
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold text-purple-700">
+        Home
+      </a>
       <div class="space-x-6 font-medium">
-        <a href="about.html" class="hover:text-purple-600">About Me</a>
+        <a href="aboutme.html" class="hover:text-purple-600">About Me</a>
         <a href="research.html" class="hover:text-purple-600">Research</a>
         <a href="publications.html" class="hover:text-purple-600">Publications</a>
         <a href="hobbies.html" class="hover:text-purple-600">Hobbies</a>
+        <a href="apps.html" class="hover:text-purple-600">Apps & Tools</a>
+        <a href="protocols.html" class="hover:text-purple-600">Protocols</a>
+        <a href="gallery.html" class="hover:text-purple-600">Gallery</a>
       </div>
     </div>
   </nav>
 
-  <!-- Page Content -->
-  <section class="flex-1 flex flex-col items-center justify-center text-center px-4 py-20">
-    <h1 class="text-5xl font-bold text-gray-900 mb-4 drop-shadow-lg">Research</h1>
-    <p class="text-lg text-gray-700 max-w-xl mb-6 drop-shadow-md">
-      This page is currently under construction. Stay tuned for updates on my research in evo-devo, gene signaling, neurobiology, AI, and robotics.
-    </p>
-    <img src="assets/images/under_construction.png" alt="Under Construction" class="w-64 h-64 opacity-70">
-    <p class="mt-4 text-sm text-gray-500">
-      Meanwhile, check out my publications or go back <a href="index.html" class="text-purple-600 underline">home</a>.
+  <!-- HEADER -->
+  <section class="text-center py-16 px-6">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+      Research
+    </h1>
+    <p class="text-lg max-w-3xl mx-auto text-gray-700 drop-shadow-md">
+      My research integrates evolutionary biology, spatial genomics, neurobiology,
+      artificial intelligence, and robotics to uncover how complex biological
+      patterns and neural circuits emerge and evolve.
     </p>
   </section>
+
+  <!-- RESEARCH SECTIONS -->
+  <main class="max-w-6xl mx-auto px-6 pb-20 space-y-16">
+
+    <!-- Evolution & Evo-Devo -->
+    <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
+      <div class="md:col-span-4">
+        <img src="assets/images/research/evodevo.jpg"
+             alt="Evolutionary developmental biology"
+             class="rounded-xl shadow-md object-cover w-full">
+      </div>
+      <div class="md:col-span-8 space-y-4">
+        <h2 class="text-2xl font-semibold text-purple-700">
+          Evolution & Evolutionary Developmental Biology
+        </h2>
+        <p>
+          I study how gene regulatory networks evolve to generate novel morphological
+          traits, focusing on butterfly wing patterns, venation systems, and phenotypic
+          plasticity.
+        </p>
+        <p>
+          By combining functional genetics, spatial transcriptomics, and comparative
+          developmental analyses, my work reveals how conserved genetic modules are
+          repurposed during evolution.
+        </p>
+        <a href="#"
+           class="inline-block mt-2 px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition">
+          Click to know more
+        </a>
+      </div>
+    </section>
+
+     <!-- AI, Robotics & Automation -->
+    <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
+      <div class="md:col-span-4">
+        <img src="assets/images/research/ai_robotics.jpg"
+             alt="AI and robotics in biology"
+             class="rounded-xl shadow-md object-cover w-full">
+      </div>
+      <div class="md:col-span-8 space-y-4">
+        <h2 class="text-2xl font-semibold text-purple-700">
+          Artificial Intelligence, Robotics & Automated Biology
+        </h2>
+        <p>
+          I am developing AI-guided robots for behavioral assays, fluidics, and computer vision pipelines
+          to automate behavior, spatial gene multiplexing, microscopy, and image quality assessment.
+        </p>
+        <p>
+          These systems combine real-time feedback, deep learning, and robotics to
+          accelerate biological discovery.
+        </p>
+        <a href="#"
+           class="inline-block mt-2 px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition">
+          Click to know more
+        </a>
+      </div>
+    </section>
+
+    <!-- Spatial Transcriptomics & Multiplex FISH -->
+    <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
+      <div class="md:col-span-4">
+        <img src="assets/images/research/spatial_fish.jpg"
+             alt="Multiplex FISH and spatial transcriptomics"
+             class="rounded-xl shadow-md object-cover w-full">
+      </div>
+      <div class="md:col-span-8 space-y-4">
+        <h2 class="text-2xl font-semibold text-purple-700">
+          Spatial Biology & Multiplex-FISH Technologies
+        </h2>
+        <p>
+          I develop and apply high-resolution spatial transcriptomic approaches,
+          including Rapid Amplified Multiplex-FISH (RAM-FISH), to map gene expression
+          across intact tissues.
+        </p>
+        <p>
+          These methods enable direct visualization of regulatory interactions in
+          developing organs and provide a bridge between genomics and morphology.
+        </p>
+        <a href="#"
+           class="inline-block mt-2 px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition">
+          Click to know more
+        </a>
+      </div>
+    </section>
+
+    <!-- Neurobiology & Behavior -->
+    <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
+      <div class="md:col-span-4">
+        <img src="assets/images/research/neurobiology.jpg"
+             alt="Neurobiology and behavior"
+             class="rounded-xl shadow-md object-cover w-full">
+      </div>
+      <div class="md:col-span-8 space-y-4">
+        <h2 class="text-2xl font-semibold text-purple-700">
+          Neurobiology, Behavior & Addiction Genetics
+        </h2>
+        <p>
+          My research also explores how specific neural genes modulate behavior,
+          including alcohol response and substance preference, using genetic,
+          behavioral, and neurobiological approaches.
+        </p>
+        <p>
+          These studies link molecular mechanisms to complex behavioral phenotypes.
+        </p>
+        <a href="#"
+           class="inline-block mt-2 px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition">
+          Click to know more
+        </a>
+      </div>
+    </section>
+
+    
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-6 text-sm text-gray-600">
+    © 2026 Tirtha Das Banerjee · Research, Evolution & AI
+  </footer>
 
 </body>
 </html>

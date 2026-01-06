@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiplex FISH Gallery | Tirtha Das Banerjee</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="../index.html" class="text-xl font-semibold text-purple-700">Home</a>
+      <div class="space-x-6 font-medium">
+        <a href="../aboutme.html" class="hover:text-purple-600">About Me</a>
+        <a href="../research.html" class="hover:text-purple-600">Research</a>
+        <a href="../publications.html" class="hover:text-purple-600">Publications</a>
+        <a href="../hobbies.html" class="hover:text-purple-600">Hobbies</a>
+        <a href="../protocols.html" class="hover:text-purple-600">Protocols</a>
+        <a href="../gallery.html" class="hover:text-purple-600">Gallery</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="text-center py-16 px-4">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 drop-shadow-lg">Multiplex FISH Images</h1>
+    <p class="text-lg text-gray-700 max-w-2xl mx-auto drop-shadow-md">
+      A gallery of multiplex fluorescent in situ hybridization (FISH) images. Click any image to enlarge.
+    </p>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="max-w-6xl mx-auto px-6 pb-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+      <!-- Repeat this block for each image -->
+      <div class="bg-white bg-opacity-90 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition">
+        <img src="../assets/images/gallery/multiplex_fish/image1.jpg" alt="Multiplex FISH 1" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-sm font-semibold text-gray-900">Sample 1</h3>
+          <p class="text-xs text-gray-600">Brief description or condition</p>
+        </div>
+      </div>
+
+      <div class="bg-white bg-opacity-90 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition">
+        <img src="../assets/images/gallery/multiplex_fish/image2.jpg" alt="Multiplex FISH 2" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-sm font-semibold text-gray-900">Sample 2</h3>
+          <p class="text-xs text-gray-600">Brief description or condition</p>
+        </div>
+      </div>
+
+      <!-- Add more image blocks here -->
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 bg-opacity-80 py-6 text-center text-sm backdrop-blur-md mt-auto">
+    © 2026 Tirtha Das Banerjee. All rights reserved.
+  </footer>
+
+</body>
+</html>
