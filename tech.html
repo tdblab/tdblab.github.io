@@ -10,7 +10,6 @@
 
 <body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
 
-  <!-- NAVBAR -->
   <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 z-50 backdrop-blur-md">
     <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
       <a href="index.html" class="text-xl font-bold text-purple-700">
@@ -28,7 +27,7 @@
       </div>
     </div>
   </nav>
-  <!-- Header -->
+
   <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-10">
     <div class="max-w-6xl mx-auto px-6">
       <h1 class="text-4xl font-bold">Technology</h1>
@@ -39,133 +38,145 @@
     </div>
   </header>
 
-  <!-- Main Content -->
   <main class="max-w-6xl mx-auto px-6 py-12">
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-      <!-- RAMFISH -->
-<div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden">
+      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden flex flex-col">
+        <img src="assets/images/tech/ramfish.jpg"
+             alt="RAMFISH automated FISH system"
+             class="w-full h-58 object-cover">
+        
+        <div class="p-6 flex flex-col flex-grow">
+          <h2 class="text-2xl font-semibold text-indigo-600">RAMFISH</h2>
+          <p class="text-sm text-gray-500 mt-1">Rapid Automated Multiplexed FISH</p>
 
-  <img src="assets/images/tech/ramfish.jpg"
-       alt="RAMFISH automated FISH system"
-       class="w-full h-58 object-cover">
+          <p class="mt-4 text-gray-700">
+            RAMFISH is an automated multiplex fluorescence in situ hybridization
+            platform integrating fluidics, thermal control, and real-time imaging
+            feedback to optimize hybridization and amplification cycles.
+          </p>
 
-  <div class="p-6">
-    <h2 class="text-2xl font-semibold text-indigo-600">RAMFISH</h2>
-    <p class="text-sm text-gray-500 mt-1">Rapid Automated Multiplexed FISH</p>
+          <ul class="mt-4 list-disc list-inside text-gray-700">
+            <li>Multiplex mRNA detection platform</li>
+            <li>Affordable, accessable, and easy to use</li>
+            <li>Accelerated automated protocol</li>
+          </ul>
 
-    <p class="mt-4 text-gray-700">
-      RAMFISH is an automated multiplex fluorescence in situ hybridization
-      platform integrating fluidics, thermal control, and real-time imaging
-      feedback to optimize hybridization and amplification cycles.
-    </p>
+          <div class="mt-4">
+            <span class="inline-block px-3 py-1 text-xs bg-indigo-100 text-indigo-700 rounded-full">
+              Experimental Platform + Instrumentation
+            </span>
+          </div>
 
-    <ul class="mt-4 list-disc list-inside text-gray-700">
-      <li>Multiplex mRNA detection platform</li>
-      <li>Affordable, accessable, and easy to use</li>
-      <li>Accelerated automated protocol</li>
+          <div class="mt-6">
+            <a href="gallery/ramfish_robot.html"
+               target="_blank"
+               class="inline-block px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-sm shadow-sm">
+              Click for more
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden flex flex-col">
+        <img src="assets/images/tech/nanopulse.jpg"
+             alt="NanoPulse Microinjector"
+             class="w-full h-58 object-cover">
+
+        <div class="p-6 flex flex-col flex-grow">
+          <h2 class="text-2xl font-semibold text-green-600">NanoPulse Precision Microinjector</h2>
+          <p class="text-sm text-gray-500 mt-1">Controlled fluid delivery for CRISPR</p>
+
+          <p class="mt-4 text-gray-700">
+            A custom-built microinjection system using peristaltic pumping and
+            microstepping control for precise nanoliter to microliter-scale delivery.
+          </p>
+
+          <ul class="mt-4 list-disc list-inside text-gray-700">
+            <li>~0.03 µL pulse accuracy</li>
+            <li>Programmable injection profiles</li>
+            <li>Modular pump architecture</li>
+            <li>Designed for embryos and tissue injections</li>
+          </ul>
+
+          <div class="mt-4 mt-auto">
+            <span class="inline-block px-3 py-1 text-xs bg-green-100 text-green-700 rounded-full">
+              Instrumentation
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden flex flex-col">
+        <img src="assets/images/tech/fisher.jpg"
+             alt="FISHER"
+             class="w-full h-48 object-cover">
+
+        <div class="p-6 flex flex-col flex-grow">
+          <h2 class="text-2xl font-semibold text-blue-600">FISHER</h2>
+          <p class="text-sm text-gray-500 mt-1">Flexible Instrument for Stimulus-controlled Habituation and Experimental Reinforcement</p>
+
+          <p class="mt-4 text-gray-700">
+            An automated aquatic feeding system for neurobehavioral assay, associative learning, and drug delivery.
+          </p>
+
+          <ul class="mt-4 list-disc list-inside text-gray-700">
+            <li>YOLO-based fish detection</li>
+            <li>Behavior-triggered feeding logic</li>
+            <li>Designed for laboratory fish models</li>
+            <li>Designed for aging research</li>
+          </ul>
+
+          <div class="mt-4 mt-auto">
+            <span class="inline-block px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">
+              Robotics + Vision
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden flex flex-col">
+        <img src="assets/images/tech/corn.jpg"
+             alt="CORN-DRIVE"
+             class="w-full h-48 object-cover">
+
+        <div class="p-6 flex flex-col flex-grow">
+          <h2 class="text-2xl font-semibold text-yellow-600">CORN-DRIVE: Autonomous Corn System</h2>
+          <p class="text-sm text-gray-500 mt-1">Closed-loop Observation and Robotic Nurture platform</p>
+
+          <p class="mt-4 text-gray-700">
+            A robotic plant monitoring platform for tracking corn growth dynamics,
+            environmental responses, and developmental patterning over time. 
+          </p>
+
+          <ul class="mt-4 list-disc list-inside text-gray-700">
+            <li>Robotic system optimized for maximum yield</li>
+            <li>Environmental sensing</li>
+            <li>Closed loop feedback driven</li>
+            <li>Optimized for corn plants</li>
+          </ul>
+
+          <div class="mt-4">
+            <span class="inline-block px-3 py-1 text-xs bg-yellow-100 text-yellow-700 rounded-full">
+              Bio-Automation
+            </span>
+          </div>
+
+          <div class="mt-6">
+            <a href="gallery/corn_system.html"
+               target="_blank"
+               class="inline-block px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-sm shadow-sm">
+              Click for more
+            </a>
+          </div>
+        </div>
+      </div>
       
-    </ul>
-
-    <span class="inline-block mt-4 px-3 py-1 text-xs bg-indigo-100 text-indigo-700 rounded-full">
-      Experimental Platform + Instrumentation
-    </span>
-  </div>
-</div>
-
-
-      <!-- Microinjector -->
-      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden">
-
-  <img src="assets/images/tech/nanopulse.jpg"
-       alt="NanoPulse Microinjector"
-       class="w-full h-58 object-cover">
-
-  <div class="p-6">
-        <h2 class="text-2xl font-semibold text-green-600">NanoPulse Precision Microinjector</h2>
-        <p class="text-sm text-gray-500 mt-1">Controlled fluid delivery for CRISPR</p>
-
-        <p class="mt-4 text-gray-700">
-          A custom-built microinjection system using peristaltic pumping and
-          microstepping control for precise nanoliter to microliter-scale delivery.
-        </p>
-
-        <ul class="mt-4 list-disc list-inside text-gray-700">
-          <li>~0.03 µL pulse accuracy</li>
-          <li>Programmable injection profiles</li>
-          <li>Modular pump architecture</li>
-          <li>Designed for embryos and tissue injections</li>
-        </ul>
-
-        <span class="inline-block mt-4 px-3 py-1 text-xs bg-green-100 text-green-700 rounded-full">
-          Instrumentation
-        </span>
-         </div>
-      </div>
-
-      <!-- Fish Feeder -->
-      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden">
-
-  <img src="assets/images/tech/fisher.jpg"
-       alt="FISHER"
-       class="w-full h-48 object-cover">
-
-  <div class="p-6">
-        <h2 class="text-2xl font-semibold text-blue-600">FISHER</h2>
-        <p class="text-sm text-gray-500 mt-1">Flexible Instrument for Stimulus-controlled Habituation and Experimental Reinforcement</p>
-
-        <p class="mt-4 text-gray-700">
-          An automated aquatic feeding system for neurobehavioral assay, associative learning, and drug delivery.
-        </p>
-
-        <ul class="mt-4 list-disc list-inside text-gray-700">
-          <li>YOLO-based fish detection</li>
-          <li>Behavior-triggered feeding logic</li>
-          <li>Designed for laboratory fish models</li>
-          <li>Designed for aging research</li>
-        </ul>
-
-        <span class="inline-block mt-4 px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">
-          Robotics + Vision
-        </span>
-        </div>
-      </div>
-
-      <!-- Corn System -->
-      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden">
-
-  <img src="assets/images/tech/corn.jpg"
-       alt="CORN-DRIVE"
-       class="w-full h-48 object-cover">
-
-  <div class="p-6">
-        <h2 class="text-2xl font-semibold text-yellow-600">CORN-DRIVE: Autonomous Corn System</h2>
-        <p class="text-sm text-gray-500 mt-1">Closed-loop Observation and Robotic Nurture platform</p>
-
-        <p class="mt-4 text-gray-700">
-          A robotic plant monitoring platform for tracking corn growth dynamics,
-          environmental responses, and developmental patterning over time. 
-        </p>
-
-        <ul class="mt-4 list-disc list-inside text-gray-700">
-          <li>Robotic system optimized for maximum yield</li>
-          <li>Environmental sensing</li>
-          <li>Closed loop feedback driven</li>
-          <li>Optimized for corn plants</li>
-        </ul>
-
-        <span class="inline-block mt-4 px-3 py-1 text-xs bg-yellow-100 text-yellow-700 rounded-full">
-          Bio-Automation
-        </span>
-        </div>
-      </div>
-
     </div>
 
   </main>
 
-  <!-- Footer -->
   <footer class="text-center text-sm text-gray-500 py-8">
     © 2026 Tirtha Das Banerjee
   </footer>
