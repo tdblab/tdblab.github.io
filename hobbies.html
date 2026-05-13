@@ -7,10 +7,10 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="relative bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
 
-   <!-- Navbar -->
-  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md">
+<body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
+
+  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
       <a href="index.html" class="text-xl font-semibold text-purple-700">Home</a>
       <div class="space-x-6 font-medium">
@@ -18,7 +18,7 @@
         <a href="research.html" class="hover:text-purple-600">Research</a>
         <a href="tech.html" class="hover:text-purple-600">Tech</a>
         <a href="publications.html" class="hover:text-purple-600">Publications</a>
-        <a href="hobbies.html" class="hover:text-purple-600">Hobbies</a>
+        <a href="hobbies.html" class="text-purple-600 border-b-2 border-purple-600">Hobbies</a>
         <a href="apps.html" class="hover:text-purple-600">Apps & Tools</a>
         <a href="protocols.html" class="hover:text-purple-600">Protocols</a>
         <a href="gallery.html" class="hover:text-purple-600">Gallery</a>
@@ -26,17 +26,120 @@
     </div>
   </nav>
 
-  <!-- Page Content -->
-  <section class="flex-1 flex flex-col items-center justify-center text-center px-4 py-20">
-    <h1 class="text-5xl font-bold text-gray-900 mb-4 drop-shadow-lg">Hobbies</h1>
-    <p class="text-lg text-gray-700 max-w-xl mb-6 drop-shadow-md">
-      This page is currently under construction. I will soon share my hobbies and interests outside the lab.
-    </p>
-    <img src="assets/images/under_construction.png" alt="Under Construction" class="w-64 h-64 opacity-70">
-    <p class="mt-4 text-sm text-gray-500">
-      Meanwhile, check out my publications or go back <a href="index.html" class="text-purple-600 underline">home</a>.
+  <section class="text-center py-16 px-6">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+      Hobbies & Interests
+    </h1>
+    <p class="text-lg max-w-3xl mx-auto text-gray-700 drop-shadow-md">
+      When I am not in the lab or writing code, I enjoy exploring creative and technical projects that keep my hands busy and my mind engaged. Here is a look at what I do off the clock.
     </p>
   </section>
+
+  <main class="max-w-6xl mx-auto px-6 pb-20 space-y-16">
+
+    <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
+      <div class="md:col-span-5">
+        <video class="rounded-xl shadow-md object-cover w-full h-64 border-2 border-gray-100" autoplay muted loop playsinline>
+          <source src="assets/images/hobbies/aquarium.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="md:col-span-7 space-y-4">
+        <h2 class="text-2xl font-semibold text-purple-700">
+          Aquascaping & Aquariums
+        </h2>
+        <p>
+          Maintaining aquatic ecosystems is both a relaxing pastime and a fascinating biological balancing act. I enjoy designing planted tanks and managing the delicate water chemistry required to keep aquatic life thriving.
+        </p>
+        <p>
+          This hobby actually crosses over into my engineering work quite a bit, inspiring automated life-support and feeding systems like the FISHER platform to ensure optimal aquatic care even when I am away from the tanks.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
+      <div class="md:col-span-5 lg:order-last">
+        <video class="rounded-xl shadow-md object-cover w-full h-64 border-2 border-gray-100" autoplay muted loop playsinline>
+          <source src="assets/images/hobbies/3dprinting.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="md:col-span-7 space-y-4">
+        <h2 class="text-2xl font-semibold text-purple-700">
+          Advanced 3D Printing
+        </h2>
+        <p>
+          I am a massive advocate for open-source hardware and rapid prototyping. Running an array of 3D printers, including high-speed dual-nozzle systems like the Bambu Lab H2D, allows me to instantly bring CAD designs into reality.
+        </p>
+        <p>
+          Whether I am fabricating complex custom enclosures for my microcontrollers, printing structural brackets for camera arrays, or just making functional household fixes, 3D printing is a cornerstone of my daily workflow.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
+      <div class="md:col-span-5">
+        <video class="rounded-xl shadow-md object-cover w-full h-64 border-2 border-gray-100" autoplay muted loop playsinline>
+          <source src="assets/images/hobbies/pcbuilding.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="md:col-span-7 space-y-4">
+        <h2 class="text-2xl font-semibold text-purple-700">
+          PC & Edge Node Building
+        </h2>
+        <p>
+          I love the hardware side of computing. From assembling high-performance workstations for intensive deep learning tasks to configuring low-power edge computing nodes (like the Intel N95 and Raspberry Pi), I enjoy optimizing silicon for specific tasks.
+        </p>
+        <p>
+          For me, building a PC isn't just about gaming or standard computing; it is about creating decentralized "brains" capable of running neural networks and managing complex USB peripherals smoothly.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
+      <div class="md:col-span-5 lg:order-last">
+        <img src="assets/images/hobbies/guitar.jpg"
+             alt="Playing the guitar"
+             class="rounded-xl shadow-md object-cover w-full h-64 border-2 border-gray-100">
+      </div>
+      <div class="md:col-span-7 space-y-4">
+        <h2 class="text-2xl font-semibold text-purple-700">
+          Playing Guitar
+        </h2>
+        <p>
+          Music provides a necessary break from the highly analytical nature of scientific research. Playing the guitar is my favorite way to disconnect from screens and data.
+        </p>
+        <p>
+          It is a purely creative outlet that helps me reset, focus on rhythm and melody, and clear my head after a long day of coding or running experiments.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
+      <div class="md:col-span-5">
+        <img src="assets/images/hobbies/gardening.jpg"
+             alt="Indoor gardening and hydroponics"
+             class="rounded-xl shadow-md object-cover w-full h-64 border-2 border-gray-100">
+      </div>
+      <div class="md:col-span-7 space-y-4">
+        <h2 class="text-2xl font-semibold text-purple-700">
+          Indoor Gardening
+        </h2>
+        <p>
+          Cultivating plants indoors is incredibly rewarding. I enjoy the challenge of optimizing lighting, soil moisture, and nutrients to grow everything from decorative houseplants to dense microgreen trays.
+        </p>
+        <p>
+          This hobby directly fueled my interest in agricultural AI. What started as a manual process of checking soil and watering schedules eventually evolved into the automated, vision-driven systems I now build to maintain optimal plant health.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="text-center py-6 text-sm text-gray-600 mt-auto">
+    © 2026 Tirtha Das Banerjee · Research, Evolution & AI
+  </footer>
 
 </body>
 </html>
