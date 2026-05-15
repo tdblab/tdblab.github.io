@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deformable Image Alignment Tool | Tirtha Das Banerjee</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
+
+  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="../../index.html" class="text-xl font-semibold text-purple-700">Home</a>
+      <div class="space-x-6 font-medium hidden md:flex">
+        <a href="../../aboutme.html" class="hover:text-purple-600">About Me</a>
+        <a href="../../research.html" class="hover:text-purple-600">Research</a>
+        <a href="../../tech.html" class="hover:text-purple-600">Tech</a>
+        <a href="../../publications.html" class="hover:text-purple-600">Publications</a>
+        <a href="../../hobbies.html" class="hover:text-purple-600">Hobbies</a>
+        <a href="../../apps.html" class="text-purple-600 font-bold">Apps & Tools</a>
+        <a href="../../protocols.html" class="hover:text-purple-600">Protocols</a>
+        <a href="../../gallery.html" class="hover:text-purple-600">Gallery</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-8 flex flex-col gap-6">
+    
+    <div class="text-center md:text-left mt-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Deformable Tissue Aligner</h1>
+        <p class="text-gray-700 max-w-2xl text-sm md:text-base">
+            Perform non-rigid B-Spline image registration to correct local tissue deformations across multiplexed RAM-FISH hybridization rounds.
+        </p>
+    </div>
+
+    <div class="bg-white bg-opacity-90 rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-purple-100 flex-grow min-h-[600px]">
+        
+        <div class="w-full md:w-1/3 bg-gray-900 text-white p-6 md:p-8 flex flex-col gap-5 justify-between">
+            <form id="uploadForm" class="flex flex-col gap-5">
+                
+                <div class="bg-gray-800/60 p-4 rounded-xl border border-gray-700">
+                    <label class="block text-sm font-semibold text-purple-400 mb-1">1. Fixed Reference (Round 1)</label>
+                    <p class="text-xs text-gray-400 mb-3">Ground truth structural anchor (e.g., Round 1 DAPI / Housekeeping gene).</p>
+                    <input type="file" id="fixedRefInput" accept="image/*" required
+                           class="block w-full text-xs text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer">
+                </div>
+
+                <div class="bg-gray-800/60 p-4 rounded-xl border border-gray-700">
+                    <label class="block text-sm font-semibold text-pink-400 mb-1">2. Moving Reference (Round 2)</label>
+                    <p class="text-xs text-gray-400 mb-3">The shifted reference channel from the subsequent imaging round.</p>
+                    <input type="file" id="movingRefInput" accept="image/*" required
+                           class="block w-full text-xs text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer">
+                </div>
+
+                <div class="bg-gray-800/60 p-4 rounded-xl border border-gray-700">
+                    <label class="block text-sm font-semibold text-green-400 mb-1">3. Target Image to Align</label>
+                    <p class="text-xs text-gray-400 mb-3">The RNA-FISH signal from Round 2 that needs to be warped.</p>
+                    <input type="file" id="targetInput" accept="image/*" required
+                           class="block w-full text-xs text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer">
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-xl transition duration-200 shadow-md">
+                    Calculate & Apply Warp
+                </button>
+            </form>
+
+            <div class="bg-purple-950/40 border border-purple-800/60 p-3 rounded-lg text-xs text-purple-200">
+                <span class="font-bold block text-purple-400 mb-1">⚠️ Beta Testing Notice:</span>
+                Cloud resources are currently running on a limited free tier (512MB RAM). Please downsample or crop large files (e.g., to ~1200px) before uploading to avoid memory overloads.
+            </div>
+        </div>
+
+        <div class="w-full md:w-2/3 p-4 md:p-8 flex flex-col items-center justify-center bg-gray-50/50 relative">
+            
+            <div id="loading" class="hidden absolute inset-0 bg-white/95 z-10 flex-col items-center justify-center gap-3">
+                <div class="w-14 h-14 border-4 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
+                <p class="text-gray-900 font-bold text-lg">Computing B-Spline Deformation Grid...</p>
+                <p class="text-gray-500 text-xs max-w-sm text-center">Calculating spatial vectors via cloud SimpleITK. This may take 15-45 seconds.</p>
+            </div>
+            
+            <img id="resultImage" class="hidden max-w-full max-h-[650px] object-contain rounded-xl shadow-2xl border border-gray-200 bg-black" alt="Aligned Image Output">
+            
+            <div id="placeholderText" class="text-center p-8">
+                <div class="mx-auto h-16 w-16 text-purple-300 mb-4 bg-purple-50 rounded-full flex items-center justify-center">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                    </svg>
+                </div>
+                <p class="text-gray-700 font-semibold text-lg">Awaiting Image Sequence</p>
+                <p class="text-gray-500 text-xs mt-1">Upload both tracking references and your target channel to begin alignment.</p>
+            </div>
+            
+            <button id="downloadBtn" class="hidden mt-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-2.5 px-8 rounded-xl transition shadow-lg text-sm">
+                Download Aligned Image
+            </button>
+        </div>
+    </div>
+  </main>
+
+  <footer class="bg-white bg-opacity-80 py-4 text-center text-xs backdrop-blur-md border-t border-purple-50">
+    © 2026 Tirtha Das Banerjee. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const fixedRef = document.getElementById('fixedRefInput').files[0];
+        const movingRef = document.getElementById('movingRefInput').files[0];
+        const targetImage = document.getElementById('targetInput').files[0];
+
+        if (!fixedRef || !movingRef || !targetImage) {
+            alert("Please ensure all three structural and target files are selected.");
+            return;
+        }
+
+        // Toggle UI Processing States
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('submitBtn').innerText = "Processing Cloud Vectors...";
+        document.getElementById('loading').classList.remove('hidden');
+        document.getElementById('loading').classList.add('flex');
+        document.getElementById('placeholderText').classList.add('hidden');
+        document.getElementById('resultImage').classList.add('hidden');
+        document.getElementById('downloadBtn').classList.add('hidden');
+
+        const formData = new FormData();
+        formData.append('fixed_ref', fixedRef);
+        formData.append('moving_ref', movingRef);
+        formData.append('moving_target', targetImage);
+
+        try {
+            // Pointing directly to your newly created Render cloud endpoint
+            const response = await fetch('https://ram-fish-aligner.onrender.com/align', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "The cloud server experienced a runtime calculation limit.");
+            }
+
+            const blob = await response.blob();
+            const imageUrl = URL.createObjectURL(blob);
+            
+            const imgElement = document.getElementById('resultImage');
+            imgElement.src = imageUrl;
+            imgElement.classList.remove('hidden');
+            
+            // Activate the high-resolution exporter
+            const downloadBtn = document.getElementById('downloadBtn');
+            downloadBtn.classList.remove('hidden');
+            downloadBtn.onclick = () => {
+                const link = document.createElement('a');
+                link.download = `aligned_${targetImage.name}`;
+                link.href = imageUrl;
+                link.click();
+            };
+
+        } catch (error) {
+            console.error(error);
+            alert("Deformable Alignment Error:\n" + error.message + "\n\nIf the server timed out, please reduce the size of your images and try again.");
+            document.getElementById('placeholderText').classList.remove('hidden');
+        } finally {
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('loading').classList.remove('flex');
+            document.getElementById('submitBtn').disabled = false;
+            document.getElementById('submitBtn').innerText = "Calculate & Apply Warp";
+        }
+    });
+  </script>
+</body>
+</html>
