@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplexed RNA-FISH Merger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ensures the canvas scales nicely within its container */
+        #resultCanvas { max-width: 100%; max-height: 700px; object-fit: contain; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen text-gray-800 font-sans p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+        
+        <div class="w-full md:w-1/3 bg-gray-900 text-white p-6 md:p-8 flex flex-col gap-6">
+            <div>
+                <h1 class="text-2xl font-bold mb-2">RAM-FISH Merger</h1>
+                <p class="text-gray-400 text-sm">Client-side spatial image multiplexer. Processing runs locally in your browser.</p>
+            </div>
+
+            <form id="uploadForm" class="flex flex-col gap-6">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Upload Images (Max 10)</label>
+                    <input type="file" id="fileInput" multiple accept="image/*" 
+                           class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer">
+                    <p id="fileCount" class="text-xs text-gray-400 mt-2">0 files selected</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="flex justify-between text-sm font-medium">
+                            <span>Background Threshold</span>
+                            <span id="threshVal" class="text-blue-400">0.15</span>
+                        </label>
+                        <input type="range" id="threshold" min="0" max="0.5" step="0.01" value="0.15" class="w-full mt-2 accent-blue-500">
+                    </div>
+
+                    <div>
+                        <label class="flex justify-between text-sm font-medium">
+                            <span>Gamma Correction</span>
+                            <span id="gammaVal" class="text-blue-400">1.5</span>
+                        </label>
+                        <input type="range" id="gamma" min="0.5" max="3.0" step="0.1" value="1.5" class="w-full mt-2 accent-blue-500">
+                    </div>
+
+                    <div class="pt-2 border-t border-gray-700">
+                        <label class="block text-sm font-medium mb-2">Legend Position</label>
+                        <select id="legendPos" class="w-full bg-gray-800 text-white border border-gray-700 rounded p-2 text-sm">
+                            <option value="top_right">Top Right</option>
+                            <option value="bottom_right">Bottom Right</option>
+                            <option value="top_left">Top Left</option>
+                            <option value="bottom_left">Bottom Left</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="flex justify-between text-sm font-medium">
+                            <span>Legend Size Scale</span>
+                            <span id="textScaleVal" class="text-blue-400">0.65</span>
+                        </label>
+                        <input type="range" id="textScale" min="0.2" max="2.0" step="0.05" value="0.65" class="w-full mt-2 accent-blue-500">
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 mt-4">
+                    Generate Composite
+                </button>
+            </form>
+        </div>
+
+        <div class="w-full md:w-2/3 p-4 md:p-8 flex flex-col items-center justify-center bg-gray-100 min-h-[500px] relative">
+            
+            <div id="loading" class="hidden absolute inset-0 bg-gray-100/90 z-10 flex-col items-center justify-center gap-3">
+                <div class="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                <p class="text-gray-800 font-bold">Processing pixels...</p>
+                <p class="text-gray-500 text-sm">High-res images may take a few seconds.</p>
+            </div>
+            
+            <canvas id="resultCanvas" class="hidden shadow-xl border border-gray-300 bg-black rounded"></canvas>
+            
+            <div id="placeholderText" class="text-center">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <p class="mt-2 text-gray-500 font-medium">Your merged composite will appear here.</p>
+            </div>
+            
+            <button id="downloadBtn" class="hidden mt-6 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition shadow-md">
+                Download High-Res Image
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const GENE_COLORS_RGB = [
+            [255, 0, 0], [0, 255, 0], [0, 0, 255], [0, 255, 255], [255, 0, 255],
+            [255, 255, 0], [255, 165, 0], [128, 0, 128], [0, 128, 128], [128, 128, 0]
+        ];
+
+        // UI Listeners
+        document.getElementById('threshold').addEventListener('input', e => document.getElementById('threshVal').textContent = e.target.value);
+        document.getElementById('gamma').addEventListener('input', e => document.getElementById('gammaVal').textContent = e.target.value);
+        document.getElementById('textScale').addEventListener('input', e => document.getElementById('textScaleVal').textContent = e.target.value);
+        
+        const fileInput = document.getElementById('fileInput');
+        fileInput.addEventListener('change', e => {
+            const count = e.target.files.length;
+            document.getElementById('fileCount').textContent = `${count} file${count !== 1 ? 's' : ''} selected (Max 10)`;
+        });
+
+        // Helper to load an image file into an HTML Image object
+        const loadImage = (file) => {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve({ img, name: file.name.replace(/\.[^/.]+$/, "") });
+                img.onerror = reject;
+                img.src = URL.createObjectURL(file);
+            });
+        };
+
+        // Main Processing Logic
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (fileInput.files.length === 0) return alert("Please select at least one image.");
+            if (fileInput.files.length > 10) return alert("Maximum 10 images allowed.");
+
+            // UI Loading State
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('loading').classList.add('flex');
+            document.getElementById('placeholderText').classList.add('hidden');
+            document.getElementById('downloadBtn').classList.add('hidden');
+
+            const threshold = parseFloat(document.getElementById('threshold').value);
+            const gamma = parseFloat(document.getElementById('gamma').value);
+            const legendPos = document.getElementById('legendPos').value;
+            const textScale = parseFloat(document.getElementById('textScale').value);
+
+            // Allow UI to update before heavy JS thread blocking
+            setTimeout(async () => {
+                try {
+                    const files = Array.from(fileInput.files);
+                    const loadedImages = await Promise.all(files.map(loadImage));
+                    
+                    const width = loadedImages[0].img.width;
+                    const height = loadedImages[0].img.height;
+
+                    // Setup offscreen canvas for processing
+                    const offCanvas = document.createElement('canvas');
+                    offCanvas.width = width;
+                    offCanvas.height = height;
+                    const offCtx = offCanvas.getContext('2d', { willReadFrequently: true });
+
+                    // Setup composite array (Float32 for precision before final clamp)
+                    const totalPixels = width * height;
+                    const compR = new Float32Array(totalPixels);
+                    const compG = new Float32Array(totalPixels);
+                    const compB = new Float32Array(totalPixels);
+
+                    // Process each image
+                    for (let imgIdx = 0; imgIdx < loadedImages.length; imgIdx++) {
+                        const { img } = loadedImages[imgIdx];
+                        const color = GENE_COLORS_RGB[imgIdx % GENE_COLORS_RGB.length];
+                        
+                        // Draw to offscreen canvas and get pixels
+                        offCtx.drawImage(img, 0, 0, width, height);
+                        const imgData = offCtx.getImageData(0, 0, width, height).data;
+
+                        // Calculate max brightness for normalization (approximate 99th percentile)
+                        let maxVal = 1;
+                        for (let i = 0; i < imgData.length; i += 4) {
+                            let gray = (imgData[i] + imgData[i+1] + imgData[i+2]) / 3;
+                            if (gray > maxVal) maxVal = gray;
+                        }
+
+                        // Pixel Math
+                        for (let i = 0, px = 0; i < imgData.length; i += 4, px++) {
+                            let gray = (imgData[i] + imgData[i+1] + imgData[i+2]) / 3;
+                            let norm = gray / maxVal; // Normalize 0-1
+                            
+                            if (norm < threshold) {
+                                norm = 0;
+                            } else {
+                                norm = Math.pow(norm, gamma);
+                            }
+
+                            compR[px] += (norm * color[0]) * 0.7;
+                            compG[px] += (norm * color[1]) * 0.7;
+                            compB[px] += (norm * color[2]) * 0.7;
+                        }
+                    }
+
+                    // Write to final visible canvas
+                    const canvas = document.getElementById('resultCanvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    const finalImgData = ctx.createImageData(width, height);
+
+                    for (let i = 0, px = 0; i < finalImgData.data.length; i += 4, px++) {
+                        finalImgData.data[i] = Math.min(255, compR[px]);
+                        finalImgData.data[i+1] = Math.min(255, compG[px]);
+                        finalImgData.data[i+2] = Math.min(255, compB[px]);
+                        finalImgData.data[i+3] = 255; // Alpha opaque
+                    }
+                    ctx.putImageData(finalImgData, 0, 0);
+
+                    // --- Draw Legend ---
+                    const baseScale = width / 1000;
+                    const scale = baseScale * textScale; // Apply user scale
+                    
+                    const radius = 15 * scale;
+                    const spacing = 60 * scale;
+                    const fontSize = 40 * scale;
+                    const marginX = 40 * baseScale; // Keep margin linked only to base image size
+                    const marginY = 40 * baseScale;
+                    
+                    ctx.font = `${fontSize}px Arial`;
+                    ctx.textBaseline = "middle";
+                    
+                    // Find widest text to calculate legend width
+                    let maxTextWidth = 0;
+                    loadedImages.forEach(item => {
+                        let textWidth = ctx.measureText(item.name).width;
+                        if(textWidth > maxTextWidth) maxTextWidth = textWidth;
+                    });
+                    
+                    const legendWidth = (radius * 2) + 20 + maxTextWidth;
+                    const legendHeight = loadedImages.length * spacing;
+
+                    let startX, startY;
+                    
+                    if (legendPos.includes("right")) {
+                        startX = width - legendWidth - marginX;
+                    } else {
+                        startX = marginX;
+                    }
+
+                    if (legendPos.includes("bottom")) {
+                        startY = height - legendHeight - marginY + (spacing/2);
+                    } else {
+                        startY = marginY + (spacing/2);
+                    }
+
+                    loadedImages.forEach((item, index) => {
+                        const color = GENE_COLORS_RGB[index % GENE_COLORS_RGB.length];
+                        const y = startY + (index * spacing);
+                        
+                        // Draw Circle
+                        ctx.beginPath();
+                        ctx.arc(startX + radius, y, radius, 0, 2 * Math.PI, false);
+                        ctx.fillStyle = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+                        ctx.fill();
+
+                        // Draw Text
+                        ctx.fillStyle = "white";
+                        ctx.fillText(item.name, startX + (radius * 2) + (15 * scale), y);
+                    });
+
+                    // Cleanup UI
+                    canvas.classList.remove('hidden');
+                    document.getElementById('downloadBtn').classList.remove('hidden');
+
+                } catch (error) {
+                    console.error(error);
+                    alert("Error processing images. Ensure they are the same dimensions.");
+                    document.getElementById('placeholderText').classList.remove('hidden');
+                } finally {
+                    document.getElementById('loading').classList.add('hidden');
+                    document.getElementById('loading').classList.remove('flex');
+                    document.getElementById('submitBtn').disabled = false;
+                }
+            }, 50); // Short timeout to let UI show the loading spinner
+        });
+
+        // Download functionality
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            const canvas = document.getElementById('resultCanvas');
+            const link = document.createElement('a');
+            link.download = 'multiplex_composite.jpg';
+            link.href = canvas.toDataURL('image/jpeg', 0.95);
+            link.click();
+        });
+    </script>
+</body>
+</html>
