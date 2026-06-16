@@ -22,7 +22,7 @@
 
             <form id="uploadForm" class="flex flex-col gap-6">
                 <div>
-                    <label class="block text-sm font-medium mb-2">Upload Images (Max 10)</label>
+                    <label class="block text-sm font-medium mb-2">Upload Images (Max 30)</label>
                     <input type="file" id="fileInput" multiple accept="image/*" 
                            class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer">
                     <p id="fileCount" class="text-xs text-gray-400 mt-2">0 files selected</p>
@@ -94,9 +94,14 @@
     </div>
 
     <script>
+        // Expanded to 30 colors to handle the new max limit without immediate repeating
         const GENE_COLORS_RGB = [
             [255, 0, 0], [0, 255, 0], [0, 0, 255], [0, 255, 255], [255, 0, 255],
-            [255, 255, 0], [255, 165, 0], [128, 0, 128], [0, 128, 128], [128, 128, 0]
+            [255, 255, 0], [255, 165, 0], [128, 0, 128], [0, 128, 128], [128, 128, 0],
+            [255, 100, 100], [100, 255, 100], [100, 100, 255], [255, 128, 128], [128, 255, 128],
+            [128, 128, 255], [255, 200, 0], [255, 0, 200], [0, 255, 200], [200, 255, 0],
+            [200, 0, 255], [0, 200, 255], [128, 0, 0], [0, 128, 0], [0, 0, 128],
+            [128, 64, 0], [128, 0, 64], [0, 128, 64], [0, 64, 128], [64, 0, 128]
         ];
 
         // UI Listeners
@@ -107,7 +112,7 @@
         const fileInput = document.getElementById('fileInput');
         fileInput.addEventListener('change', e => {
             const count = e.target.files.length;
-            document.getElementById('fileCount').textContent = `${count} file${count !== 1 ? 's' : ''} selected (Max 10)`;
+            document.getElementById('fileCount').textContent = `${count} file${count !== 1 ? 's' : ''} selected (Max 30)`;
         });
 
         // Helper to load an image file into an HTML Image object
@@ -124,7 +129,7 @@
         document.getElementById('uploadForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             if (fileInput.files.length === 0) return alert("Please select at least one image.");
-            if (fileInput.files.length > 10) return alert("Maximum 10 images allowed.");
+            if (fileInput.files.length > 30) return alert("Maximum 30 images allowed.");
 
             // UI Loading State
             document.getElementById('submitBtn').disabled = true;
@@ -144,6 +149,17 @@
                     const files = Array.from(fileInput.files);
                     const loadedImages = await Promise.all(files.map(loadImage));
                     
+                    // Assign colors to each image (Checking for DAPI)
+                    let colorIdx = 0;
+                    loadedImages.forEach(item => {
+                        if (item.name.toUpperCase() === 'DAPI') {
+                            item.color = [200, 200, 200]; // Light Grey for DAPI
+                        } else {
+                            item.color = GENE_COLORS_RGB[colorIdx % GENE_COLORS_RGB.length];
+                            colorIdx++; // Increment only for non-DAPI to keep gene colors continuous
+                        }
+                    });
+
                     const width = loadedImages[0].img.width;
                     const height = loadedImages[0].img.height;
 
@@ -161,8 +177,7 @@
 
                     // Process each image
                     for (let imgIdx = 0; imgIdx < loadedImages.length; imgIdx++) {
-                        const { img } = loadedImages[imgIdx];
-                        const color = GENE_COLORS_RGB[imgIdx % GENE_COLORS_RGB.length];
+                        const { img, color } = loadedImages[imgIdx];
                         
                         // Draw to offscreen canvas and get pixels
                         offCtx.drawImage(img, 0, 0, width, height);
@@ -245,7 +260,7 @@
                     }
 
                     loadedImages.forEach((item, index) => {
-                        const color = GENE_COLORS_RGB[index % GENE_COLORS_RGB.length];
+                        const color = item.color;
                         const y = startY + (index * spacing);
                         
                         // Draw Circle
