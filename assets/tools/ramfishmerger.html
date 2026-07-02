@@ -8,6 +8,10 @@
     <style>
         /* Ensures the canvas scales nicely within its container */
         #resultCanvas { max-width: 100%; max-height: 700px; object-fit: contain; }
+        
+        /* Slight styling to make color pickers look cleaner */
+        input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        input[type="color"]::-webkit-color-swatch { border: none; border-radius: 4px; }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen text-gray-800 font-sans p-4 md:p-8">
@@ -26,6 +30,11 @@
                     <input type="file" id="fileInput" multiple accept="image/*" 
                            class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer">
                     <p id="fileCount" class="text-xs text-gray-400 mt-2">0 files selected</p>
+                </div>
+
+                <!-- NEW: Dynamic Channel Colors Container -->
+                <div id="channelColorsContainer" class="hidden flex flex-col gap-2 max-h-48 overflow-y-auto p-3 bg-gray-800 rounded border border-gray-700">
+                    <!-- Color pickers injected here via JS -->
                 </div>
 
                 <div class="space-y-4">
@@ -94,7 +103,6 @@
     </div>
 
     <script>
-        // Expanded to 30 colors to handle the new max limit without immediate repeating
         const GENE_COLORS_RGB = [
             [255, 0, 0], [0, 255, 0], [0, 0, 255], [0, 255, 255], [255, 0, 255],
             [255, 255, 0], [255, 165, 0], [128, 0, 128], [0, 128, 128], [128, 128, 0],
@@ -104,18 +112,68 @@
             [128, 64, 0], [128, 0, 64], [0, 128, 64], [0, 64, 128], [64, 0, 128]
         ];
 
+        // --- Helper Functions for Colors ---
+        const rgbToHex = (r, g, b) => {
+            return "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1);
+        };
+
+        const hexToRgb = (hex) => {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? [
+                parseInt(result[1], 16),
+                parseInt(result[2], 16),
+                parseInt(result[3], 16)
+            ] : [255, 255, 255];
+        };
+
         // UI Listeners
         document.getElementById('threshold').addEventListener('input', e => document.getElementById('threshVal').textContent = e.target.value);
         document.getElementById('gamma').addEventListener('input', e => document.getElementById('gammaVal').textContent = e.target.value);
         document.getElementById('textScale').addEventListener('input', e => document.getElementById('textScaleVal').textContent = e.target.value);
         
         const fileInput = document.getElementById('fileInput');
+        const colorContainer = document.getElementById('channelColorsContainer');
+
         fileInput.addEventListener('change', e => {
-            const count = e.target.files.length;
+            const files = Array.from(e.target.files);
+            const count = files.length;
             document.getElementById('fileCount').textContent = `${count} file${count !== 1 ? 's' : ''} selected (Max 30)`;
+            
+            // Clear and hide if no files
+            colorContainer.innerHTML = '';
+            if (count === 0) {
+                colorContainer.classList.add('hidden');
+                return;
+            }
+
+            // Populate UI color pickers
+            colorContainer.classList.remove('hidden');
+            let colorIdx = 0;
+            
+            files.forEach((file, index) => {
+                const name = file.name.replace(/\.[^/.]+$/, "");
+                
+                // Determine default color based on previous logic
+                let rgb;
+                if (name.toUpperCase() === 'DAPI') {
+                    rgb = [200, 200, 200];
+                } else {
+                    rgb = GENE_COLORS_RGB[colorIdx % GENE_COLORS_RGB.length];
+                    colorIdx++;
+                }
+
+                const hexColor = rgbToHex(rgb[0], rgb[1], rgb[2]);
+
+                const row = document.createElement('div');
+                row.className = 'flex justify-between items-center bg-gray-700/50 p-2 rounded';
+                row.innerHTML = `
+                    <span class="text-sm text-gray-200 truncate w-3/4 pr-2" title="${name}">${name}</span>
+                    <input type="color" id="color_${index}" value="${hexColor}" class="w-8 h-8 rounded cursor-pointer bg-transparent border-0 shrink-0">
+                `;
+                colorContainer.appendChild(row);
+            });
         });
 
-        // Helper to load an image file into an HTML Image object
         const loadImage = (file) => {
             return new Promise((resolve, reject) => {
                 const img = new Image();
@@ -143,57 +201,45 @@
             const legendPos = document.getElementById('legendPos').value;
             const textScale = parseFloat(document.getElementById('textScale').value);
 
-            // Allow UI to update before heavy JS thread blocking
             setTimeout(async () => {
                 try {
                     const files = Array.from(fileInput.files);
                     const loadedImages = await Promise.all(files.map(loadImage));
                     
-                    // Assign colors to each image (Checking for DAPI)
-                    let colorIdx = 0;
-                    loadedImages.forEach(item => {
-                        if (item.name.toUpperCase() === 'DAPI') {
-                            item.color = [200, 200, 200]; // Light Grey for DAPI
-                        } else {
-                            item.color = GENE_COLORS_RGB[colorIdx % GENE_COLORS_RGB.length];
-                            colorIdx++; // Increment only for non-DAPI to keep gene colors continuous
-                        }
+                    // NEW: Read user-selected colors from the UI
+                    loadedImages.forEach((item, index) => {
+                        const colorInput = document.getElementById(`color_${index}`);
+                        item.color = hexToRgb(colorInput.value);
                     });
 
                     const width = loadedImages[0].img.width;
                     const height = loadedImages[0].img.height;
 
-                    // Setup offscreen canvas for processing
                     const offCanvas = document.createElement('canvas');
                     offCanvas.width = width;
                     offCanvas.height = height;
                     const offCtx = offCanvas.getContext('2d', { willReadFrequently: true });
 
-                    // Setup composite array (Float32 for precision before final clamp)
                     const totalPixels = width * height;
                     const compR = new Float32Array(totalPixels);
                     const compG = new Float32Array(totalPixels);
                     const compB = new Float32Array(totalPixels);
 
-                    // Process each image
                     for (let imgIdx = 0; imgIdx < loadedImages.length; imgIdx++) {
                         const { img, color } = loadedImages[imgIdx];
                         
-                        // Draw to offscreen canvas and get pixels
                         offCtx.drawImage(img, 0, 0, width, height);
                         const imgData = offCtx.getImageData(0, 0, width, height).data;
 
-                        // Calculate max brightness for normalization (approximate 99th percentile)
                         let maxVal = 1;
                         for (let i = 0; i < imgData.length; i += 4) {
                             let gray = (imgData[i] + imgData[i+1] + imgData[i+2]) / 3;
                             if (gray > maxVal) maxVal = gray;
                         }
 
-                        // Pixel Math
                         for (let i = 0, px = 0; i < imgData.length; i += 4, px++) {
                             let gray = (imgData[i] + imgData[i+1] + imgData[i+2]) / 3;
-                            let norm = gray / maxVal; // Normalize 0-1
+                            let norm = gray / maxVal;
                             
                             if (norm < threshold) {
                                 norm = 0;
@@ -207,7 +253,6 @@
                         }
                     }
 
-                    // Write to final visible canvas
                     const canvas = document.getElementById('resultCanvas');
                     canvas.width = width;
                     canvas.height = height;
@@ -218,24 +263,22 @@
                         finalImgData.data[i] = Math.min(255, compR[px]);
                         finalImgData.data[i+1] = Math.min(255, compG[px]);
                         finalImgData.data[i+2] = Math.min(255, compB[px]);
-                        finalImgData.data[i+3] = 255; // Alpha opaque
+                        finalImgData.data[i+3] = 255;
                     }
                     ctx.putImageData(finalImgData, 0, 0);
 
-                    // --- Draw Legend ---
                     const baseScale = width / 1000;
-                    const scale = baseScale * textScale; // Apply user scale
+                    const scale = baseScale * textScale; 
                     
                     const radius = 15 * scale;
                     const spacing = 60 * scale;
                     const fontSize = 40 * scale;
-                    const marginX = 40 * baseScale; // Keep margin linked only to base image size
+                    const marginX = 40 * baseScale;
                     const marginY = 40 * baseScale;
                     
                     ctx.font = `${fontSize}px Arial`;
                     ctx.textBaseline = "middle";
                     
-                    // Find widest text to calculate legend width
                     let maxTextWidth = 0;
                     loadedImages.forEach(item => {
                         let textWidth = ctx.measureText(item.name).width;
@@ -263,18 +306,15 @@
                         const color = item.color;
                         const y = startY + (index * spacing);
                         
-                        // Draw Circle
                         ctx.beginPath();
                         ctx.arc(startX + radius, y, radius, 0, 2 * Math.PI, false);
                         ctx.fillStyle = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
                         ctx.fill();
 
-                        // Draw Text
                         ctx.fillStyle = "white";
                         ctx.fillText(item.name, startX + (radius * 2) + (15 * scale), y);
                     });
 
-                    // Cleanup UI
                     canvas.classList.remove('hidden');
                     document.getElementById('downloadBtn').classList.remove('hidden');
 
@@ -287,10 +327,9 @@
                     document.getElementById('loading').classList.remove('flex');
                     document.getElementById('submitBtn').disabled = false;
                 }
-            }, 50); // Short timeout to let UI show the loading spinner
+            }, 50); 
         });
 
-        // Download functionality
         document.getElementById('downloadBtn').addEventListener('click', () => {
             const canvas = document.getElementById('resultCanvas');
             const link = document.createElement('a');
