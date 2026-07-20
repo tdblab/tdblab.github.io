@@ -26,12 +26,23 @@
     </div>
   </nav>
 
+  <!-- Hero Section -->
   <section class="max-w-7xl mx-auto py-16 px-6 lg:flex lg:items-start lg:gap-12">
-    <div class="lg:w-1/2 text-left mb-10 lg:mb-0">
-      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 drop-shadow-lg">RAM-FISH</h1>
-      <p class="text-lg text-gray-700 drop-shadow-md leading-relaxed text-justify">
-        A gallery of multiplexer, geneplexer, and rembot images. The RAM-FISH (Rapid Amplified Multiplexed-FISH) automation platform is a custom-engineered robotics suite designed to scale high-resolution spatial mRNA profiling. Operating in a continuous, closed-loop cycle, the system utilizes a precision Multiplexer for automated cyclic probe labeling and fluidic delivery. Following high-resolution confocal imaging, samples are processed by the RemBot, a dedicated signal-removal robot that efficiently clears fluorescence to prepare the tissue for subsequent multiplexing rounds. By integrating custom microcontrollers and modular fluidics, this platform significantly streamlines complex spatial biology workflows.
+    <div class="lg:w-1/2 text-left mb-10 lg:mb-0 flex flex-col justify-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 drop-shadow-lg">RAMFISH</h1>
+      <p class="text-lg text-gray-700 drop-shadow-md leading-relaxed text-justify mb-6">
+        A gallery of multiplexer, geneplexer, and rembot images. The RAMFISH (Rapid Amplified Multiplexed FISH) automation platform is a custom-engineered robotics suite designed to scale high-resolution spatial mRNA profiling. Operating in a continuous, closed-loop cycle, the system utilizes a precision Multiplexer for automated cyclic probe labeling and fluidic delivery. Following high-resolution confocal imaging, samples are processed by the RemBot, a dedicated signal-removal robot that efficiently clears fluorescence to prepare the tissue for subsequent multiplexing rounds. By integrating custom microcontrollers and modular fluidics, this platform significantly streamlines complex spatial biology workflows.
       </p>
+      
+      <!-- Added Resource Links -->
+      <div class="flex flex-wrap gap-4 mt-2">
+        <a href="https://www.biorxiv.org/content/10.1101/2024.12.06.627193v4" target="_blank" class="inline-flex items-center px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg shadow-md transition duration-300">
+          Read the bioRxiv Preprint
+        </a>
+        <a href="https://github.com/tdblab/RAMFISH" target="_blank" class="inline-flex items-center px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-lg shadow-md transition duration-300">
+          View on GitHub
+        </a>
+      </div>
     </div>
 
     <div class="lg:w-1/2 flex flex-col items-center lg:mt-0 mt-8">
@@ -45,7 +56,24 @@
     </div>
   </section>
 
+  <!-- NEW SECTION: Software Suite -->
+  <section class="max-w-7xl mx-auto px-6 py-12 mb-12 bg-white bg-opacity-70 rounded-2xl shadow-xl backdrop-blur-md">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">RAM-FISH Software Suite</h2>
+      <p class="text-lg text-gray-700 max-w-4xl mx-auto text-justify">
+        The RAM-FISH platform is powered by a robust, end-to-end computational pipeline. The software suite sequentially handles raw imaging data through signal normalization and background suppression using Gaussian blur. It seamlessly progresses through rough alignment, managing rotation, XY translation, and flips before executing precise affine and B-spline fine alignments between reference and target images. The pipeline concludes with highly accurate LoG-based single-spot counting, ultimately generating a comprehensive, multiplexed RNA profile.
+      </p>
+    </div>
+    
+    <div class="w-full flex justify-center">
+      <!-- Ensure the path matches where you store 'ramfish software suite.jpg' -->
+      <img src="../assets/images/gallery/ramfish_software_suite.jpg" alt="RAM-FISH Software Suite Workflow" class="w-full h-auto max-w-5xl rounded-lg shadow-lg border-2 border-white">
+    </div>
+  </section>
+
+  <!-- Hardware Gallery Grid -->
   <section class="max-w-6xl mx-auto px-6 pb-16">
+    <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center drop-shadow-md">Hardware Gallery</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
       <div class="bg-white bg-opacity-90 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition">

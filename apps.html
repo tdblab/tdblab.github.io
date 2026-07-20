@@ -11,7 +11,8 @@
 
 <body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen">
 
-   <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md">
+   <!-- Added z-50 to the nav bar to prevent overlap -->
+   <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
       <a href="index.html" class="text-xl font-semibold text-purple-700">Home</a>
       <div class="space-x-6 font-medium">
@@ -30,12 +31,59 @@
   <section class="text-center py-16 px-4">
     <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Apps & Tools</h1>
     <p class="text-lg text-gray-700 max-w-3xl mx-auto">
-      Web-based tools.
+      Web-based tools and computational software suites.
     </p>
   </section>
 
   <section class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
 
+    <!-- NEW: RAMFISH Software Suite -->
+    <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-6 hover:shadow-2xl transition backdrop-blur-md">
+      <img src="assets/images/apps/ramfish_software.jpg"
+           alt="RAM-FISH Software Suite"
+           class="rounded-lg shadow-md mb-4 w-full object-cover">
+
+      <h3 class="text-2xl font-semibold text-purple-700 mb-2">
+        RAMFISH Software Suite
+      </h3>
+
+      <p class="text-gray-700 mb-4 text-sm">
+        A comprehensive computational pipeline for multiplexed spatial biology. Handles signal normalization, image alignment, and LoG-based single-spot counting to generate accurate RNA profiles.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="https://github.com/tdblab/RAMFISH"
+           target="_blank"
+           class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition text-sm">
+          View on GitHub →
+        </a>
+      </div>
+    </div>
+
+    <!-- NEW: NEO-CRISPR -->
+    <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-6 hover:shadow-2xl transition backdrop-blur-md">
+      <img src="assets/images/apps/neo_crispr.jpg"
+           alt="NEO-CRISPR"
+           class="rounded-lg shadow-md mb-4 w-full object-cover">
+
+      <h3 class="text-2xl font-semibold text-purple-700 mb-2">
+        NEO-CRISPR
+      </h3>
+
+      <p class="text-gray-700 mb-4 text-sm">
+        A dedicated computational tool and repository designed to facilitate and analyze precise CRISPR-based genome editing experiments.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="https://github.com/tdblab/NEO-CRISPR"
+           target="_blank"
+           class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition text-sm">
+          View on GitHub →
+        </a>
+      </div>
+    </div>
+
+    <!-- HCR Probe Designer -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-6 hover:shadow-2xl transition backdrop-blur-md">
       <img src="assets/images/apps/hcr_probe_designer.jpg"
            alt="HCR Probe Designer"
@@ -60,6 +108,7 @@
       </div>
     </div>
 
+    <!-- RGB HCR Visualizer -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-6 hover:shadow-2xl transition backdrop-blur-md">
       <img src="assets/images/apps/rgb_hcr.jpg"
            alt="RGB HCR Visualizer"
@@ -83,17 +132,18 @@
       </div>
     </div>
 
+    <!-- RAMFISH Merger -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-6 hover:shadow-2xl transition backdrop-blur-md">
       <img src="assets/images/apps/ramfishmerger.jpg"
-           alt="RAM-FISH Merger"
+           alt="RAMFISH Merger"
            class="rounded-lg shadow-md mb-4 w-full object-cover">
 
       <h3 class="text-2xl font-semibold text-purple-700 mb-2">
-        Multiplexed RNA-FISH Merger
+        RAMFISH Merger
       </h3>
 
       <p class="text-gray-700 mb-4 text-sm">
-        A client-side web application for merging up to 10 single-channel RNA-FISH images. 
+        A client-side web application for merging up to 30 single-channel RNAFISH images. 
         Instantly generate highly multiplexed spatial composites with interactive controls for background thresholding, gamma correction, and dynamic legends.
       </p>
 
@@ -106,13 +156,14 @@
       </div>
     </div>
 
+    <!-- RAMFISH Fine Aligner -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-6 hover:shadow-2xl transition backdrop-blur-md">
       <img src="assets/images/apps/deformable_aligner.jpg"
            alt="Deformable Tissue Aligner"
            class="rounded-lg shadow-md mb-4 w-full object-cover">
 
       <h3 class="text-2xl font-semibold text-purple-700 mb-2">
-        Deformable Tissue Aligner
+        RAMFISH Fine Aligner
       </h3>
 
       <p class="text-gray-700 mb-4 text-sm">
