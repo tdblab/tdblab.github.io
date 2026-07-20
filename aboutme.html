@@ -7,12 +7,46 @@
 
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  
+  <style>
+    /* Custom styles for subtle background artwork */
+    .bg-artwork {
+      position: absolute;
+      opacity: 0.04; /* Kept very subtle so it doesn't distract from text */
+      z-index: 0;
+      pointer-events: none;
+    }
+    .content-relative {
+      position: relative;
+      z-index: 10;
+    }
+  </style>
 </head>
 
-<body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen">
+<body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen relative overflow-x-hidden">
+
+  <!-- Transparent Artwork 1: Microchip/Electronics (Top Left) -->
+  <svg class="bg-artwork top-[2%] -left-32 w-[40rem] h-[40rem] text-blue-900" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M21 9V7h-2V5a2 2 0 0 0-2-2h-2V1h-2v2h-2V1H9v2H7a2 2 0 0 0-2 2v2H3v2h2v2H3v2h2v2a2 2 0 0 0 2 2h2v2h2v-2h2v2h2v-2h2a2 2 0 0 0 2-2v-2h2v-2h-2v-2h2zM17 17H7V7h10v10zM9 9h6v6H9z"/>
+  </svg>
+
+  <!-- Transparent Artwork 2: Butterfly (Middle Right) -->
+  <svg class="bg-artwork top-[25%] -right-32 w-[45rem] h-[45rem] text-purple-900" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M21.5,10c0-4.1-3.4-7.5-7.5-7.5c-2.3,0-4.3,1-5.6,2.6l-1.5,1.8l-1.5-1.8C4.3,3.5,2.3,2.5,0,2.5v2c1.9,0,3.6,0.9,4.7,2.4l3.1,3.8L4.6,14.6C3.5,16,1.9,17,0,17v2c2.3,0,4.3-1,5.6-2.6l1.5-1.8l1.5,1.8C9.8,18,11.8,19,14,19c4.1,0,7.5-3.4,7.5-7.5V10z M14,17c-1.4,0-2.8-0.6-3.7-1.6l-1.9-2.3l1.9-2.3C11.2,9.6,12.6,9,14,9c3,0,5.5,2.5,5.5,5.5S17,17,14,17z"/>
+  </svg>
+
+  <!-- Transparent Artwork 3: Zebrafish (Middle Left) -->
+  <svg class="bg-artwork top-[52%] -left-20 w-[45rem] h-[45rem] text-teal-900" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M20,10c-1.5-1.5-4-2.5-7-2.5C9.5,7.5,6,9.5,3,11l-2-1v4l2-1c3,1.5,6.5,3.5,10,3.5c3,0,5.5-1,7-2.5c1.5-1.5,2.5-4,2.5-7h-2C20.5,10.5,20.2,10.2,20,10z"/>
+  </svg>
+
+  <!-- Transparent Artwork 4: Gears/Robotics (Bottom Right) -->
+  <svg class="bg-artwork top-[78%] -right-24 w-[40rem] h-[40rem] text-indigo-900" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
+  </svg>
 
   <!-- Navbar -->
-  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md">
+  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md z-50">
     <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
       <a href="index.html" class="text-xl font-semibold text-purple-700">Home</a>
       <div class="space-x-6 font-medium">
@@ -29,41 +63,47 @@
   </nav>
 
   <!-- About Section -->
-  <section class="max-w-4xl mx-auto px-6 py-16">
+  <section class="max-w-4xl mx-auto px-6 py-16 content-relative">
 
-    <h1 class="text-4xl font-bold text-gray-900 mb-6">About Me</h1>
+    <h1 class="text-4xl font-bold text-gray-900 mb-8 border-b-2 border-purple-300 pb-4">About Me</h1>
 
-    <p class="text-lg mb-6">
-       My work is driven by fascination at the intersection of molecular, evolutionary, and developmental biology with the integration of machine learning, to understand the development of novel morphological traits, the patterning of biological tissues, and the dissection of neural circuits.
+    <div class="bg-white bg-opacity-70 p-8 rounded-2xl shadow-lg backdrop-blur-sm mb-12">
+      <p class="text-lg mb-6 leading-relaxed text-justify">
+         My work is driven by a fascination at the intersection of molecular, evolutionary, and developmental biology with the integration of machine learning. I aim to understand the development of novel morphological traits, the patterning of biological tissues, and the dissection of neural circuits.
+      </p>
 
-</p>
+      <h3 class="text-2xl font-semibold text-purple-700 mb-3 mt-6">Dual-Proficiency</h3>
+      <p class="text-lg mb-4 leading-relaxed">
+        What defines my research is a dual-proficiency in high-end wet-lab biology and engineering. I maintain large-scale colonies of model organisms and am skilled in:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mb-6 text-gray-700 ml-4">
+        <li><span class="font-semibold text-gray-900">Molecular & Genomic:</span> CRISPR-Cas9 editing, single-cell and bulk RNA-sequencing, qPCR, and tissue culture.</li>
+        <li><span class="font-semibold text-gray-900">Imaging & Spatial:</span> Multiplex fluorescent in-situ hybridization (FISH), immunofluorescence, and laser capture microdissection.</li>
+        <li><span class="font-semibold text-gray-900">Engineering:</span> Development of new tools for mRNA and protein level detection, agri-tech, object detection, robotics, and computer vision (working at both hardware and software levels).</li>
+      </ul>
 
-<p class="text-lg mb-6">
-What defines my research is a dual-proficiency in high-end wet-lab biology and engineering. I maintain large-scale colonies of model organisms and am skilled in;
-Molecular/Genomic, CRISPR-Cas9 editing, single-cell and bulk RNA-sequencing, qPCR, and tissue culture.
-Imaging/Spatial: Multiplex fluorescent in-situ hybridization (FISH), immunofluorescence, and laser capture microdissection.
-Engineering: Development of new tools for mRNA and protein level detection, agri-tech, object detection, robotics, and computer vision (working at both hardware and software levels).
-</p>
+      <h3 class="text-2xl font-semibold text-purple-700 mb-3 mt-6">Scientific Contribution & Impact</h3>
+      <p class="text-lg mb-4 leading-relaxed">
+        With over 9 years of experience, I have published research in premier peer-reviewed journals, including <i>Science Advances, Science, Nature Ecology and Evolution, Communications Biology, Journal of Neuroscience, Development, Scientific Reports, iScience, Cell Reports, Frontiers in Ecology & Evolution, Methods & Protocols, Genomics,</i> and <i>Bioresource Technology</i>.
+      </p>
+      <p class="text-lg mb-6 leading-relaxed">
+        I am also an active contributor to the global research community, serving as a reviewer for <i>eLife, BMC Biology, BMC Research Notes, Annals of the Entomological Society of America, PLoS Genetics, Journal of Insect Physiology, Biology, Cells, Molecules,</i> and <i>Insect Sciences</i>.
+      </p>
 
-<p class="text-lg mb-6">
-Scientific Contribution & Impact:
-With over 9 years of experience, I have published research in premier peer-reviewed journals, including -
-Science Advances, Science, Nature Ecology and Evolution, Communications Biology, Journal of Neuroscience, Development, Scientific Reports, iScience, Cell Reports, Frontiers in Ecology & Evolution, Methods & Protocols, Genomics, and Bioresource Technology.
-I am also an active contributor to the global research community, serving as a reviewer for eLife, BMC Biology, BMC Research Notes, Annals of the Entomological Society of America, PLoS Genetics, Journal of Insect Physiology, Biology, Cells, Molecules, and Insect Sciences.
-</p>
-<p class="text-lg mb-6">
-Leadership & Education:
-Academic mentorship is a core pillar of my career. I have mentored 4 graduate, 13 undergraduate, and 3 high school students at NUS, alongside teaching and assisting classes in the field of Evolutionary Developmental Biology (Evo-Devo).
-    </p>
+      <h3 class="text-2xl font-semibold text-purple-700 mb-3 mt-6">Leadership & Education</h3>
+      <p class="text-lg leading-relaxed">
+        Academic mentorship is a core pillar of my career. I have mentored 4 graduate, 13 undergraduate, and 3 high school students at NUS, alongside teaching and assisting classes in the field of Evolutionary Developmental Biology (Evo-Devo).
+      </p>
+    </div>
 
 <!-- Mentorship & Training -->
-<section class="mt-16">
+<section class="mt-16 content-relative">
 
-  <h2 class="text-3xl font-semibold text-purple-700 mb-8">
+  <h2 class="text-3xl font-semibold text-purple-700 mb-4 border-b-2 border-purple-300 pb-2">
     Mentorship & Training
   </h2>
 
-  <p class="text-lg mb-8">
+  <p class="text-lg mb-8 text-gray-700">
     Undergraduate, graduate, and high-school students on projects spanning
     evo-devo, spatial transcriptomics, neurobiology, AI-driven image analysis, and experimental robotics.
   </p>
@@ -76,15 +116,11 @@ Academic mentorship is a core pillar of my career. I have mentored 4 graduate, 1
       <img src="assets/images/students/jeriel.jpg"
            alt="Jeriel Lee"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Jeriel Lee</h3>
       <p class="text-sm text-gray-600">Research Assistant</p>
-
       <p class="text-sm text-gray-700 mt-3">
         Investigating the spatial-temporal expression of leg gap genes during the embryonic and larval wing development of Bicyclus anynana butterflies.
       </p>
-
-      
     </div>
 
     <!-- Student Card -->
@@ -92,15 +128,11 @@ Academic mentorship is a core pillar of my career. I have mentored 4 graduate, 1
       <img src="assets/images/students/javen.jpg"
            alt="Javen Tan"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Javen Tan</h3>
       <p class="text-sm text-gray-600">Undergraduate student</p>
-
       <p class="text-sm text-gray-700 mt-3">
         Modeling reaction-diffusion based mechanisms patterning the wing veins of Bicyclus anynana.
       </p>
-
-      
     </div>
 
     <!-- Student Card (jay) -->
@@ -108,259 +140,208 @@ Academic mentorship is a core pillar of my career. I have mentored 4 graduate, 1
       <img src="assets/images/students/jay.jpg"
            alt="jay"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Jaya Vardhan Harihar Prasad</h3>
       <p class="text-sm text-gray-600">High School Interns</p>
-
       <p class="text-sm text-gray-700 mt-3">
-        Design and implementa-tion of nanolitre scale microinjector for CRISPR-Cas9 injection on embryos.
+        Design and implementation of nanolitre scale microinjector for CRISPR-Cas9 injection on embryos.
       </p>
-     
-
-  </div>
+    </div>
 
     <!-- Student Card (jeff) -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 text-center backdrop-blur-md hover:shadow-2xl transition">
       <img src="assets/images/students/jeff.jpg"
            alt="jeff"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Chan Sum Ngai Jeff</h3>
       <p class="text-sm text-gray-600">High School Interns</p>
-
       <p class="text-sm text-gray-700 mt-3">
-        Design and implementa-tion of nanolitre scale microinjector for CRISPR-Cas9 injection on embryos.
+        Design and implementation of nanolitre scale microinjector for CRISPR-Cas9 injection on embryos.
       </p>
-      
-
-  </div>
+    </div>
 
    <!-- Student Card (gianella) -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 text-center backdrop-blur-md hover:shadow-2xl transition">
       <img src="assets/images/students/gianella.jpg"
            alt="gia"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Gianella Pacho</h3>
       <p class="text-sm text-gray-600">Undergraduate student</p>
-
       <p class="text-sm text-gray-700 mt-3">
         Exploring FGF signaling in biological patterning using Bicyclus anynana.
       </p>
-      
-
-  </div>
+    </div>
 
    <!-- Student Card (Emily) -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 text-center backdrop-blur-md hover:shadow-2xl transition">
       <img src="assets/images/students/emily.jpg"
            alt="emily"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Emily Zhang Linwan</h3>
       <p class="text-sm text-gray-600">Graduate student</p>
-
       <p class="text-sm text-gray-700 mt-3">
         Spatial transcriptomics of developing Bicyclus anynana brain.
       </p>
-      <!-- link -->
       <div class="mt-3">
-        <a href="https://doi.org/10.3390/mps8020031" target="_blank" class="text-purple-600 text-sm hover:underline">
+        <a href="https://doi.org/10.3390/mps8020031" target="_blank" class="text-purple-600 text-sm hover:underline font-medium">
           View Report
         </a>
+      </div>
     </div>
-
-  </div>
 
     <!-- Student Card (zhangyu) -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 text-center backdrop-blur-md hover:shadow-2xl transition">
       <img src="assets/images/students/zhangyu.jpg"
            alt="zhangyu"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Zhang Yu</h3>
       <p class="text-sm text-gray-600">Graduate student</p>
-
       <p class="text-sm text-gray-700 mt-3">
         Spatial interaction of frizzled receptors in patterning butterfly wing tissues.
       </p>
-     
-
-  </div>
+    </div>
    
    <!-- Student Card (shaun) -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 text-center backdrop-blur-md hover:shadow-2xl transition">
       <img src="assets/images/students/shaun.jpg"
            alt="shaun"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">How Hong Chuen Shaun</h3>
       <p class="text-sm text-gray-600">Undergraduate student</p>
-
       <p class="text-sm text-gray-700 mt-3">
         Vermilion and cinnabar are involved in ommochrome pigment biosynthesis in eyes but not wings of Bicyclus anynana butterflies
       </p>
-      <!-- link -->
       <div class="mt-3">
-        <a href="https://doi.org/10.1038/s41598-023-36491-9" target="_blank" class="text-purple-600 text-sm hover:underline">
+        <a href="https://doi.org/10.1038/s41598-023-36491-9" target="_blank" class="text-purple-600 text-sm hover:underline font-medium">
           View Report
         </a>
+      </div>
     </div>
-
-  </div>
 
      <!-- Student Card (lara) -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 text-center backdrop-blur-md hover:shadow-2xl transition">
       <img src="assets/images/students/lara.jpg"
            alt="lara"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Lara Chal</h3>
       <p class="text-sm text-gray-600">Undergraduate student</p>
-
       <p class="text-sm text-gray-700 mt-3">
-        Co-localization of multipleeyespot centre-specific mRNA andprotein targets in larval wings of Bicyclus anynana.
+        Co-localization of multiple eyespot centre-specific mRNA and protein targets in larval wings of Bicyclus anynana.
       </p>
-      
-
-  </div>
+    </div>
 
     <!-- Student Card (dorothy) -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 text-center backdrop-blur-md hover:shadow-2xl transition">
       <img src="assets/images/students/dorothy.jpg"
            alt="dorothy"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Dorothy Lau Shi Min</h3>
       <p class="text-sm text-gray-600">Undergraduate student</p>
-
       <p class="text-sm text-gray-700 mt-3">
         Involvement of EGFR signaling in biological patterning of butterfly wings.
       </p>
-    
-
-  </div>
+    </div>
 
      <!-- Student Card (jeff2) -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 text-center backdrop-blur-md hover:shadow-2xl transition">
       <img src="assets/images/students/jeff2.jpg"
            alt="jeff"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Jeff Winxin Collado</h3>
       <p class="text-sm text-gray-600">Undergraduate student</p>
-
       <p class="text-sm text-gray-700 mt-3">
         Implementation of automated fluidics system for in-situ hybridization experiments in the larval and adult brains of Danio rerio.
       </p>
-     
-
-  </div>
+    </div>
 
     <!-- Student Card (teesha) -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 text-center backdrop-blur-md hover:shadow-2xl transition">
       <img src="assets/images/students/teesha.jpg"
            alt="teesha"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Teesha Basak</h3>
       <p class="text-sm text-gray-600">High School Interns</p>
-
       <p class="text-sm text-gray-700 mt-3">
         Designing an optimized autofeeder for behavioral experimentation in Zebrafish.
       </p>
-     
-
-  </div>
+    </div>
 
     <!-- Student Card (praveenya) -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 text-center backdrop-blur-md hover:shadow-2xl transition">
       <img src="assets/images/students/praveenya.jpg"
            alt="praveenya"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Tirunagari Praveenya</h3>
       <p class="text-sm text-gray-600">Undergraduate summer intern</p>
-
       <p class="text-sm text-gray-700 mt-3">
         The role of Homothorax (Hth) and Dachshund (Dac) in the eyespot center formation in Bicyclus anynana butterflies.
       </p>
-     
-
-  </div>
+    </div>
 
     <!-- Student Card (solomon) -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 text-center backdrop-blur-md hover:shadow-2xl transition">
       <img src="assets/images/students/solomon.jpg"
            alt="solomon"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
       <h3 class="text-lg font-semibold text-gray-900">Lim Jun Hui Solomon</h3>
       <p class="text-sm text-gray-600">High School Interns</p>
-
       <p class="text-sm text-gray-700 mt-3">
         Reaction diffusion modeling on wing patterns of butterflies.
       </p>
-      
-
-  </div>
+    </div>
 
     <!-- Student Card (isaac) -->
     <div class="bg-white bg-opacity-90 rounded-xl shadow-lg p-5 text-center backdrop-blur-md hover:shadow-2xl transition">
       <img src="assets/images/students/issac.jpg"
            alt="isaac"
            class="w-28 h-28 mx-auto rounded-full object-cover shadow-md mb-4">
-
-      <h3 class="text-lg font-semibold text-gray-900">Chan Sum Ngai Jeff</h3>
+      <h3 class="text-lg font-semibold text-gray-900">Isaac</h3> 
       <p class="text-sm text-gray-600">High School Interns</p>
-
       <p class="text-sm text-gray-700 mt-3">
         Reaction diffusion modeling on wing patterns of butterflies.
       </p>
-      
-
+    </div>
   </div>
-
-    
 </section>
 
     <!-- CV Section -->
-    <div class="bg-white bg-opacity-90 shadow-lg rounded-xl p-6 backdrop-blur-md">
+    <div class="bg-white bg-opacity-90 shadow-lg rounded-xl p-8 backdrop-blur-md mt-16 content-relative">
 
-      <h2 class="text-2xl font-semibold text-purple-700 mb-4">Curriculum Vitae</h2>
+      <h2 class="text-2xl font-semibold text-purple-700 mb-4 border-b border-purple-200 pb-2">Curriculum Vitae</h2>
 
-      <p class="mb-4">
+      <p class="mb-6 text-gray-700">
         You can view or download my full CV below:
       </p>
 
       <!-- CV Buttons -->
-      <div class="flex space-x-4 mb-6">
+      <div class="flex space-x-4 mb-8">
         <a href="assets/pdfs/Tirtha_Das_Banerjee_CV.pdf"
            target="_blank"
-           class="px-5 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
-          View CV
+           class="px-6 py-2 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 transition">
+          View Full Screen
         </a>
 
         <a href="assets/pdfs/Tirtha_Das_Banerjee_CV.pdf"
            download
-           class="px-5 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">
-          Download CV
+           class="px-6 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition">
+          Download PDF
         </a>
       </div>
 
       <!-- Embedded PDF -->
-      <iframe src="assets/pdfs/Tirtha_Das_Banerjee_CV.pdf"
-        class="w-full border rounded-lg"
-        style="height: 70vh; min-height: 700px;"
-        title="Curriculum Vitae">
-</iframe>
+      <div class="border-2 border-gray-200 rounded-lg overflow-hidden shadow-inner">
+        <iframe src="assets/pdfs/Tirtha_Das_Banerjee_CV.pdf"
+          class="w-full"
+          style="height: 70vh; min-height: 700px;"
+          title="Curriculum Vitae">
+        </iframe>
+      </div>
 
     </div>
 
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-100 bg-opacity-80 py-6 text-center text-sm backdrop-blur-md">
+  <footer class="bg-gray-100 bg-opacity-80 py-6 text-center text-sm backdrop-blur-md content-relative z-10">
     © 2026 Tirtha Das Banerjee. All rights reserved.
   </footer>
 
