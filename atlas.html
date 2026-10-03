@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In Situ Atlas | Tirtha Das Banerjee</title>
+  <meta name="description" content="Searchable atlas of gene expression images in Bicyclus anynana and zebrafish tissues, by Tirtha Das Banerjee.">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --scope: #15121f;      /* viewing stage behind the images */
+      --scope-2: #211c30;
+      --ink-soft: #c9c3dc;
+      --violet: #6d28d9;
+      --violet-soft: #ede9fe;
+    }
+    .stage { background: var(--scope); border-radius: 1.25rem; }
+    .tile {
+      position: relative; display: block; width: 100%; aspect-ratio: 1 / 1;
+      background: #000; border-radius: .6rem; overflow: hidden; cursor: zoom-in;
+      border: 1px solid #2b2540;
+    }
+    .tile img { width: 100%; height: 100%; object-fit: contain; }
+    .tile:hover, .tile:focus-visible { border-color: #a78bfa; outline: none; }
+    .tile .cap {
+      position: absolute; left: 0; right: 0; bottom: 0; padding: .55rem .6rem .5rem;
+      background: linear-gradient(to top, rgba(0,0,0,.88), rgba(0,0,0,0));
+      color: #fff; font-size: .75rem; line-height: 1.25rem; text-align: left;
+    }
+    .tile .play {
+      position: absolute; top: .5rem; right: .5rem; font-size: .7rem; color: #fff;
+      background: rgba(0,0,0,.6); padding: .1rem .45rem; border-radius: 999px;
+    }
+    .dot { display: inline-block; width: .6rem; height: .6rem; border-radius: 50%;
+      margin-right: .3rem; vertical-align: .02rem; box-shadow: 0 0 0 1px rgba(255,255,255,.35); }
+    .gene { white-space: nowrap; margin-right: .6rem; font-style: italic; }
+    .chip {
+      display: inline-flex; align-items: center; gap: .35rem; padding: .2rem .65rem;
+      border-radius: 999px; background: #fff; border: 1px solid #ddd6fe; font-size: .85rem;
+      color: #4c1d95; cursor: pointer;
+    }
+    .chip i { font-style: italic; }
+    .chip span { color: #7c6fa3; font-size: .75rem; }
+    .chip[aria-pressed="true"] { background: var(--violet); color: #fff; border-color: var(--violet); }
+    .chip[aria-pressed="true"] span { color: #e9e3ff; }
+    .field { background: #fff; border: 1px solid #ddd6fe; border-radius: .6rem; padding: .55rem .75rem; width: 100%; }
+    .field:focus { outline: 2px solid #8b5cf6; outline-offset: 1px; }
+    button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid #8b5cf6; outline-offset: 2px; }
+    #viewer { position: fixed; inset: 0; z-index: 60; background: rgba(10,8,18,.96); display: none; }
+    #viewer.open { display: flex; }
+    #viewer .media { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    #viewer .media img, #viewer .media video { max-width: 100%; max-height: 100%; object-fit: contain; }
+    #viewer aside { width: 22rem; max-width: 100%; background: var(--scope-2); color: var(--ink-soft); overflow-y: auto; padding: 1.5rem; }
+    #viewer aside h2 { color: #fff; }
+    #viewer aside dt { color: #8f86ad; font-size: .8rem; margin-top: .9rem; }
+    #viewer aside dd { color: #f3f0ff; }
+    #viewer aside a { color: #c4b5fd; text-decoration: underline; }
+    .vbtn { color: #fff; background: rgba(255,255,255,.08); border-radius: 999px; width: 2.5rem; height: 2.5rem; font-size: 1.2rem; }
+    .vbtn:hover { background: rgba(255,255,255,.18); }
+    #status { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); color: #cfc7ea; font-size: .8rem; }
+    @media (max-width: 800px) {
+      #viewer.open { flex-direction: column; }
+      #viewer .media { flex: 0 0 55%; }
+      #viewer aside { width: 100%; flex: 1; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .tile { transition: border-color .15s ease; }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
+
+  <!-- Navbar (same as the rest of the site) -->
+  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-semibold text-purple-700">Home</a>
+      <div class="space-x-6 font-medium">
+        <a href="aboutme.html" class="hover:text-purple-600">About Me</a>
+        <a href="research.html" class="hover:text-purple-600">Research</a>
+        <a href="tech.html" class="hover:text-purple-600">Tech</a>
+        <a href="publications.html" class="hover:text-purple-600">Publications</a>
+        <a href="hobbies.html" class="hover:text-purple-600">Hobbies</a>
+        <a href="apps.html" class="hover:text-purple-600">Apps & Tools</a>
+        <a href="protocols.html" class="hover:text-purple-600">Protocols</a>
+        <a href="gallery.html" class="hover:text-purple-600">Gallery</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="max-w-6xl mx-auto w-full px-6 pt-14 pb-8">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-3">In situ atlas</h1>
+    <p class="text-lg text-gray-700 max-w-2xl">
+      Gene expression in butterfly and zebrafish tissues. Search a gene to see every tissue
+      and stage where it was imaged, then open any image at full resolution.
+    </p>
+    <p id="summary" class="text-sm text-gray-600 mt-3" aria-live="polite"></p>
+  </header>
+
+  <main class="max-w-6xl mx-auto w-full px-6 pb-16 flex-1">
+    <!-- Search and filters -->
+    <section class="grid gap-3 grid-cols-2 md:grid-cols-6 mb-4" aria-label="Search and filter">
+      <label class="col-span-2">
+        <span class="block text-sm text-gray-600 mb-1">Gene or protein</span>
+        <input id="q" class="field" type="search" list="gene-list" placeholder="e.g. optix, spalt, LOC112046662" autocomplete="off">
+        <datalist id="gene-list"></datalist>
+      </label>
+      <label><span class="block text-sm text-gray-600 mb-1">Species</span><select id="f-species" class="field"></select></label>
+      <label><span class="block text-sm text-gray-600 mb-1">Tissue</span><select id="f-tissue" class="field"></select></label>
+      <label><span class="block text-sm text-gray-600 mb-1">Stage</span><select id="f-stage" class="field"></select></label>
+      <label><span class="block text-sm text-gray-600 mb-1">Method</span><select id="f-method" class="field"></select></label>
+    </section>
+
+    <details class="mb-6" id="gene-index">
+      <summary class="cursor-pointer text-purple-700 font-medium">Browse all genes</summary>
+      <div id="chips" class="flex flex-wrap gap-2 mt-3"></div>
+    </details>
+
+    <!-- Results -->
+    <section class="stage p-3 sm:p-5" aria-label="Images">
+      <div id="grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"></div>
+      <p id="empty" class="hidden text-center py-16" style="color:var(--ink-soft)"></p>
+      <div class="text-center mt-5">
+        <button id="more" class="hidden px-5 py-2 rounded-full bg-white text-purple-800 font-medium hover:bg-purple-100">Show more images</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Full-resolution viewer -->
+  <div id="viewer" role="dialog" aria-modal="true" aria-labelledby="v-title">
+    <div class="media relative">
+      <div id="v-media" class="w-full h-full flex items-center justify-center"></div>
+      <div class="absolute top-3 left-3 flex gap-2">
+        <button class="vbtn" id="v-prev" aria-label="Previous image">&#8249;</button>
+        <button class="vbtn" id="v-next" aria-label="Next image">&#8250;</button>
+      </div>
+      <p id="status"></p>
+    </div>
+    <aside>
+      <div class="flex justify-between items-start gap-3">
+        <h2 id="v-title" class="text-lg font-semibold"></h2>
+        <button class="vbtn flex-shrink-0" id="v-close" aria-label="Close viewer">&times;</button>
+      </div>
+      <dl id="v-meta"></dl>
+      <p class="mt-6 text-sm"><a id="v-full" href="#" target="_blank" rel="noopener">Open the full-resolution file</a></p>
+    </aside>
+  </div>
+
+  <footer class="bg-gray-100 bg-opacity-80 py-6 text-center text-sm backdrop-blur-md mt-auto">
+    © 2026 Tirtha Das Banerjee. All rights reserved.
+  </footer>
+
+<script src="data/atlas.js"></script>
+<script>
+(() => {
+  const COLORS = { red:"#ff4d4d", green:"#3ddc84", blue:"#4d8bff", magenta:"#ff4dd2", cyan:"#3de0e0",
+                   yellow:"#ffe14d", orange:"#ff9f40", gray:"#b3b3b3", white:"#ffffff" };
+  const PAGE = 48;
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+  let all = [], shown = [], limit = PAGE, base = "", current = -1;
+
+  const dot = c => c && COLORS[c] ? `<span class="dot" style="background:${COLORS[c]}" aria-hidden="true"></span>` : "";
+  const geneLine = r => r.targets.map(t => `<span class="gene">${dot(t.color)}${esc(t.name)}</span>`).join("");
+  const title = r => r.targets.length ? r.targets.map(t => t.name).join(", ") : "Genes to be added";
+  const place = r => [cap(r.stage), r.tissue].filter(Boolean).join(" ");
+
+  function fillSelect(el, key, label) {
+    const vals = [...new Set(all.map(r => r[key]).filter(Boolean))].sort();
+    el.innerHTML = `<option value="">All ${label}</option>` + vals.map(v => `<option>${esc(v)}</option>`).join("");
+  }
+
+  function geneIndex() {
+    const m = new Map();
+    all.forEach(r => new Set(r.targets.map(t => t.name)).forEach(n => {
+      const k = n.toLowerCase(); const e = m.get(k) || { name: n, n: 0 }; e.n++; m.set(k, e);
+    }));
+    const genes = [...m.values()].sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
+    $("gene-list").innerHTML = genes.map(g => `<option value="${esc(g.name)}">`).join("");
+    $("chips").innerHTML = genes.map(g =>
+      `<button class="chip" data-g="${esc(g.name)}" aria-pressed="false"><i>${esc(g.name)}</i><span>${g.n}</span></button>`).join("");
+    return genes.length;
+  }
+
+  function matches(r, q) {
+    if (!q) return true;
+    const hay = [...r.targets.map(t => t.name), ...r.locus].map(s => s.toLowerCase());
+    if (hay.includes(q)) return true;
+    return hay.some(h => h.startsWith(q)) || (q.length > 3 && r.caption.toLowerCase().includes(q));
+  }
+
+  function apply(resetLimit = true) {
+    if (!ready) return;
+    const q = $("q").value.trim().toLowerCase();
+    const f = { species: $("f-species").value, tissue: $("f-tissue").value, stage: $("f-stage").value, method: $("f-method").value };
+    shown = all.filter(r => matches(r, q) && Object.entries(f).every(([k, v]) => !v || r[k] === v));
+    if (resetLimit) limit = PAGE;
+    document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.g.toLowerCase() === q));
+    const p = new URLSearchParams();
+    if (q) p.set("gene", $("q").value.trim());
+    Object.entries(f).forEach(([k, v]) => v && p.set(k, v));
+    history.replaceState(null, "", p.toString() ? "?" + p : location.pathname);
+    render();
+  }
+
+  function render() {
+    const slice = shown.slice(0, limit);
+    $("grid").innerHTML = slice.map((r, i) => `
+      <button class="tile" data-i="${i}" aria-label="Open ${esc(title(r))}, ${esc(place(r))}">
+        ${r.thumb ? `<img src="${esc(r.thumb)}" alt="" loading="lazy" decoding="async" width="${r.w || ""}" height="${r.h || ""}">` : ""}
+        ${r.kind === "video" ? `<span class="play">Video</span>` : ""}
+        <span class="cap">${r.targets.length ? geneLine(r) : "<em>Genes to be added</em>"}<br><span style="opacity:.75">${esc(place(r))}</span></span>
+      </button>`).join("");
+    $("more").classList.toggle("hidden", shown.length <= limit);
+    $("more").textContent = `Show more images (${shown.length - limit} left)`;
+    const empty = shown.length === 0;
+    $("empty").classList.toggle("hidden", !empty);
+    if (empty) $("empty").textContent = "No images match. Clear a filter or try another gene name.";
+    $("summary").textContent = `Showing ${shown.length} of ${all.length} images.`;
+  }
+
+  function src(r) { return /^https?:/.test(r.file) ? r.file : base + r.file; }
+
+  function openViewer(i) {
+    current = i; const r = shown[i]; if (!r) return;
+    const media = $("v-media"), status = $("status");
+    status.textContent = "";
+    if (r.kind === "video") {
+      media.innerHTML = `<video src="${esc(src(r))}" controls autoplay muted loop playsinline></video>`;
+    } else {
+      media.innerHTML = r.thumb ? `<img src="${esc(r.thumb)}" alt="${esc(title(r))}">` : "";
+      status.textContent = "Loading full resolution";
+      const full = new Image();
+      full.onload = () => { if (current === i) { media.innerHTML = ""; full.alt = title(r); media.appendChild(full); status.textContent = ""; } };
+      full.onerror = () => { if (current === i) status.textContent = "The full-resolution file could not be loaded."; };
+      full.src = src(r);
+    }
+    $("v-title").innerHTML = r.targets.length ? r.targets.map(t => `<span class="gene">${dot(t.color)}${esc(t.name)}</span>`).join(" ") : "Genes to be added";
+    const rows = [];
+    if (r.species) rows.push(["Species", `<i>${esc(r.species)}</i>`]);
+    if (r.tissue || r.stage) rows.push(["Tissue and stage", esc(cap(place(r))) + (r.stage_detail ? ` (${esc(r.stage_detail)})` : "")]);
+    if (r.method) rows.push(["Method", esc(r.method)]);
+    if (r.counterstain.length) rows.push(["Counterstain", r.counterstain.map(t => `${dot(t.color)}${esc(t.name)}`).join(" ")]);
+    if (r.locus.length) rows.push(["NCBI gene", r.locus.map(l => `<a href="https://www.ncbi.nlm.nih.gov/gene/?term=${encodeURIComponent(l)}" target="_blank" rel="noopener">${esc(l)}</a>`).join(", ")]);
+    if (r.doi) rows.push(["Published in", `<a href="https://doi.org/${esc(r.doi)}" target="_blank" rel="noopener">${esc(r.doi)}</a>`]);
+    if (r.caption) rows.push(["Caption", esc(r.caption)]);
+    if (r.notes) rows.push(["Details pending", esc(r.notes)]);
+    $("v-meta").innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+    $("v-full").href = src(r);
+    $("v-prev").disabled = i === 0; $("v-next").disabled = i === shown.length - 1;
+    $("viewer").classList.add("open"); document.body.style.overflow = "hidden";
+    $("v-close").focus();
+  }
+  function closeViewer() {
+    $("viewer").classList.remove("open"); $("v-media").innerHTML = ""; document.body.style.overflow = "";
+    const t = document.querySelector(`.tile[data-i="${current}"]`); if (t) t.focus(); current = -1;
+  }
+  function step(d) {
+    const n = current + d; if (n < 0 || n >= shown.length) return;
+    if (n >= limit) { limit = n + 1; render(); }
+    openViewer(n);
+  }
+
+  $("grid").addEventListener("click", e => { const t = e.target.closest(".tile"); if (t) openViewer(+t.dataset.i); });
+  $("chips").addEventListener("click", e => {
+    const c = e.target.closest(".chip"); if (!c) return;
+    $("q").value = c.getAttribute("aria-pressed") === "true" ? "" : c.dataset.g; apply();
+    $("grid").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+  });
+  $("q").addEventListener("input", () => apply());
+  ["f-species", "f-tissue", "f-stage", "f-method"].forEach(id => $(id).addEventListener("change", () => apply()));
+  $("more").addEventListener("click", () => { limit += PAGE; render(); });
+  $("v-close").addEventListener("click", closeViewer);
+  $("v-prev").addEventListener("click", () => step(-1));
+  $("v-next").addEventListener("click", () => step(1));
+  document.addEventListener("keydown", e => {
+    if (current < 0) return;
+    if (e.key === "Escape") closeViewer();
+    if (e.key === "ArrowLeft") step(-1);
+    if (e.key === "ArrowRight") step(1);
+  });
+
+  let ready = false;
+  function init(d) {
+    all = d.records; base = d.base_url || "";
+    fillSelect($("f-species"), "species", "species");
+    fillSelect($("f-tissue"), "tissue", "tissues");
+    fillSelect($("f-stage"), "stage", "stages");
+    fillSelect($("f-method"), "method", "methods");
+    const nGenes = geneIndex();
+    $("gene-index").querySelector("summary").textContent = `Browse all ${nGenes} genes`;
+    const p = new URLSearchParams(location.search);
+    if (p.get("gene")) $("q").value = p.get("gene");
+    ["species", "tissue", "stage", "method"].forEach(k => { if (p.get(k)) $("f-" + k).value = p.get(k); });
+    ready = true; apply();
+  }
+  function fail() {
+    $("summary").textContent = "";
+    $("empty").classList.remove("hidden");
+    $("empty").textContent = "The atlas data could not be loaded. Check that the data folder (atlas.js) sits next to atlas.html.";
+  }
+  if (window.ATLAS_DATA) init(window.ATLAS_DATA);
+  else fetch("data/atlas.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(init).catch(fail);
+})();
+</script>
+</body>
+</html>
