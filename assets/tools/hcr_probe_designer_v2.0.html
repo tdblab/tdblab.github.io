@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCR Probe Designer v2.0</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 24px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0px auto;
+            background-color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label, .container h2, .container h3, summary {
+            color: #4CAF50;
+        }
+
+        input, textarea, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        textarea { min-height: 110px; font-family: monospace; }
+
+        input[type="checkbox"] { width: auto; margin: 0; padding: 0; }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:disabled { background-color: #9e9e9e; cursor: wait; }
+
+        .row { display: flex; gap: 16px; flex-wrap: wrap; }
+        .row > div { flex: 1 1 200px; }
+
+        .hint { font-size: 13px; color: #777; margin: -4px 0 8px 0; }
+
+        details { margin: 12px 0; padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; }
+        summary { font-weight: bold; cursor: pointer; font-size: 17px; }
+
+        .gene-card { margin: 16px 0; padding: 4px 14px 10px 14px; background: #f6fbf6; border: 1px solid #cfe8d0; border-left: 5px solid #4CAF50; border-radius: 6px; }
+        .gene-card h3 { margin: 10px 0 6px 0; }
+
+        #status { margin: 10px 0; font-size: 15px; color: #555; min-height: 20px; }
+
+        .results {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+        }
+
+        .probe-set {
+            margin-bottom: 30px;
+            padding: 12px;
+            background-color: #e8f5e9;
+            border-left: 5px solid #4CAF50;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-top: 50px;
+        }
+
+        .highlight {
+            background-color: #d3d3d3;
+        }
+
+        .highlight-box {
+            background-color: #fff;
+            border: 2px solid #4CAF50;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            margin-bottom: 16px;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+
+        .map { width: 100%; height: 44px; display: block; background: #fff; border: 1px solid #ccc; border-radius: 4px; margin: 8px 0 4px 0; }
+        .legend { font-size: 13px; color: #555; margin-bottom: 12px; }
+        .legend span { display: inline-block; width: 12px; height: 12px; margin: 0 4px 0 12px; vertical-align: middle; }
+
+        .table-wrap { overflow-x: auto; background: #fff; border-radius: 4px; }
+        table.pairs { border-collapse: collapse; font-size: 14px; width: 100%; }
+        table.pairs th, table.pairs td { border: 1px solid #ddd; padding: 6px 8px; text-align: center; white-space: nowrap; }
+        table.pairs th { background: #4CAF50; color: #fff; }
+        table.pairs td.seq { font-family: monospace; font-size: 13px; text-align: left; }
+        table.pairs tr.off td { color: #aaa; text-decoration: line-through; }
+        table.pairs tr.off td:first-child { text-decoration: none; }
+        .s-good { background: #c8e6c9; } .s-mid { background: #ffe0b2; } .s-bad { background: #ffcdd2; }
+    </style>
+</head>
+<body>
+    <header>HCR Probe Designer v2.0</header>
+    <div class="container">
+        <h2>Design HCR Probes</h2>
+        <label for="gene-count">How many genes do you want to design probes for?</label>
+        <input type="number" id="gene-count" value="1" min="1" max="20">
+        <div class="hint">One block opens for each gene. RNA input (U) is read as T. Any other non-ACGT character is kept as N, and probes are never placed over it.</div>
+
+        <div id="genes"></div>
+
+        <details>
+            <summary>Specificity check (optional)</summary>
+            <label for="tx-source">Transcriptome to check against:</label>
+            <select id="tx-source">
+                <option value="none">None</option>
+                <option value="upload">Upload a transcriptome FASTA (.fa or .fa.gz)</option>
+            </select>
+            <input type="file" id="tx-file" accept=".fa,.fasta,.fna,.gz,.txt" style="display:none">
+            <div class="hint" id="tx-hint">The file is read in your browser only; nothing is uploaded to a server.</div>
+
+            <label for="avoid-seqs">Additional sequences to avoid (paralogs etc., FASTA or raw):</label>
+            <textarea id="avoid-seqs" placeholder=">paralog1 ..."></textarea>
+
+            <div class="row">
+                <div>
+                    <label for="off-max">Reject probe sets with an off-target match of at least (nt, blank = never reject):</label>
+                    <input type="number" id="off-max" value="20" min="15" max="25">
+                </div>
+                <div>
+                    <label for="self-len">Treat transcriptome entries sharing an exact stretch of at least (nt) as the target gene itself:</label>
+                    <input type="number" id="self-len" value="100" min="30">
+                </div>
+            </div>
+            <div class="hint">Matches are exact stretches of 15 nt or longer, on either strand. When several genes are entered, every gene is also checked against the others.</div>
+        </details>
+
+        <details>
+            <summary>Scoring settings</summary>
+            <div class="hint" style="margin-top:8px">Every probe set starts at 100 and loses up to the number of points below for each property. Set a value to 0 to ignore that property.</div>
+            <div class="row">
+                <div><label for="w-gc">GC far from the middle of the allowed range:</label><input type="number" id="w-gc" value="20" min="0"></div>
+                <div><label for="w-tm">Tm difference between the two halves (10 &deg;C = full):</label><input type="number" id="w-tm" value="15" min="0"></div>
+                <div><label for="w-homo">Homopolymer runs (4 nt and longer):</label><input type="number" id="w-homo" value="15" min="0"></div>
+            </div>
+            <div class="row">
+                <div><label for="w-cx">Low sequence complexity:</label><input type="number" id="w-cx" value="10" min="0"></div>
+                <div><label for="w-struct">Hairpin / dimer potential (full probes):</label><input type="number" id="w-struct" value="15" min="0"></div>
+                <div><label for="w-off">Off-target match length:</label><input type="number" id="w-off" value="25" min="0"></div>
+            </div>
+            <label for="min-score">Minimum score to keep a probe set:</label>
+            <input type="number" id="min-score" value="0" min="0" max="100">
+        </details>
+
+        <button id="btn-design" onclick="designProbes()">Design Probes</button>
+        <button onclick="downloadExcel()">Download Excel File</button>
+        <button onclick="downloadOPools()">Download IDT oPools Order File</button>
+        <div id="status"></div>
+
+
+<h5>Cite: Banerjee, T. D., Raine, J., Mathuru, A. S., Chen, K. H., and Monteiro, A. (2024). A spatial mRNA profiling workflow using Rapid Amplified Multiplex FISH (RAMFISH). bioRxiv. <a href="https://www.biorxiv.org/content/10.1101/2024.12.06.627193v4">Link</a>
+<br><br>
+References: 1) Choi, H. M. T., Schwarzkopf, M., Fornace, M. E., Acharya, A., Artavanis, G., Stegmaier, J., Cunha, A. and Pierce, N. A. (2018). Third-generation in situ hybridization chain reaction : multiplexed , quantitative , sensitive , versatile , robust. Development.
+<a href="https://journals.biologists.com/dev/article/145/12/dev165753/48466/Third-generation-in-situ-hybridization-chain">Link</a>
+<br>2) Wang, Y., Liu, X., Zeng, Y., Saka, S. K., Xie, W., Goldaracena, I., Kohman, R. E., Yin, P. and Church, G. M. (2024). Multiplexed in situ protein imaging using DNA-barcoded antibodies with extended hybridization chain reactions. Nucleic Acids Research 52, e71.
+<a href="https://academic.oup.com/nar/article/52/15/e71/7706473">Link</a></h5>
+
+    </div>
+
+    <div id="results" class="results"></div>
+
+    <div class="footer">
+        <p>Developed by <a href="https://scholar.google.com/citations?user=H2S5ROQAAAAJ&hl=en">Tirtha Das Banerjee</a></p>
+    </div>
+
+    <script>
+        function reverseComplement(seq) {
+            const comp = { 'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C' };
+            return seq.split('').reverse().map(base => comp[base] || base).join('');
+        }
+
+        function calculateGCContent(seq) {
+            return (seq.match(/[GC]/g) || []).length / seq.length * 100;
+        }
+
+        const amplifiers = {
+            B1: ["GAGGAGGGCAGCAAACGGAA", "TAGAAGAGTCTTCCTTTACG"],
+            B2: ["CCTCGTAAATCCTCATCAAA", "AAATCATCCAGTAAACCGCC"],
+            B3: ["GTCCCTGCCTCTATATCTTT", "TTCCACTCAACTTTAACCCG"],
+            B4: ["CCTCAACCTACCTCCAACAA", "ATTCTCACCATATTCGCTTC"],
+            B5: ["CTCACTCCCAATCTCTATAA", "AACTACCCTACAAATCCAAT"],
+            B6: ["CACCCTCACTACCTCACCAA", "AACTCACCTCCATCCACCTC"],
+            B7: ["CCTACCTCCAATCCCTACAT", "AACCTCACTACATCCTCACC"],
+            B8: ["CCTTGATTATCTCGTCTCTT", "TTCATCACTCGCACTCTACC"],
+            B9: ["CCACTCTCAGCACACTCCAA", "ATCAACCCTACTACAAGCTC"],
+            B10: ["CCTCTACCTACTCGACTAAA", "AACCCTAGCCGTAACTTCAC"],
+            B11: ["ACTCCTACGTCGACCACAAA", "TACTCATCCTGCATGTTCCC"],
+            B12: ["GCTCTCATGCCTCTCGTATT", "TTCTACCGTCACAAGTAAAC"],
+            B13: ["CCTGCTTTATGCTCAACAAT", "AATACAACCAGAAATGCGGC"],
+            B14: ["GAGCGACCCTATATTTCTAA", "AAGCACAGAAGTTATACCGG"],
+            B15: ["CCACAAGGTATCTCGAACTT", "TTACTCTCCAAATTGGCTAC"],
+            B16: ["GACGAGCGCACCAATCGGAA", "ATCAAGTGTCATGGATTAGG"],
+            B17: ["GTGGACGCATGCTAATCGAT", "AAGATGAGTGTTCGTTATCG"],
+            B18: ["GGACGATAAACCTGATCTAA", "AAATCTTCCTGTATAGGCTC"],
+            B19: ["GACCTACGGACTTAATCTTT", "TTGCTGTCATCTTAAAGCGG"],
+            B20: ["TCAGTACCTTGCTCGTTCAA", "AATAACATCTATTTGTCTAC"]
+        };
+
+        // ---------- sequence input ----------
+
+        function cleanSeq(raw) {
+            return raw.replace(/[\s\d]/g, '').toUpperCase().replace(/U/g, 'T').replace(/[^ACGT]/g, 'N');
+        }
+
+        function readGenes() {
+            return Array.from(document.querySelectorAll('.gene-card')).map((card, i) => {
+                const q = s => card.querySelector(s);
+                const num = (s, fallback) => { const v = parseFloat(q(s).value); return isNaN(v) ? fallback : v; };
+                let raw = q('.g-seq').value, name = q('.g-name').value.trim();
+                const hdr = raw.match(/^\s*>(\S*)/);          // a pasted FASTA header is not sequence
+                if (hdr && !name) name = hdr[1];
+                raw = raw.replace(/^\s*>.*$/gm, '');
+                return {
+                    idx: i + 1, name: name || ('Gene' + (i + 1)), seq: cleanSeq(raw), amp: q('.g-amp').value,
+                    gcMin: parseInt(q('.g-gcmin').value), gcMax: num('.g-gcmax', 100),
+                    gap: Math.max(0, Math.round(num('.g-gap', 30))),
+                    maxPairs: Math.max(0, Math.round(num('.g-max', 0))),
+                    regionStart: Math.max(0, Math.round(num('.g-rstart', 1)) - 1),
+                    regionEnd: num('.g-rend', Infinity)
+                };
+            });
+        }
+
+        // ---------- per-probe properties ----------
+
+        const NN = {
+            AA: [-7.9, -22.2], TT: [-7.9, -22.2], AT: [-7.2, -20.4], TA: [-7.2, -21.3],
+            CA: [-8.5, -22.7], TG: [-8.5, -22.7], GT: [-8.4, -22.4], AC: [-8.4, -22.4],
+            CT: [-7.8, -21.0], AG: [-7.8, -21.0], GA: [-8.2, -22.2], TC: [-8.2, -22.2],
+            CG: [-10.6, -27.2], GC: [-9.8, -24.4], GG: [-8.0, -19.9], CC: [-8.0, -19.9]
+        };
+
+        // Nearest-neighbor Tm (SantaLucia 1998), DNA/DNA, 1 M Na+, 250 nM oligo, no formamide.
+        // Used to compare the two halves of a pair, not as an absolute hybridization temperature.
+        function calcTm(s) {
+            let dH = 0, dS = 0;
+            [s[0], s[s.length - 1]].forEach(b => {
+                if (b === 'G' || b === 'C') { dH += 0.1; dS += -2.8; } else { dH += 2.3; dS += 4.1; }
+            });
+            for (let i = 0; i < s.length - 1; i++) {
+                const p = NN[s[i] + s[i + 1]];
+                dH += p[0]; dS += p[1];
+            }
+            return dH * 1000 / (dS + 1.987 * Math.log(250e-9 / 4)) - 273.15;
+        }
+
+        function longestRun(s) {
+            let best = 1, run = 1;
+            for (let i = 1; i < s.length; i++) {
+                if (s[i] === s[i - 1]) { run++; if (run > best) best = run; } else run = 1;
+            }
+            return best;
+        }
+
+        // Fraction of distinct 3-mers (1 = every 3-mer is different).
+        function complexity(s) {
+            const seen = new Set();
+            for (let i = 0; i + 3 <= s.length; i++) seen.add(s.substr(i, 3));
+            return seen.size / (s.length - 2);
+        }
+
+        // Longest stretch of x that can base-pair with a stretch of y (antiparallel).
+        const _lcsA = new Uint8Array(128), _lcsB = new Uint8Array(128);
+        function longestCompl(x, y) {
+            const r = reverseComplement(y), n = x.length, m = r.length;
+            let prev = _lcsA, cur = _lcsB, best = 0;
+            prev.fill(0, 0, m + 1);
+            for (let i = 0; i < n; i++) {
+                const c = x.charCodeAt(i);
+                cur[0] = 0;
+                for (let j = 0; j < m; j++) {
+                    if (c === r.charCodeAt(j)) {
+                        const v = prev[j] + 1;
+                        cur[j + 1] = v;
+                        if (v > best) best = v;
+                    } else cur[j + 1] = 0;
+                }
+                const t = prev; prev = cur; cur = t;
+            }
+            return best;
+        }
+
+        const clamp01 = v => v < 0 ? 0 : (v > 1 ? 1 : v);
+
+        // ---------- off-target k-mer scan ----------
+        // The k-mers of the input genes go into a small hash table; the transcriptome is then
+        // streamed past it once, so memory use does not depend on transcriptome size.
+
+        const K = 15, KMASK = 0x3FFFFFFF, H1 = 0x9E3779B1 | 0, H2 = 0x85EBCA6B | 0;
+        const LUT = new Int8Array(256).fill(-1);
+        [['A', 0], ['C', 1], ['G', 2], ['T', 3], ['U', 3]].forEach(([ch, v]) => {
+            LUT[ch.charCodeAt(0)] = v; LUT[ch.toLowerCase().charCodeAt(0)] = v;
+        });
+
+        function buildIndex(genes) {
+            let n = 0;
+            genes.forEach(g => { n += Math.max(0, g.seq.length - K + 1) * 2; });
+            let size = 1024;
+            while (size < n * 3) size <<= 1;
+            const ix = {
+                mask: size - 1,
+                keys: new Int32Array(size).fill(-1),
+                head: new Int32Array(size).fill(-1),
+                eGene: new Int32Array(n), ePos: new Int32Array(n), eStrand: new Uint8Array(n), eNext: new Int32Array(n),
+                filt: new Uint8Array(1 << 21),
+                ne: 0
+            };
+            function insert(key, gi, pos, strand) {
+                let h = (Math.imul(key, H1) >>> 7) & ix.mask;
+                while (ix.keys[h] !== -1 && ix.keys[h] !== key) h = (h + 1) & ix.mask;
+                ix.keys[h] = key;
+                const e = ix.ne++;
+                ix.eGene[e] = gi; ix.ePos[e] = pos; ix.eStrand[e] = strand; ix.eNext[e] = ix.head[h]; ix.head[h] = e;
+                const f = Math.imul(key, H2) >>> 8;
+                ix.filt[f >>> 3] |= 1 << (f & 7);
+            }
+            genes.forEach((g, gi) => {
+                const s = g.seq;
+                let fwd = 0, rc = 0, len = 0;
+                for (let i = 0; i < s.length; i++) {
+                    const c = LUT[s.charCodeAt(i)];
+                    if (c < 0) { len = 0; continue; }
+                    fwd = ((fwd << 2) | c) & KMASK;
+                    rc = (rc >>> 2) | ((3 - c) << 28);
+                    if (++len >= K) {
+                        const pos = i - K + 1;
+                        // Homopolymer and dinucleotide-repeat k-mers are skipped: they match
+                        // everywhere and are already penalized by the complexity terms.
+                        if (/^(.)\1+$|^(..)\2+.?$/.test(s.substr(pos, K))) continue;
+                        insert(fwd, gi, pos, 0);
+                        insert(rc, gi, pos, 1);
+                    }
+                }
+            });
+            return ix;
+        }
+
+        class Scanner {
+            constructor(ix, genes, selfLen) {
+                this.ix = ix; this.genes = genes; this.selfLen = selfLen;
+                this.names = [];
+                this.nTranscripts = 0;
+                this.reset('custom', -1);
+            }
+            reset(source, skipGene, name) {
+                this.source = source; this.skipGene = skipGene;
+                this.inHeader = false; this.hdr = [];
+                this.val = 0; this.len = 0; this.tpos = 0;
+                this.curName = name || 'sequence';
+                this.runs = new Map(); this.segs = [];
+            }
+            feed(bytes) {
+                const filt = this.ix.filt;
+                let inHeader = this.inHeader, val = this.val, len = this.len, tpos = this.tpos;
+                for (let i = 0, n = bytes.length; i < n; i++) {
+                    const b = bytes[i];
+                    if (inHeader) {
+                        if (b === 10) {
+                            inHeader = false;
+                            this.curName = String.fromCharCode.apply(null, this.hdr).trim().split(/\s+/)[0] || 'unnamed';
+                        } else if (this.hdr.length < 100) this.hdr.push(b);
+                        continue;
+                    }
+                    const c = LUT[b];
+                    if (c >= 0) {
+                        val = ((val << 2) | c) & KMASK;
+                        if (++len >= K) {
+                            const f = Math.imul(val, H2) >>> 8;
+                            if (filt[f >>> 3] & (1 << (f & 7))) this.hit(val, tpos - K + 1);
+                        }
+                        tpos++;
+                    } else if (b === 62) {
+                        this.tpos = tpos;
+                        this.endTranscript();
+                        inHeader = true; this.hdr.length = 0;
+                        val = 0; len = 0; tpos = 0;
+                    } else if (b === 10 || b === 13 || b === 32 || b === 9) {
+                        // line break inside a sequence
+                    } else { len = 0; tpos++; }
+                }
+                this.inHeader = inHeader; this.val = val; this.len = len; this.tpos = tpos;
+            }
+            hit(val, t) {
+                const ix = this.ix;
+                let h = (Math.imul(val, H1) >>> 7) & ix.mask;
+                while (ix.keys[h] !== -1 && ix.keys[h] !== val) h = (h + 1) & ix.mask;
+                if (ix.keys[h] === -1) return;
+                for (let e = ix.head[h]; e !== -1; e = ix.eNext[e]) {
+                    const gi = ix.eGene[e];
+                    if (gi === this.skipGene) continue;
+                    const g = ix.ePos[e], s = ix.eStrand[e];
+                    const key = gi + '|' + s + '|' + (s ? t + g : t - g);
+                    const r = this.runs.get(key);
+                    if (r && r.lastT === t - 1) {
+                        r.lastT = t;
+                        if (s) r.gMin = g; else r.gMax = g;
+                    } else {
+                        if (r) this.segs.push(gi, r.gMin, r.gMax + K);
+                        this.runs.set(key, { gi: gi, lastT: t, gMin: g, gMax: g });
+                    }
+                }
+            }
+            endTranscript() {
+                if (this.tpos > 0) this.nTranscripts++;
+                if (this.runs.size) {
+                    this.runs.forEach(r => this.segs.push(r.gi, r.gMin, r.gMax + K));
+                    this.runs.clear();
+                }
+                const segs = this.segs;
+                if (!segs.length) return;
+                const longest = new Map();
+                for (let i = 0; i < segs.length; i += 3) {
+                    const L = segs[i + 2] - segs[i + 1];
+                    if (L > (longest.get(segs[i]) || 0)) longest.set(segs[i], L);
+                }
+                let id = -1;
+                for (let i = 0; i < segs.length; i += 3) {
+                    const g = this.genes[segs[i]];
+                    if (this.source === 'transcriptome' && longest.get(segs[i]) >= this.selfLen) continue;
+                    if (id < 0) { id = this.names.length; this.names.push(this.curName); }
+                    const s = segs[i + 1], e = segs[i + 2];
+                    for (let p = s; p < e; p++) {
+                        const L = e - p;
+                        if (L > g.ext[p]) { g.ext[p] = L; g.extT[p] = id; }
+                    }
+                }
+                if (this.source === 'transcriptome') {
+                    longest.forEach((L, gi) => {
+                        if (L >= this.selfLen) this.genes[gi].selfHits.push({ name: this.curName, len: L });
+                    });
+                }
+                this.segs = [];
+            }
+        }
+
+        // ---------- transcriptome loading ----------
+
+        const tick = () => new Promise(r => setTimeout(r, 0));
+        const CACHE_MAX = 600 * 1024 * 1024;
+        let txCache = null;      // decompressed chunks of the last transcriptome, so re-runs are fast
+        let hostedList = [];
+
+        async function maybeGunzip(stream) {
+            const reader = stream.getReader();
+            const first = await reader.read();
+            const rest = new ReadableStream({
+                start(c) { if (!first.done) c.enqueue(first.value); },
+                async pull(c) {
+                    const r = await reader.read();
+                    if (r.done) c.close(); else c.enqueue(r.value);
+                },
+                cancel() { reader.cancel(); }
+            });
+            if (!first.done && first.value.length > 1 && first.value[0] === 0x1f && first.value[1] === 0x8b) {
+                if (typeof DecompressionStream === 'undefined')
+                    throw new Error('This browser cannot read .gz files. Please use an uncompressed FASTA or a newer browser.');
+                return rest.pipeThrough(new DecompressionStream('gzip'));
+            }
+            return rest;
+        }
+
+        async function scanTranscriptome(scanner, src, onProgress) {
+            if (txCache && txCache.key === src.key) {
+                let done = 0;
+                for (const chunk of txCache.chunks) {
+                    scanner.feed(chunk);
+                    done += chunk.length;
+                    onProgress(done);
+                    await tick();
+                }
+                return;
+            }
+            txCache = null;
+            let stream;
+            if (src.file) stream = src.file.stream();
+            else {
+                const resp = await fetch(src.url);
+                if (!resp.ok) throw new Error('Could not load ' + src.url + ' (HTTP ' + resp.status + ')');
+                stream = resp.body;
+            }
+            const reader = (await maybeGunzip(stream)).getReader();
+            let chunks = [], bytes = 0, keep = true;
+            for (;;) {
+                const r = await reader.read();
+                if (r.done) break;
+                scanner.feed(r.value);
+                bytes += r.value.length;
+                if (keep) {
+                    chunks.push(r.value);
+                    if (bytes > CACHE_MAX) { keep = false; chunks = []; }
+                }
+                onProgress(bytes);
+            }
+            if (keep) txCache = { key: src.key, chunks: chunks };
+        }
+
+        // ---------- design ----------
+
+        function maxOffTarget(g, a, b) {
+            let best = 0, t = -1;
+            for (let p = a; p < b; p++) {
+                let L = g.ext[p];
+                if (L > b - p) L = b - p;
+                if (L > best) { best = L; t = g.extT[p]; }
+            }
+            return best >= K ? [best, t] : [0, -1];
+        }
+
+        function designGene(g, P, checked, names) {
+            const seq = g.seq, n = seq.length;
+            const lo = Math.max(0, P.regionStart), hi = Math.min(n, P.regionEnd);
+            const amp = amplifiers[g.amp];
+            const gcPre = new Int32Array(n + 1), nPre = new Int32Array(n + 1);
+            for (let i = 0; i < n; i++) {
+                const c = seq[i];
+                gcPre[i + 1] = gcPre[i] + ((c === 'G' || c === 'C') ? 1 : 0);
+                nPre[i + 1] = nPre[i] + (c === 'N' ? 1 : 0);
+            }
+            const mid = (P.gcMin + P.gcMax) / 2, half = Math.max(1, (P.gcMax - P.gcMin) / 2);
+            const nPos = Math.max(0, hi - 52 - lo + 1);
+            const cand = new Array(nPos).fill(null);
+            const score = new Float64Array(nPos).fill(-1);
+            g.windows = nPos; g.passing = 0;
+
+            for (let w = 0; w < nPos; w++) {
+                const a = lo + w;
+                if (nPre[a + 52] - nPre[a] > 0) continue;
+                const gc1 = (gcPre[a + 25] - gcPre[a]) * 4, gc2 = (gcPre[a + 52] - gcPre[a + 27]) * 4;
+                if (gc1 < P.gcMin || gc2 < P.gcMin || gc1 > P.gcMax || gc2 > P.gcMax) continue;
+
+                let off1 = 0, off2 = 0, offT = -1, sameT = false;
+                if (checked) {
+                    const o1 = maxOffTarget(g, a, a + 25), o2 = maxOffTarget(g, a + 27, a + 52);
+                    off1 = o1[0]; off2 = o2[0];
+                    offT = off1 >= off2 ? o1[1] : o2[1];
+                    sameT = off1 > 0 && off2 > 0 && o1[1] === o2[1];
+                    if (P.offMax && Math.max(off1, off2) >= P.offMax) continue;
+                }
+
+                const p1 = seq.substr(a, 25), p2 = seq.substr(a + 27, 25);
+                const rc1 = reverseComplement(p1), rc2 = reverseComplement(p2);
+                const seq1 = amp[0] + rc1, seq2 = rc2 + amp[1];
+                const tm1 = calcTm(rc1), tm2 = calcTm(rc2);
+                const homo = Math.max(longestRun(p1), longestRun(p2));
+                const cx = Math.min(complexity(p1), complexity(p2));
+                const stem = P.wStruct > 0
+                    ? Math.max(longestCompl(seq1, seq1), longestCompl(seq2, seq2), longestCompl(seq1, seq2)) : 0;
+                const off = Math.max(off1, off2);
+
+                const pen =
+                    P.wGC * (clamp01(Math.abs(gc1 - mid) / half) + clamp01(Math.abs(gc2 - mid) / half)) / 2 +
+                    P.wTm * clamp01(Math.abs(tm1 - tm2) / 10) +
+                    P.wHomo * clamp01((homo - 3) / 3) +
+                    P.wCx * clamp01((0.8 - cx) / 0.4) +
+                    P.wStruct * clamp01((stem - 5) / 5) +
+                    P.wOff * (sameT ? 1 : (off ? clamp01((off - K + 1) / (25 - K + 1)) : 0));
+                const sc = Math.max(0, 100 - pen);
+                if (sc < P.minScore) continue;
+
+                g.passing++;
+                score[w] = sc;
+                cand[w] = {
+                    start: a, seq1: seq1, seq2: seq2, score: sc, gc1: gc1, gc2: gc2, tm1: tm1, tm2: tm2,
+                    homo: homo, stem: stem, off: off, offName: offT >= 0 ? names[offT] : '', bothHalves: sameT, include: true
+                };
+            }
+
+            // Best non-overlapping set (highest total score), optionally limited to maxPairs.
+            const step = 52 + P.gap, chosen = [];
+            const EPS = 1e-6;   // so that a score of 0 still counts as a usable pair
+            if (!P.maxPairs) {
+                const best = new Float64Array(nPos + step + 1);
+                for (let w = nPos - 1; w >= 0; w--) {
+                    const take = score[w] < 0 ? -1 : score[w] + EPS + best[w + step];
+                    best[w] = take >= best[w + 1] ? take : best[w + 1];
+                }
+                for (let w = 0; w < nPos;) {
+                    if (score[w] >= 0 && score[w] + EPS + best[w + step] >= best[w + 1]) { chosen.push(cand[w]); w += step; }
+                    else w++;
+                }
+            } else {
+                const Kp = P.maxPairs, W = nPos + step + 1;
+                const layers = [new Float32Array(W)];
+                for (let k = 1; k <= Kp; k++) {
+                    const cur = new Float32Array(W), prev = layers[k - 1];
+                    for (let w = nPos - 1; w >= 0; w--) {
+                        const take = score[w] < 0 ? -1 : score[w] + EPS + prev[w + step];
+                        cur[w] = take >= cur[w + 1] ? take : cur[w + 1];
+                    }
+                    layers.push(cur);
+                }
+                let k = Kp;
+                for (let w = 0; w < nPos && k > 0;) {
+                    if (score[w] >= 0 && Math.fround(score[w] + EPS + layers[k - 1][w + step]) >= layers[k][w + 1]) {
+                        chosen.push(cand[w]); w += step; k--;
+                    } else w++;
+                }
+            }
+            chosen.forEach((p, i) => {
+                p.set = i + 1;
+                p.name1 = `${g.name}_${g.amp}_P1_${p.set}`;
+                p.name2 = `${g.name}_${g.amp}_P2_${p.set}`;
+            });
+            g.pairs = chosen;
+        }
+
+        let designed = [];       // results of the last run
+
+        function numVal(id, fallback) {
+            const v = parseFloat(document.getElementById(id).value);
+            return isNaN(v) ? fallback : v;
+        }
+
+        function setStatus(msg) { document.getElementById('status').textContent = msg; }
+
+        async function designProbes() {
+            const btn = document.getElementById('btn-design');
+            btn.disabled = true;
+            try { await runDesign(); }
+            catch (err) { setStatus(''); alert(err.message || String(err)); }
+            btn.disabled = false;
+        }
+
+        async function runDesign() {
+            const genes = readGenes();
+            for (const g of genes) {
+                const who = `Gene ${g.idx} (${g.name})`;
+                if (g.seq.length < 52) return alert(`${who}: the sequence must be at least 52 base pairs long.`);
+                if (g.gcMax < g.gcMin) return alert(`${who}: maximum GC content is below the minimum.`);
+                if (Math.min(g.regionEnd, g.seq.length) - g.regionStart < 52) return alert(`${who}: the design region must be at least 52 bp long.`);
+            }
+
+            const P = {
+                offMax: numVal("off-max", 0),
+                selfLen: Math.max(K, numVal("self-len", 100)),
+                minScore: numVal("min-score", 0),
+                wGC: numVal("w-gc", 0), wTm: numVal("w-tm", 0), wHomo: numVal("w-homo", 0),
+                wCx: numVal("w-cx", 0), wStruct: numVal("w-struct", 0), wOff: numVal("w-off", 0)
+            };
+
+            genes.forEach(g => {
+                g.ext = new Uint16Array(g.seq.length);
+                g.extT = new Int32Array(g.seq.length).fill(-1);
+                g.selfHits = [];
+            });
+
+            // --- specificity ---
+            const avoid = document.getElementById("avoid-seqs").value.trim();
+            const txSel = document.getElementById("tx-source").value;
+            let txSrc = null;
+            if (txSel === 'upload') {
+                const f = document.getElementById("tx-file").files[0];
+                if (!f) return alert("Choose a transcriptome FASTA file, or set the transcriptome to None.");
+                txSrc = { file: f, key: 'file:' + f.name + ':' + f.size + ':' + f.lastModified, label: f.name };
+            } else if (txSel.startsWith('hosted:')) {
+                const h = hostedList[parseInt(txSel.slice(7))];
+                txSrc = { url: h.file, key: 'url:' + h.file, label: h.name };
+            }
+            const checked = !!(avoid || txSrc || genes.length > 1);
+            let scanner = null, sources = [];
+            if (checked) {
+                setStatus('Indexing input sequences...');
+                await tick();
+                scanner = new Scanner(buildIndex(genes), genes, P.selfLen);
+                const enc = new TextEncoder();
+                if (avoid) {
+                    scanner.reset('custom', -1, 'avoid-list sequence');
+                    scanner.feed(enc.encode(avoid + '\n'));
+                    scanner.endTranscript();
+                    sources.push('your avoid list');
+                }
+                if (genes.length > 1) {
+                    genes.forEach((g, gi) => {
+                        scanner.reset('panel', gi, g.name + ' (another gene entered here)');
+                        scanner.feed(enc.encode(g.seq));
+                        scanner.endTranscript();
+                    });
+                    sources.push('the other genes entered here');
+                }
+                if (txSrc) {
+                    scanner.reset('transcriptome', -1);
+                    scanner.nTranscripts = 0;
+                    await scanTranscriptome(scanner, txSrc, bytes =>
+                        setStatus(`Scanning ${txSrc.label}: ${(bytes / 1048576).toFixed(0)} MB read...`));
+                    scanner.endTranscript();
+                    sources.push(`${txSrc.label} (${scanner.nTranscripts.toLocaleString()} sequences)`);
+                }
+            }
+
+            // --- design ---
+            for (let i = 0; i < genes.length; i++) {
+                setStatus(`Scoring ${genes[i].name || 'sequence'} (${i + 1} of ${genes.length})...`);
+                await tick();
+                const g = genes[i];
+                designGene(g, Object.assign({}, P, { gcMin: g.gcMin, gcMax: g.gcMax, gap: g.gap, maxPairs: g.maxPairs,
+                    regionStart: g.regionStart, regionEnd: g.regionEnd }), checked, scanner ? scanner.names : []);
+            }
+
+            designed = genes;
+            const byAmp = {};
+            genes.forEach(g => { (byAmp[g.amp] = byAmp[g.amp] || []).push(g.name); });
+            const shared = Object.keys(byAmp).filter(a => byAmp[a].length > 1).map(a => `${a}: ${byAmp[a].join(', ')}`);
+            designed.meta = { checked: checked, sources: sources, shared: shared };
+            const total = genes.reduce((s, g) => s + g.pairs.length, 0);
+            setStatus(`Done: ${total} probe set${total === 1 ? '' : 's'} for ${genes.length} sequence${genes.length === 1 ? '' : 's'}.`);
+            renderResults();
+        }
+
+        // ---------- output ----------
+
+        function esc(s) {
+            return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        }
+
+        function scoreClass(s) { return s >= 80 ? 's-good' : (s >= 60 ? 's-mid' : 's-bad'); }
+        function scoreColor(s) { return s >= 80 ? '#43a047' : (s >= 60 ? '#fb8c00' : '#e53935'); }
+
+        function renderResults() {
+            const meta = designed.meta;
+            let html = '';
+            if (meta.shared.length)
+                html += `<p><strong>Note:</strong> these genes share an amplifier and cannot be told apart in the same round (${esc(meta.shared.join('; '))}).</p>`;
+            html += `<p><strong>Specificity:</strong> ${meta.checked
+                ? 'checked against ' + esc(meta.sources.join('; ')) + '.'
+                : 'not checked (open "Specificity check" to add a transcriptome or sequences to avoid).'}</p>`;
+
+            designed.forEach((g, gi) => {
+                const n = g.seq.length;
+                const hl = g.seq.split('');
+                let rects = '';
+                g.pairs.forEach(p => {
+                    if (p.include) {
+                        for (let i = p.start; i < p.start + 25; i++) hl[i] = `<span class="highlight">${hl[i]}</span>`;
+                        for (let i = p.start + 27; i < p.start + 52; i++) hl[i] = `<span class="highlight">${hl[i]}</span>`;
+                    }
+                    const col = p.include ? scoreColor(p.score) : '#bdbdbd';
+                    const w = Math.max(1.5, 25 / n * 1000);
+                    [p.start, p.start + 27].forEach(s => {
+                        rects += `<rect x="${(s / n * 1000).toFixed(2)}" y="10" width="${w.toFixed(2)}" height="24" fill="${col}"><title>Set ${p.set}: ${p.start + 1}-${p.start + 52}, score ${p.score.toFixed(1)}</title></rect>`;
+                    });
+                });
+
+                let rows = '';
+                g.pairs.forEach((p, pi) => {
+                    const offCell = !meta.checked ? 'not checked'
+                        : (p.off ? `${p.off} nt: ${esc(p.offName)}${p.bothHalves ? ' (both halves)' : ''}` : 'none');
+                    rows += `<tr class="${p.include ? '' : 'off'}">
+                        <td><input type="checkbox" ${p.include ? 'checked' : ''} onchange="togglePair(${gi},${pi},this.checked)"></td>
+                        <td>${p.set}</td>
+                        <td>${p.start + 1}-${p.start + 52}</td>
+                        <td class="${scoreClass(p.score)}"><strong>${p.score.toFixed(1)}</strong></td>
+                        <td>${p.gc1} / ${p.gc2}</td>
+                        <td>${p.tm1.toFixed(1)} / ${p.tm2.toFixed(1)}</td>
+                        <td>${p.homo}</td>
+                        <td>${p.stem || '-'}</td>
+                        <td>${offCell}</td>
+                        <td class="seq">${esc(p.name1)}: ${p.seq1}</td>
+                        <td class="seq">${esc(p.name2)}: ${p.seq2}</td>
+                    </tr>`;
+                });
+
+                let self = '';
+                if (g.selfHits.length) {
+                    const list = g.selfHits.slice().sort((a, b) => b.len - a.len);
+                    self = `<p><strong>Transcriptome entries treated as this gene itself (not counted as off-targets):</strong> ${
+                        list.slice(0, 15).map(h => `${esc(h.name)} (${h.len} nt)`).join(', ')}${
+                        list.length > 15 ? `, and ${list.length - 15} more` : ''}</p>`;
+                }
+
+                html += `<div class="probe-set">
+                    <h3>${esc(g.name || 'Sequence')} &mdash; ${g.amp} &mdash; ${g.pairs.length} probe set${g.pairs.length === 1 ? '' : 's'}</h3>
+                    <p>${n} bp. ${g.passing} of ${g.windows} possible positions passed the filters; the highest-scoring non-overlapping combination is shown.</p>
+                    ${self}
+                    <svg class="map" viewBox="0 0 1000 44" preserveAspectRatio="none"><rect x="0" y="20" width="1000" height="4" fill="#9e9e9e"/>${rects}</svg>
+                    <div class="legend">Position along the sequence. <span style="background:#43a047"></span>score 80+ <span style="background:#fb8c00"></span>60-80 <span style="background:#e53935"></span>below 60 <span style="background:#bdbdbd"></span>unticked</div>
+                    <div class="highlight-box">${hl.join('')}</div>
+                    ${g.pairs.length ? `<div class="table-wrap"><table class="pairs">
+                        <tr><th>Use</th><th>Set</th><th>Position</th><th>Score</th><th>GC% P1 / P2</th><th>Tm P1 / P2 (&deg;C)</th><th>Longest run</th><th>Self-pairing (nt)</th><th>Off-target</th><th>Probe 1</th><th>Probe 2</th></tr>
+                        ${rows}</table></div>
+                        <div class="hint" style="margin-top:8px">Untick a probe set to leave it out of the downloaded files. Tm is a DNA/DNA nearest-neighbor estimate (1 M Na+, no formamide), meant for comparing the two halves.</div>`
+                        : '<p><strong>No probe sets passed the filters.</strong> Try a wider GC range or a higher off-target limit.</p>'}
+                </div>`;
+            });
+            document.getElementById("results").innerHTML = html;
+        }
+
+        function togglePair(gi, pi, on) {
+            designed[gi].pairs[pi].include = on;
+            renderResults();
+        }
+
+        function includedPairs() {
+            const out = [];
+            designed.forEach(g => g.pairs.forEach(p => { if (p.include) out.push([g, p]); }));
+            return out;
+        }
+
+        function downloadExcel() {
+            const rowsIn = includedPairs();
+            if (!rowsIn.length) return alert("Design probes first.");
+            const header = ["Probe 1 Name", "Probe 1 Sequence", "Probe 2 Name", "Probe 2 Sequence", "Gene", "Amplifier",
+                "Start", "End", "Score", "GC% P1", "GC% P2", "Tm P1", "Tm P2", "Longest homopolymer",
+                "Self-pairing (nt)", "Off-target match (nt)", "Off-target sequence"];
+            const rows = rowsIn.map(([g, p]) => [p.name1, p.seq1, p.name2, p.seq2, g.name, g.amp,
+                p.start + 1, p.start + 52, +p.score.toFixed(1), p.gc1, p.gc2, +p.tm1.toFixed(1), +p.tm2.toFixed(1),
+                p.homo, p.stem, designed.meta.checked ? p.off : "not checked", p.offName]);
+            let ws = XLSX.utils.aoa_to_sheet([header, ...rows]);
+            let wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Probes");
+            XLSX.writeFile(wb, "hcr_probes.xlsx");
+        }
+
+        function downloadOPools() {
+            const rowsIn = includedPairs();
+            if (!rowsIn.length) return alert("Design probes first.");
+            const rows = [];
+            rowsIn.forEach(([g, p]) => {
+                const pool = `${g.name}_${g.amp}`;
+                rows.push([pool, p.seq1]);
+                rows.push([pool, p.seq2]);
+            });
+            let ws = XLSX.utils.aoa_to_sheet([["Pool name", "Sequence"], ...rows]);
+            let wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "oPools");
+            XLSX.writeFile(wb, "hcr_probes_opools.xlsx");
+        }
+
+        // ---------- page setup ----------
+
+        function geneCardHtml(n) {
+            const amps = Object.keys(amplifiers), def = amps[(n - 1) % amps.length];
+            const gcs = [30, 35, 40, 45, 50, 55, 60, 65, 70];
+            return `<h3>Gene ${n}</h3>
+                <div class="row">
+                    <div><label>Gene Name:</label><input type="text" class="g-name" placeholder="Gene Name"></div>
+                    <div><label>Amplifier:</label><select class="g-amp">${amps.map(a => `<option value="${a}"${a === def ? ' selected' : ''}>${a}</option>`).join('')}</select></div>
+                </div>
+                <label>Gene Sequence (minimum 52 bp):</label>
+                <textarea class="g-seq" placeholder="Enter sequence here..."></textarea>
+                <div class="row">
+                    <div><label>Minimum GC Content (%):</label><select class="g-gcmin">${gcs.map(v => `<option value="${v}">${v}%</option>`).join('')}</select></div>
+                    <div><label>Maximum GC Content (%):</label><input type="number" class="g-gcmax" value="70" min="0" max="100"></div>
+                    <div><label>Minimum Gap between Probe Sets (bp):</label><input type="number" class="g-gap" value="30" min="0"></div>
+                </div>
+                <div class="row">
+                    <div><label>Maximum Number of Probe Sets:</label><input type="number" class="g-max" min="1" placeholder="no limit"></div>
+                    <div><label>Design Region Start (optional):</label><input type="number" class="g-rstart" min="1" placeholder="1"></div>
+                    <div><label>Design Region End (optional):</label><input type="number" class="g-rend" min="1" placeholder="end of sequence"></div>
+                </div>`;
+        }
+
+        // Adds or removes blocks at the end, so anything already typed into the others is kept.
+        function syncGeneCards() {
+            const box = document.getElementById("genes"), input = document.getElementById("gene-count");
+            let n = Math.round(parseFloat(input.value));
+            if (isNaN(n)) return;
+            n = Math.min(20, Math.max(1, n));
+            while (box.children.length > n) box.removeChild(box.lastElementChild);
+            while (box.children.length < n) {
+                const card = document.createElement('div');
+                card.className = 'gene-card';
+                card.innerHTML = geneCardHtml(box.children.length + 1);
+                box.appendChild(card);
+            }
+        }
+
+        // Hosted transcriptomes are listed in transcriptomes.json next to this page:
+        //   [ { "name": "Species name", "file": "transcriptomes/species.fa.gz" }, ... ]
+        // Each file is only downloaded when its species is selected and probes are designed.
+        async function loadHostedList() {
+            try {
+                const r = await fetch('transcriptomes.json', { cache: 'no-cache' });
+                if (!r.ok) return;
+                const list = await r.json();
+                if (!Array.isArray(list)) return;
+                hostedList = list.filter(t => t && t.name && t.file);
+                const sel = document.getElementById("tx-source");
+                const upload = sel.querySelector('option[value="upload"]');
+                hostedList.forEach((t, i) => {
+                    const o = document.createElement('option');
+                    o.value = 'hosted:' + i; o.textContent = t.name;
+                    sel.insertBefore(o, upload);
+                });
+            } catch (e) { /* no hosted list available (for example when opened as a local file) */ }
+        }
+
+        if (typeof document !== 'undefined') {
+            const count = document.getElementById("gene-count");
+            count.addEventListener('input', syncGeneCards);
+            count.addEventListener('change', () => {
+                const n = Math.round(parseFloat(count.value));
+                count.value = isNaN(n) ? 1 : Math.min(20, Math.max(1, n));
+                syncGeneCards();
+            });
+            syncGeneCards();
+            document.getElementById("tx-source").addEventListener('change', e => {
+                document.getElementById("tx-file").style.display = e.target.value === 'upload' ? '' : 'none';
+            });
+            loadHostedList();
+        }
+    </script>
+</body>
+</html>
