@@ -1,195 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tirtha Das Banerjee | Home</title>
-
-  <!-- Tailwind CSS -->
+  <meta name="description" content="Tirtha Das Banerjee, Senior Postdoc at the National University of Singapore: developmental biology, spatial biology, AI and lab robotics.">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-  <!-- Custom CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
+<body class="site text-gray-800 min-h-screen flex flex-col ">
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
 
-<body class="relative bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
-
-  <!-- Background multiplex-FISH images -->
-  <div class="fixed inset-0 -z-10 overflow-hidden opacity-30">
-    <img src="assets/images/research/fish1.jpg"
-         class="absolute left-0 top-0 w-1/2 h-full object-cover mix-blend-overlay blur-sm">
-    <img src="assets/images/research/fish2.jpg"
-         class="absolute right-0 top-0 w-1/2 h-full object-cover mix-blend-overlay blur-sm">
-  </div>
-
-  <!-- Navbar -->
-  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 z-50 backdrop-blur-md">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="index.html" class="text-xl font-semibold text-purple-700">
-        Home
-      </a>
-      <div class="space-x-6 font-medium">
-        <a href="aboutme.html" class="hover:text-purple-600">About Me</a>
-        <a href="research.html" class="hover:text-purple-600">Research</a>
-        <a href="tech.html" class="hover:text-purple-600">Tech</a>
-        <a href="publications.html" class="hover:text-purple-600">Publications</a>
-        <a href="hobbies.html" class="hover:text-purple-600">Hobbies</a>
-        <a href="apps.html" class="hover:text-purple-600">Apps & Tools</a>
-        <a href="protocols.html" class="hover:text-purple-600">Protocols</a>
-        <a href="gallery.html" class="hover:text-purple-600">Gallery</a>
-      </div>
+<nav class="site-nav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Tirtha Das Banerjee</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="aboutme.html">About Me</a>
+      <a href="research.html">Research</a>
+      <a href="tech.html">Tech</a>
+      <a href="publications.html">Publications</a>
+      <a href="students.html">Students</a>
+      <a href="apps.html">Apps &amp; Tools</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="hobbies.html">Hobbies</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- Hero Section -->
-<section class="relative flex-1 flex flex-col items-center justify-center text-center py-24 px-4 z-10">
+<div class="fixed inset-0 overflow-hidden opacity-30 pointer-events-none" style="z-index:-1" aria-hidden="true">
+  <img src="assets/images/research/fish1.jpg" alt="" class="absolute left-0 top-0 w-1/2 h-full object-cover mix-blend-overlay" style="filter:blur(4px)">
+  <img src="assets/images/research/fish2.jpg" alt="" class="absolute right-0 top-0 w-1/2 h-full object-cover mix-blend-overlay" style="filter:blur(4px)">
+</div>
 
-  <!-- Profile Image -->
-  <img src="assets/images/profile.jpg" alt="Profile Photo"
-       class="w-48 h-48 md:w-56 md:h-56 rounded-full shadow-xl border-4 border-purple-300 mb-8 object-cover">
-
-  <!-- Name -->
-  <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 drop-shadow-lg">
-    Tirtha Das Banerjee
-  </h1>
-
-  <!-- Tagline -->
-  <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto drop-shadow-md mb-3">
-    Exploring development, gene signaling, neurobiology, AI, and robotics —
-    decoding the patterns that shape life and intelligence.
+<section class="relative flex flex-col items-center justify-center text-center pt-16 pb-12 px-4">
+  <div class="hero-ring mb-8"><img src="assets/images/profile.jpg" alt="Tirtha Das Banerjee"
+       class="w-44 h-44 md:w-52 md:h-52 rounded-full object-cover"></div>
+  <p class="eyebrow eyebrow-dark mb-3">Biologist &middot; Engineer &middot; Tool builder</p>
+  <h1 class="text-4xl md:text-6xl font-extrabold text-black mb-5 leading-tight">Tirtha Das Banerjee</h1>
+  <p class="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto mb-4 leading-relaxed">
+    I study how genes build patterns in living tissue, and I build the open, low-cost tools (imaging methods, robots and AI software) that make those questions easier to answer.
   </p>
-
-  <!-- Position -->
-  <p class="text-base md:text-lg text-gray-700 max-w-2xl mx-auto drop-shadow-md mb-8">
-    Senior Postdoc, Department of Biological Sciences &<br>
-    Research Associate, Young Loo Lin School of Medicine<br>
+  <p class="text-base text-gray-600 max-w-2xl mx-auto mb-8">
+    Senior Postdoc, Department of Biological Sciences<br>Research Associate, Yong Loo Lin School of Medicine<br>
     National University of Singapore
   </p>
-
-  <!-- Divider -->
-  <div class="w-24 h-1 bg-purple-300 rounded-full mb-8"></div>
-
-  <!-- Social Icons -->
-  <div class="flex space-x-8 items-center">
-
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/in/tirtha-das-banerjee-80114270/"
-       target="_blank"
-       class="text-blue-600 hover:text-blue-800 transition transform hover:scale-110"
-       title="LinkedIn">
-      <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 
-        2.76 2.24 5 5 5h14c2.76 0 5-2.24 
-        5-5v-14c0-2.76-2.24-5-5-5zm-11 
-        19h-3v-10h3v10zm-1.5-11.27c-.97 
-        0-1.75-.79-1.75-1.76s.78-1.76 
-        1.75-1.76 1.75.79 
-        1.75 1.76-.78 1.76-1.75 
-        1.76zm13.5 11.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 
-        0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.88v1.37h.04c.4-.75 
-        1.38-1.54 2.85-1.54 3.05 
-        0 3.61 2.01 3.61 4.62v5.55z"/>
-      </svg>
-    </a>
-
-    <!-- Google Scholar -->
-    <a href="https://scholar.google.com/citations?user=H2S5ROQAAAAJ&hl=en"
-       target="_blank"
-       class="text-blue-600 hover:text-blue-800 transition transform hover:scale-110"
-       title="Google Scholar">
-      <svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 0L1 9l11 9 9-7.36V18h2V9L12 0zm0 11.5L4.5 
-        9 12 3.5 19.5 9 12 11.5z"/>
-      </svg>
-    </a>
-
-    <!-- GitHub -->
-    <a href="https://github.com/tdblab"
-       target="_blank"
-       class="text-blue-600 hover:text-blue-800 transition transform hover:scale-110"
-       title="GitHub">
-      <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 .5C5.73.5.5 5.73.5 
-        12c0 5.09 3.29 9.41 
-        7.86 10.94.57.1.78-.25.78-.55 
-        0-.27-.01-.98-.02-1.93-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 
-        1.17.08 1.78 1.2 1.78 1.2 1.04 
-        1.78 2.73 1.27 3.4.97.1-.75.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.52.11-3.17 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.99 0 1.98.13 2.9.39 2.2-1.5 3.18-1.18 3.18-1.18.63 1.65.23 2.87.11 3.17.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.8 1.08.8 2.18 0 1.57-.01 2.83-.01 3.22 0 .3.2.66.79.55C20.71 21.41 24 17.09 24 12c0-6.27-5.23-11.5-12-11.5z"/>
-      </svg>
-    </a>
-
-    <!-- ORCID -->
-    <a href="https://orcid.org/0000-0002-6092-0824"
-       target="_blank"
-       class="text-blue-600 hover:text-blue-800 transition transform hover:scale-110"
-       title="ORCID">
-      <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M16 0H8C3.6 0 0 3.6 0 
-        8v8c0 4.4 3.6 8 8 8h8c4.4 
-        0 8-3.6 8-8V8c0-4.4-3.6-8-8-8zm-6.5 
-        17H7V7h2.5v10zm1.25-11.5c-.83 
-        0-1.5-.67-1.5-1.5S9.92 
-        2.5 10.75 2.5s1.5.67 
-        1.5 1.5-.67 1.5-1.5 
-        1.5zm6.25 11.5h-2.5c-2.5 
-        0-4-1.67-4-4.17V7H14v5.83c0 
-        1.33.67 2.17 2 2.17h1v2z"/>
-      </svg>
-    </a>
-
+  <div class="flex flex-wrap justify-center gap-3 mb-10">
+    <a href="research.html" class="btn btn-primary">Explore my research</a>
+    <a href="publications.html" class="btn btn-light shadow">Publications</a>
+    <a href="apps.html" class="btn btn-light shadow">Apps &amp; Tools</a>
   </div>
-
+  <div class="flex space-x-8 items-center">
+    <a href="https://www.linkedin.com/in/tirtha-das-banerjee-80114270/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"
+       class="text-blue-600 hover:text-blue-800 transition transform hover:scale-110">
+      <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.88v1.37h.04c.4-.75 1.38-1.54 2.85-1.54 3.05 0 3.61 2.01 3.61 4.62v5.55z"/></svg>
+    </a>
+    <a href="https://scholar.google.com/citations?user=H2S5ROQAAAAJ&amp;hl=en" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"
+       class="text-blue-600 hover:text-blue-800 transition transform hover:scale-110">
+      <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0L1 9l11 9 9-7.36V18h2V9L12 0zm0 11.5L4.5 9 12 3.5 19.5 9 12 11.5z"/></svg>
+    </a>
+    <a href="https://github.com/tdblab" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"
+       class="text-blue-600 hover:text-blue-800 transition transform hover:scale-110">
+      <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.41 7.86 10.94.57.1.78-.25.78-.55 0-.27-.01-.98-.02-1.93-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.41-1.27.75-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.52.11-3.17 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.99 0 1.98.13 2.9.39 2.2-1.5 3.18-1.18 3.18-1.18.63 1.65.23 2.87.11 3.17.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.8 1.08.8 2.18 0 1.57-.01 2.83-.01 3.22 0 .3.2.66.79.55C20.71 21.41 24 17.09 24 12c0-6.27-5.23-11.5-12-11.5z"/></svg>
+    </a>
+    <a href="https://orcid.org/0000-0002-6092-0824" target="_blank" rel="noopener" title="ORCID" aria-label="ORCID"
+       class="text-blue-600 hover:text-blue-800 transition transform hover:scale-110">
+      <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 0H8C3.6 0 0 3.6 0 8v8c0 4.4 3.6 8 8 8h8c4.4 0 8-3.6 8-8V8c0-4.4-3.6-8-8-8zm-6.5 17H7V7h2.5v10zm1.25-11.5c-.83 0-1.5-.67-1.5-1.5S9.92 2.5 10.75 2.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm6.25 11.5h-2.5c-2.5 0-4-1.67-4-4.17V7H14v5.83c0 1.33.67 2.17 2 2.17h1v2z"/></svg>
+    </a>
+  </div>
 </section>
 
+<section class="max-w-4xl mx-auto w-full px-6 pb-12">
+  <div class="card grid grid-cols-2 md:grid-cols-4 gap-6 py-6 px-4">
+    <div class="stat"><b>9+</b><span>years of research</span></div>
+    <div class="stat"><b>20+</b><span>publications</span></div>
+    <div class="stat"><b>20</b><span>students mentored</span></div>
+    <div class="stat"><b>11</b><span>free web tools</span></div>
+  </div>
+</section>
 
-  <!-- RESEARCH DOMAINS -->
-  <section class="relative z-10 max-w-6xl mx-auto px-6 py-16">
-    <h2 class="text-3xl font-semibold text-center mb-10">Research Domains</h2>
+<section class="max-w-6xl mx-auto w-full px-6 pb-6">
+  <h2 class="section-title">Latest</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <a href="publications.html#y2026" class="card card-hover block p-5">
+        <span class="badge badge-new">New paper</span>
+        <p class="text-sm text-gray-700 mt-3 leading-relaxed">Parallels in leg and wing proximal-distal patterning in Diptera and Lepidoptera, now out in <i>Developmental Biology Advances</i>.</p>
+        <span class="inline-block mt-3 text-sm font-semibold text-purple-700">Read &rarr;</span>
+      </a>
+      <a href="fisher.html" class="card card-hover block p-5">
+        <span class="badge badge-new">New tool</span>
+        <p class="text-sm text-gray-700 mt-3 leading-relaxed">FISHER_&alpha;, an open-source automatic fish feeder that pairs each feeding with a light cue, for behavior experiments.</p>
+        <span class="inline-block mt-3 text-sm font-semibold text-purple-700">See FISHER &rarr;</span>
+      </a>
+      <a href="atlas.html" class="card card-hover block p-5">
+        <span class="badge badge-new">New atlas</span>
+        <p class="text-sm text-gray-700 mt-3 leading-relaxed">Search gene expression images from butterfly wings and brains and zebrafish larvae.</p>
+        <span class="inline-block mt-3 text-sm font-semibold text-purple-700">Open atlas &rarr;</span>
+      </a>
+  </div>
+</section>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-     
-     <a href="research.html" class="block">
-      <div class="p-6 bg-white bg-opacity-90 shadow-lg rounded-xl backdrop-blur-md">
+<section class="max-w-6xl mx-auto w-full px-6 py-12">
+  <h2 class="section-title">Research Domains</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="research.html" class="card card-hover block p-6">
         <h3 class="text-xl font-semibold text-purple-700 mb-2">Developmental Biology</h3>
-        <p class="text-sm">Molecular and cellular mechanisms underlying the emergence of novel traits.</p>
-      </div>
-     </a>
-
-      <a href="research.html" class="block">
-      <div class="p-6 bg-white bg-opacity-90 shadow-lg rounded-xl backdrop-blur-md">
+        <p class="text-sm text-gray-700">How new body features arise, studied at the level of genes, cells and tissues.</p>
+      </a>
+      <a href="research.html" class="card card-hover block p-6">
         <h3 class="text-xl font-semibold text-purple-700 mb-2">Gene Signaling</h3>
-        <p class="text-sm">Wnt, BMP, Notch, FGF, and EGFR pathways in pattern formation and morphogenesis.</p>
-      </div>
+        <p class="text-sm text-gray-700">Wnt, BMP, Notch, FGF and EGFR pathways in pattern formation and tissue shaping.</p>
       </a>
-
-      <a href="research.html" class="block">
-      <div class="p-6 bg-white bg-opacity-90 shadow-lg rounded-xl backdrop-blur-md">
+      <a href="research.html" class="card card-hover block p-6">
         <h3 class="text-xl font-semibold text-purple-700 mb-2">Neurobiology</h3>
-        <p class="text-sm">Sensory systems and neural gene expression at subcellular resolution.</p>
-      </div>
+        <p class="text-sm text-gray-700">Sensory systems and gene expression in nerve cells at subcellular resolution.</p>
       </a>
-      
-      <a href="research.html" class="block">
-      <div class="p-6 bg-white bg-opacity-90 shadow-lg rounded-xl backdrop-blur-md">
-        <h3 class="text-xl font-semibold text-purple-700 mb-2">AI & Computer Vision</h3>
-        <p class="text-sm">Deep learning for vision, spatial biology, and image analysis.</p>
-      </div>
+      <a href="research.html" class="card card-hover block p-6">
+        <h3 class="text-xl font-semibold text-purple-700 mb-2">AI &amp; Computer Vision</h3>
+        <p class="text-sm text-gray-700">Deep learning for images, spatial biology and image analysis.</p>
       </a>
-
-      <a href="research.html" class="block">
-      <div class="p-6 bg-white bg-opacity-90 shadow-lg rounded-xl backdrop-blur-md">
+      <a href="research.html" class="card card-hover block p-6">
         <h3 class="text-xl font-semibold text-purple-700 mb-2">Robotics and Automation</h3>
-        <p class="text-sm">Intelligent automation systems for biological experiments.</p>
-      </div>
+        <p class="text-sm text-gray-700">Smart, low-cost machines that run biology experiments.</p>
       </a>
+  </div>
+</section>
 
-    </div>
-  </section>
+<footer class="site-footer">
+  &copy; 2026 Tirtha Das Banerjee &middot; National University of Singapore
+</footer>
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 bg-opacity-80 py-6 text-center text-sm backdrop-blur-md">
-    © 2026 Tirtha Das Banerjee. All rights reserved.
-  </footer>
+<script>
+(function () {
+  var b = document.querySelector('.nav-toggle'), l = document.getElementById('nav-links');
+  if (!b || !l) return;
+  b.addEventListener('click', function () {
+    var open = l.classList.toggle('open');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+</script>
 
 </body>
 </html>

@@ -4,181 +4,122 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tech | Tirtha Das Banerjee</title>
+  <meta name="description" content="Lab hardware by Tirtha Das Banerjee: RAMFISH, NanoPulse, FISHER and CORN-DRIVE.">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
+<body class="site text-gray-800 min-h-screen flex flex-col ">
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
 
-<body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
+<nav class="site-nav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Tirtha Das Banerjee</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="aboutme.html">About Me</a>
+      <a href="research.html">Research</a>
+      <a href="tech.html" class="active" aria-current="page">Tech</a>
+      <a href="publications.html">Publications</a>
+      <a href="students.html">Students</a>
+      <a href="apps.html">Apps &amp; Tools</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="hobbies.html">Hobbies</a>
+    </div>
+  </div>
+</nav>
 
-  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 z-50 backdrop-blur-md">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="index.html" class="text-xl font-bold text-purple-700">
-        Home
-      </a>
-      <div class="space-x-6 font-medium">
-        <a href="aboutme.html" class="hover:text-purple-600">About Me</a>
-        <a href="research.html" class="hover:text-purple-600">Research</a>
-        <a href="tech.html" class="hover:text-purple-600">Tech</a>
-        <a href="publications.html" class="hover:text-purple-600">Publications</a>
-        <a href="hobbies.html" class="hover:text-purple-600">Hobbies</a>
-        <a href="apps.html" class="hover:text-purple-600">Apps & Tools</a>
-        <a href="protocols.html" class="hover:text-purple-600">Protocols</a>
-        <a href="gallery.html" class="hover:text-purple-600">Gallery</a>
+<header class="page-head">
+  <p class="eyebrow eyebrow-dark mb-3">Hardware</p>
+  <h1 class="page-title">Technology</h1>
+  <div class="title-bar"></div>
+  <p class="page-lead">Lab machines that combine molecular biology, robotics, computer vision and automatic feedback. Built to be open, affordable and easy to copy.</p>
+</header>
+<main class="max-w-6xl mx-auto w-full px-6 pb-16">
+  <section class="feature-dark grid lg:grid-cols-5 gap-8 items-center p-6 md:p-8 mb-12">
+    <div class="lg:col-span-3 video-frame">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/videos/fisher_alpha_poster.jpg" aria-label="FISHER_alpha overview video">
+        <source src="assets/videos/fisher_alpha.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="lg:col-span-2">
+      <span class="eyebrow">Featured</span>
+      <h2 class="text-3xl font-bold mt-2 mb-3">FISHER_&alpha;</h2>
+      <p class="leading-relaxed mb-6">An open-source automatic fish feeder for behavior experiments. A light cue, a timed feeding and a count of every trial, all in a small box that sits on the tank.</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="fisher.html" class="btn btn-light">Explore FISHER &rarr;</a>
       </div>
     </div>
-  </nav>
+  </section>
 
-  <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-10">
-    <div class="max-w-6xl mx-auto px-6">
-      <h1 class="text-4xl font-bold">Technology</h1>
-      <p class="mt-3 text-lg max-w-3xl">
-        Integrated experimental systems combining molecular biology, robotics,
-        computer vision, and closed-loop automation.
-      </p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="card card-hover overflow-hidden flex flex-col">
+      <img src="assets/images/tech/ramfish.jpg" alt="RAMFISH" class="w-full h-auto">
+      <div class="p-6 flex flex-col flex-grow">
+        <span class="inline-block self-start px-3 py-1 text-xs rounded-full font-semibold bg-indigo-100 text-indigo-700 mb-3">Experimental platform + instrument</span>
+        <h2 class="text-2xl font-bold text-indigo-600">RAMFISH</h2>
+        <p class="text-sm text-gray-500 mt-1">Rapid Amplified Multiplexed FISH</p>
+        <p class="mt-4 text-gray-700 leading-relaxed">An automated machine for multiplexed FISH. It handles the liquids, keeps the temperature right, and uses live imaging to time each staining round.</p>
+        <ul class="mt-4 list-disc pl-5 text-gray-700 space-y-1"><li>Detects many mRNAs in one tissue</li><li>Affordable, accessible and easy to use</li><li>Faster, automated protocol</li></ul>
+        <div class="mt-auto pt-6 flex flex-wrap gap-2"><a href="gallery/ramfish_robot.html" class="btn btn-ghost btn-sm">See photos</a></div>
+      </div>
     </div>
-  </header>
-
-  <main class="max-w-6xl mx-auto px-6 py-12">
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden flex flex-col">
-        <img src="assets/images/tech/ramfish.jpg"
-             alt="RAMFISH automated FISH system"
-             class="w-full h-58 object-cover">
-        
-        <div class="p-6 flex flex-col flex-grow">
-          <h2 class="text-2xl font-semibold text-indigo-600">RAMFISH</h2>
-          <p class="text-sm text-gray-500 mt-1">Rapid Automated Multiplexed FISH</p>
-
-          <p class="mt-4 text-gray-700">
-            RAMFISH is an automated multiplex fluorescence in situ hybridization
-            platform integrating fluidics, thermal control, and real-time imaging
-            feedback to optimize hybridization and amplification cycles.
-          </p>
-
-          <ul class="mt-4 list-disc list-inside text-gray-700">
-            <li>Multiplex mRNA detection platform</li>
-            <li>Affordable, accessable, and easy to use</li>
-            <li>Accelerated automated protocol</li>
-          </ul>
-
-          <div class="mt-4">
-            <span class="inline-block px-3 py-1 text-xs bg-indigo-100 text-indigo-700 rounded-full">
-              Experimental Platform + Instrumentation
-            </span>
-          </div>
-
-          <div class="mt-6">
-            <a href="gallery/ramfish_robot.html"
-               target="_blank"
-               class="inline-block px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-sm shadow-sm">
-              Click for more
-            </a>
-          </div>
-        </div>
+    <div class="card card-hover overflow-hidden flex flex-col">
+      <img src="assets/images/tech/nanopulse.jpg" alt="NanoPulse Microinjector" class="w-full h-auto">
+      <div class="p-6 flex flex-col flex-grow">
+        <span class="inline-block self-start px-3 py-1 text-xs rounded-full font-semibold bg-green-100 text-green-700 mb-3">Instrument</span>
+        <h2 class="text-2xl font-bold text-green-600">NanoPulse Microinjector</h2>
+        <p class="text-sm text-gray-500 mt-1">Precise liquid delivery for CRISPR</p>
+        <p class="mt-4 text-gray-700 leading-relaxed">A custom-built injector that pushes out tiny, exact volumes, from nanoliters to microliters, using a small pump driven by a fine-step motor.</p>
+        <ul class="mt-4 list-disc pl-5 text-gray-700 space-y-1"><li>About 0.03 &micro;L per pulse</li><li>Programmable injection settings</li><li>Modular pump design</li><li>Made for embryos and tissue</li></ul>
+        <div class="mt-auto pt-6 flex flex-wrap gap-2"><a href="gallery/microinjector.html" class="btn btn-ghost btn-sm">See photos</a></div>
       </div>
-
-      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden flex flex-col">
-        <img src="assets/images/tech/nanopulse.jpg"
-             alt="NanoPulse Microinjector"
-             class="w-full h-58 object-cover">
-
-        <div class="p-6 flex flex-col flex-grow">
-          <h2 class="text-2xl font-semibold text-green-600">NanoPulse Precision Microinjector</h2>
-          <p class="text-sm text-gray-500 mt-1">Controlled fluid delivery for CRISPR</p>
-
-          <p class="mt-4 text-gray-700">
-            A custom-built microinjection system using peristaltic pumping and
-            microstepping control for precise nanoliter to microliter-scale delivery.
-          </p>
-
-          <ul class="mt-4 list-disc list-inside text-gray-700">
-            <li>~0.03 µL pulse accuracy</li>
-            <li>Programmable injection profiles</li>
-            <li>Modular pump architecture</li>
-            <li>Designed for embryos and tissue injections</li>
-          </ul>
-
-          <div class="mt-4 mt-auto">
-            <span class="inline-block px-3 py-1 text-xs bg-green-100 text-green-700 rounded-full">
-              Instrumentation
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden flex flex-col">
-        <img src="assets/images/tech/fisher.jpg"
-             alt="FISHER"
-             class="w-full h-88 object-cover">
-
-        <div class="p-6 flex flex-col flex-grow">
-          <h2 class="text-2xl font-semibold text-blue-600">FISHER</h2>
-          <p class="text-sm text-gray-500 mt-1">Flexible Instrument for Stimulus-controlled Habituation and Experimental Reinforcement</p>
-
-          <p class="mt-4 text-gray-700">
-            An automated aquatic feeding system for neurobehavioral assay, associative learning, and drug delivery.
-          </p>
-
-          <ul class="mt-4 list-disc list-inside text-gray-700">
-            <li>Behavior-triggered feeding logic</li>
-            <li>Designed for laboratory fish models</li>
-            <li>Designed for aging research</li>
-          </ul>
-
-          <div class="mt-4 mt-auto">
-            <span class="inline-block px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">
-              Robotics + Vision
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden flex flex-col">
-        <img src="assets/images/tech/corn.jpg"
-             alt="CORN-DRIVE"
-             class="w-full h-88 object-cover">
-
-        <div class="p-6 flex flex-col flex-grow">
-          <h2 class="text-2xl font-semibold text-yellow-600">CORN-DRIVE: Autonomous Corn System</h2>
-          <p class="text-sm text-gray-500 mt-1">Closed-loop Observation and Robotic Nurture platform</p>
-
-          <p class="mt-4 text-gray-700">
-            A robotic plant monitoring platform for tracking corn growth dynamics,
-            environmental responses, and developmental patterning over time. 
-          </p>
-
-          <ul class="mt-4 list-disc list-inside text-gray-700">
-            <li>Robotic system optimized for maximum yield</li>
-            <li>Environmental sensing</li>
-            <li>Closed loop feedback driven</li>
-            <li>Optimized for corn plants</li>
-          </ul>
-
-          <div class="mt-4">
-            <span class="inline-block px-3 py-1 text-xs bg-yellow-100 text-yellow-700 rounded-full">
-              Bio-Automation
-            </span>
-          </div>
-
-          <div class="mt-6">
-            <a href="gallery/corn_system.html"
-               target="_blank"
-               class="inline-block px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-sm shadow-sm">
-              Click for more
-            </a>
-          </div>
-        </div>
-      </div>
-      
     </div>
+    <div class="card card-hover overflow-hidden flex flex-col">
+      <img src="assets/images/tech/fisher.jpg" alt="FISHER_&alpha;" class="w-full h-auto">
+      <div class="p-6 flex flex-col flex-grow">
+        <span class="inline-block self-start px-3 py-1 text-xs rounded-full font-semibold bg-blue-100 text-blue-700 mb-3">Robotics + vision</span>
+        <h2 class="text-2xl font-bold text-blue-600">FISHER_&alpha;</h2>
+        <p class="text-sm text-gray-500 mt-1">Flexible Instrument for Stimulus-controlled Habituation and Experimental Reinforcement</p>
+        <p class="mt-4 text-gray-700 leading-relaxed">An open-source automatic fish feeder for behavior studies. It pairs each feeding with a light cue, so researchers can study learning, habits and drug effects.</p>
+        <ul class="mt-4 list-disc pl-5 text-gray-700 space-y-1"><li>Light cues paired with feeding</li><li>Battery powered, runs unattended</li><li>Counts every trial</li></ul>
+        <div class="mt-auto pt-6 flex flex-wrap gap-2"><a href="fisher.html" class="btn btn-primary btn-sm">Open the FISHER page &rarr;</a> <a href="gallery/fisher_robot.html" class="btn btn-ghost btn-sm">See photos</a></div>
+      </div>
+    </div>
+    <div class="card card-hover overflow-hidden flex flex-col">
+      <img src="assets/images/tech/corn.jpg" alt="CORN-DRIVE" class="w-full h-auto">
+      <div class="p-6 flex flex-col flex-grow">
+        <span class="inline-block self-start px-3 py-1 text-xs rounded-full font-semibold bg-yellow-100 text-yellow-700 mb-3">Bio-automation</span>
+        <h2 class="text-2xl font-bold text-yellow-600">CORN-DRIVE</h2>
+        <p class="text-sm text-gray-500 mt-1">Closed-loop Observation and Robotic Nurture platform</p>
+        <p class="mt-4 text-gray-700 leading-relaxed">A robotic platform that watches corn plants grow, senses their environment, and adjusts care automatically over time.</p>
+        <ul class="mt-4 list-disc pl-5 text-gray-700 space-y-1"><li>Cameras and AI spot problems early</li><li>Environmental sensing</li><li>Adjusts water and nutrients on its own</li><li>Tuned for corn plants</li></ul>
+        <div class="mt-auto pt-6 flex flex-wrap gap-2"><a href="gallery/corn_system.html" class="btn btn-ghost btn-sm">See photos</a></div>
+      </div>
+    </div>
+  </div>
+</main>
 
-  </main>
+<footer class="site-footer">
+  &copy; 2026 Tirtha Das Banerjee &middot; National University of Singapore
+</footer>
 
-  <footer class="text-center text-sm text-gray-500 py-8">
-    © 2026 Tirtha Das Banerjee
-  </footer>
+<script>
+(function () {
+  var b = document.querySelector('.nav-toggle'), l = document.getElementById('nav-links');
+  if (!b || !l) return;
+  b.addEventListener('click', function () {
+    var open = l.classList.toggle('open');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+</script>
 
 </body>
 </html>

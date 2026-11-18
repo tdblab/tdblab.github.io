@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students | Tirtha Das Banerjee</title>
+  <meta name="description" content="Students mentored by Tirtha Das Banerjee at the National University of Singapore.">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body class="site text-gray-800 min-h-screen flex flex-col ">
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<nav class="site-nav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Tirtha Das Banerjee</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="aboutme.html">About Me</a>
+      <a href="research.html">Research</a>
+      <a href="tech.html">Tech</a>
+      <a href="publications.html">Publications</a>
+      <a href="students.html" class="active" aria-current="page">Students</a>
+      <a href="apps.html">Apps &amp; Tools</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="hobbies.html">Hobbies</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <p class="eyebrow eyebrow-dark mb-3">Mentoring</p>
+  <h1 class="page-title">Students</h1>
+  <div class="title-bar"></div>
+  <p class="page-lead">I mentor graduate, undergraduate and high school students on projects that range from evo-devo and spatial biology to neurobiology, AI image analysis and lab robotics. Here are the people I have worked with.</p>
+</header>
+<main class="max-w-6xl mx-auto w-full px-6 pb-16">
+  <div class="flex flex-wrap justify-center gap-2 mb-8" role="group" aria-label="Filter students">
+    <button class="filter-btn" data-f="all" aria-pressed="true">All (18)</button>
+    <button class="filter-btn" data-f="grad" aria-pressed="false">Graduate (4)</button>
+    <button class="filter-btn" data-f="ug" aria-pressed="false">Undergraduate (6)</button>
+    <button class="filter-btn" data-f="hs" aria-pressed="false">High school (5)</button>
+    <button class="filter-btn" data-f="staff" aria-pressed="false">Research staff (3)</button>
+  </div>
+  <div id="student-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <article class="card card-hover p-6 text-center" data-cat="staff">
+      <img src="assets/images/students/jeriel.jpg" alt="Jeriel Lee" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>JL</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Jeriel Lee</h3>
+      <span class="badge badge-role mt-1">Research Assistant</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Mapped where leg patterning genes switch on during embryo and larval wing development in <i>Bicyclus anynana</i> butterflies.</p><div class="mt-4 flex flex-wrap justify-center gap-2"><a href="https://doi.org/10.1186/s13227-026-00279-5" target="_blank" rel="noopener" class="chip">Paper &#8599;</a></div>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="staff">
+      <img src="assets/images/students/javen.jpg" alt="Javen Tan" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>JT</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Javen Tan</h3>
+      <span class="badge badge-role mt-1">Research Assistant</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Modeling how reaction-diffusion could pattern the wing veins of <i>Bicyclus anynana</i>.</p>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="staff">
+      <img src="assets/images/students/divya.jpg" alt="Divya Singh" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>DS</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Divya Singh</h3>
+      <span class="badge badge-role mt-1">Research Attachment</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Butterfly wing culture, testing reaction-diffusion models in real tissue, and CRISPR-Cas9.</p>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="grad">
+      <img src="assets/images/students/mengxuan.jpg" alt="Huang Mengxuan" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>HM</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Huang Mengxuan</h3>
+      <span class="badge badge-role mt-1">Graduate student (MSc)</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Built the Bicyclus Wing Atlas, a website for exploring gene expression in <i>Bicyclus anynana</i> wings that can also predict a wing's type and stage from a DAPI (nucleus stain) image.</p><div class="mt-4 flex flex-wrap justify-center gap-2"><a href="https://bicyclus-wing-atlas-en.pages.dev/" target="_blank" rel="noopener" class="chip">Website &#8599;</a> <a href="https://github.com/huangmengxuan351-cpu/bicyclus-wing-atlas" target="_blank" rel="noopener" class="chip">GitHub &#8599;</a></div>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="grad">
+      <img src="assets/images/students/tingyu.jpg" alt="Tingyu Yin" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>TY</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Tingyu Yin</h3>
+      <span class="badge badge-role mt-1">Graduate student</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Finding the best light conditions for growing corn.</p><div class="mt-4 flex flex-wrap justify-center gap-2"><a href="https://github.com/YinTingyu/corn3dgs" target="_blank" rel="noopener" class="chip">GitHub: corn3dgs &#8599;</a></div>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="hs">
+      <img src="assets/images/students/jay.jpg" alt="Jaya Vardhan Harihar Prasad" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>JV</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Jaya Vardhan Harihar Prasad</h3>
+      <span class="badge badge-role mt-1">High school intern</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Designed and built a nanoliter-scale microinjector for CRISPR-Cas9 injection into embryos.</p>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="hs">
+      <img src="assets/images/students/jeff.jpg" alt="Chan Sum Ngai Jeff" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>CS</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Chan Sum Ngai Jeff</h3>
+      <span class="badge badge-role mt-1">High school intern</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Designed and built a nanoliter-scale microinjector for CRISPR-Cas9 injection into embryos.</p>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="ug">
+      <img src="assets/images/students/gianella.jpg" alt="Gianella Pacho" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>GP</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Gianella Pacho</h3>
+      <span class="badge badge-role mt-1">Undergraduate student</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Exploring FGF signaling in biological patterning using <i>Bicyclus anynana</i>.</p>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="grad">
+      <img src="assets/images/students/emily.jpg" alt="Emily Zhang Linwan" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>EZ</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Emily Zhang Linwan</h3>
+      <span class="badge badge-role mt-1">Graduate student</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Spatial transcriptomics of the developing <i>Bicyclus anynana</i> brain.</p><div class="mt-4 flex flex-wrap justify-center gap-2"><a href="https://doi.org/10.3390/mps8020031" target="_blank" rel="noopener" class="chip">Paper &#8599;</a></div>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="grad">
+      <img src="assets/images/students/zhangyu.jpg" alt="Zhang Yu" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>ZY</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Zhang Yu</h3>
+      <span class="badge badge-role mt-1">Graduate student</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">How frizzled receptors work together in space to pattern butterfly wing tissue.</p>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="ug">
+      <img src="assets/images/students/shaun.jpg" alt="How Hong Chuen Shaun" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>HH</div>'">
+      <h3 class="text-lg font-bold text-gray-900">How Hong Chuen Shaun</h3>
+      <span class="badge badge-role mt-1">Undergraduate student</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Showed that <i>vermilion</i> and <i>cinnabar</i> make eye pigment, but not wing pigment, in <i>Bicyclus anynana</i> butterflies.</p><div class="mt-4 flex flex-wrap justify-center gap-2"><a href="https://doi.org/10.1038/s41598-023-36491-9" target="_blank" rel="noopener" class="chip">Paper &#8599;</a></div>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="ug">
+      <img src="assets/images/students/lara.jpg" alt="Lara Chal" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>LC</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Lara Chal</h3>
+      <span class="badge badge-role mt-1">Undergraduate student</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Detecting several eyespot-center mRNAs and proteins together in larval wings of <i>Bicyclus anynana</i>.</p>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="ug">
+      <img src="assets/images/students/dorothy.jpg" alt="Dorothy Lau Shi Min" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>DL</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Dorothy Lau Shi Min</h3>
+      <span class="badge badge-role mt-1">Undergraduate student</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">The role of EGFR signaling in patterning butterfly wings.</p>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="ug">
+      <img src="assets/images/students/jeff2.jpg" alt="Jeff Winxin Collado" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>JW</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Jeff Winxin Collado</h3>
+      <span class="badge badge-role mt-1">Undergraduate student</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Set up an automated fluidics system for in situ hybridization in larval and adult zebrafish (<i>Danio rerio</i>) brains.</p>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="hs">
+      <img src="assets/images/students/teesha.jpg" alt="Teesha Basak" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>TB</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Teesha Basak</h3>
+      <span class="badge badge-role mt-1">High school intern</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Designed a better automatic feeder for zebrafish behavior experiments.</p>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="ug">
+      <img src="assets/images/students/praveenya.jpg" alt="Tirunagari Praveenya" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>TP</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Tirunagari Praveenya</h3>
+      <span class="badge badge-role mt-1">Undergraduate summer intern</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">The role of Homothorax (Hth) and Dachshund (Dac) in forming eyespot centers in <i>Bicyclus anynana</i> butterflies.</p>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="hs">
+      <img src="assets/images/students/solomon.jpg" alt="Lim Jun Hui Solomon" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>LJ</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Lim Jun Hui Solomon</h3>
+      <span class="badge badge-role mt-1">High school intern</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Reaction-diffusion modeling of butterfly wing patterns.</p>
+    </article>
+    <article class="card card-hover p-6 text-center" data-cat="hs">
+      <img src="assets/images/students/issac.jpg" alt="Isaac" class="avatar mb-4" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;avatar avatar-fallback mb-4&quot;>I</div>'">
+      <h3 class="text-lg font-bold text-gray-900">Isaac</h3>
+      <span class="badge badge-role mt-1">High school intern</span>
+      <p class="text-sm text-gray-700 mt-3 leading-relaxed">Reaction-diffusion modeling of butterfly wing patterns.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  &copy; 2026 Tirtha Das Banerjee &middot; National University of Singapore
+</footer>
+
+<script>
+(function () {
+  var b = document.querySelector('.nav-toggle'), l = document.getElementById('nav-links');
+  if (!b || !l) return;
+  b.addEventListener('click', function () {
+    var open = l.classList.toggle('open');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+</script>
+<script>
+(function () {
+  var btns = document.querySelectorAll('.filter-btn'), cards = document.querySelectorAll('#student-grid [data-cat]');
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.dataset.f;
+      btns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      cards.forEach(function (c) { c.style.display = (f === 'all' || c.dataset.cat === f) ? '' : 'none'; });
+    });
+  });
+})();
+</script>
+</body>
+</html>

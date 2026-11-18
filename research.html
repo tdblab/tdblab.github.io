@@ -4,122 +4,103 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Research | Tirtha Das Banerjee</title>
+  <meta name="description" content="Research of Tirtha Das Banerjee: evo-devo, spatial biology, neurobiology, AI and robotics.">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
+<body class="site text-gray-800 min-h-screen flex flex-col ">
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
 
-<body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
-
-  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="index.html" class="text-xl font-semibold text-purple-700">Home</a>
-      <div class="space-x-6 font-medium">
-        <a href="aboutme.html" class="hover:text-purple-600">About Me</a>
-        <a href="research.html" class="text-purple-600 border-b-2 border-purple-600">Research</a>
-        <a href="tech.html" class="hover:text-purple-600">Tech</a>
-        <a href="publications.html" class="hover:text-purple-600">Publications</a>
-        <a href="hobbies.html" class="hover:text-purple-600">Hobbies</a>
-        <a href="apps.html" class="hover:text-purple-600">Apps & Tools</a>
-        <a href="protocols.html" class="hover:text-purple-600">Protocols</a>
-        <a href="gallery.html" class="hover:text-purple-600">Gallery</a>
-      </div>
+<nav class="site-nav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Tirtha Das Banerjee</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="aboutme.html">About Me</a>
+      <a href="research.html" class="active" aria-current="page">Research</a>
+      <a href="tech.html">Tech</a>
+      <a href="publications.html">Publications</a>
+      <a href="students.html">Students</a>
+      <a href="apps.html">Apps &amp; Tools</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="hobbies.html">Hobbies</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <section class="text-center py-16 px-6">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
-      Research
-    </h1>
-    <p class="text-lg max-w-3xl mx-auto text-gray-700 drop-shadow-md">
-      My research integrates developmental and evolutionary biology, spatial genomics, neurobiology,
-      artificial intelligence, and robotics to uncover how complex biological
-      patterns and neural circuits emerge and evolve.
-    </p>
+<header class="page-head">
+  <h1 class="page-title">Research</h1>
+  <div class="title-bar"></div>
+  <p class="page-lead">My research brings together developmental and evolutionary biology, spatial genomics, neurobiology, artificial intelligence and robotics, to understand how complex biological patterns and nerve circuits form and evolve.</p>
+</header>
+<main class="max-w-6xl mx-auto w-full px-6 pb-20 space-y-10">
+  <section class="card grid md:grid-cols-12 gap-8 items-center p-8">
+    <div class="md:col-span-4">
+      <img src="assets/images/research/evodevo.jpg" alt="Evolutionary developmental biology" class="rounded-xl shadow-md object-cover w-full h-64">
+    </div>
+    <div class="md:col-span-8 prose-like">
+      <h2 class="text-2xl font-semibold text-purple-700 mb-3">Developmental and Evolutionary Biology</h2>
+        <p>I study how networks of genes change over evolution to make new body features, using the butterfly <em>Bicyclus anynana</em> to understand how biological patterns form.</p>
+        <p>By combining genetics, spatial biology and comparisons across species, my work shows how old, shared gene toolkits such as the Wnt, Dpp and Notch signaling pathways are reused in new ways during evolution. I often combine laser microdissection of specific wing regions, multiplexed gene detection, CRISPR knockouts, drug treatments and RNA sequencing to map how these genes are organized.</p>
+      <div class="flex flex-wrap gap-2 mt-5"><a href="publications.html" class="btn btn-ghost btn-sm">Publications</a></div>
+    </div>
   </section>
+  <section class="card grid md:grid-cols-12 gap-8 items-center p-8">
+    <div class="md:col-span-4 md:order-last">
+      <img src="assets/images/research/ai_robotics.jpg" alt="AI and robotics in biology" class="rounded-xl shadow-md object-cover w-full h-64">
+    </div>
+    <div class="md:col-span-8 prose-like">
+      <h2 class="text-2xl font-semibold text-purple-700 mb-3">Artificial Intelligence, Robotics and Automated Biology</h2>
+        <p>I build open-source lab machines that connect high-throughput biology with precise robotics. Using microcontrollers (Arduino, ESP32) and 3D printing, I make modular instruments such as the NanoPulse microinjector, the Multiplexer and RemBot for finding where genes are switched on in fixed tissue, and the FISHER automatic fish feeder for behavior experiments.</p>
+        <p>I also apply deep learning (PyTorch, TensorFlow, YOLO, ResNet) to farming and biology problems. The CORN-DRIVE system, for example, uses AI on small on-site computers to spot plant health problems in real time and adjust water and nutrients automatically.</p>
+      <div class="flex flex-wrap gap-2 mt-5"><a href="tech.html" class="btn btn-ghost btn-sm">Tech</a> <a href="fisher.html" class="btn btn-ghost btn-sm">FISHER</a></div>
+    </div>
+  </section>
+  <section class="card grid md:grid-cols-12 gap-8 items-center p-8">
+    <div class="md:col-span-4">
+      <img src="assets/images/research/spatial_fish.jpg" alt="Multiplex FISH and spatial transcriptomics" class="rounded-xl shadow-md object-cover w-full h-64">
+    </div>
+    <div class="md:col-span-8 prose-like">
+      <h2 class="text-2xl font-semibold text-purple-700 mb-3">Spatial Biology and Multiplex FISH</h2>
+        <p>I am the lead developer of RAM-FISH (Rapid Amplified Multiplexed FISH), a high-resolution imaging method that maps gene expression across whole tissues. It is open source and low cost, to make spatial imaging available to more labs.</p>
+        <p>These methods let us see the mRNAs made in developing organs directly, linking genomics to the shape of tissues.</p>
+      <div class="flex flex-wrap gap-2 mt-5"><a href="atlas.html" class="btn btn-ghost btn-sm">In situ atlas</a> <a href="protocols.html" class="btn btn-ghost btn-sm">Protocols</a> <a href="apps.html" class="btn btn-ghost btn-sm">Apps &amp; Tools</a></div>
+    </div>
+  </section>
+  <section class="card grid md:grid-cols-12 gap-8 items-center p-8">
+    <div class="md:col-span-4 md:order-last">
+      <img src="assets/images/research/neurobiology.jpg" alt="Neurobiology and behavior" class="rounded-xl shadow-md object-cover w-full h-64">
+    </div>
+    <div class="md:col-span-8 prose-like">
+      <h2 class="text-2xl font-semibold text-purple-700 mb-3">Neurobiology, Behavior and Mentoring</h2>
+        <p>I study how animals learn and how specific genes in nerve cells change behavior. Tools like the FISHER system help link molecular mechanisms to behavior through neurobiology and genetics.</p>
+        <p>Central to all of this is a commitment to mentoring and open science. I have mentored more than a dozen undergraduates, along with master's and high school students, as they learn to work across biology, robotics and coding.</p>
+      <div class="flex flex-wrap gap-2 mt-5"><a href="students.html" class="btn btn-ghost btn-sm">Students</a></div>
+    </div>
+  </section>
+</main>
 
-  <main class="max-w-6xl mx-auto px-6 pb-20 space-y-16">
+<footer class="site-footer">
+  &copy; 2026 Tirtha Das Banerjee &middot; National University of Singapore
+</footer>
 
-    <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
-      <div class="md:col-span-4">
-        <img src="assets/images/research/evodevo.jpg"
-             alt="Evolutionary developmental biology"
-             class="rounded-xl shadow-md object-cover w-full h-64">
-      </div>
-      <div class="md:col-span-8 space-y-4">
-        <h2 class="text-2xl font-semibold text-purple-700">
-           Developmental and Evolutionary Biology
-        </h2>
-        <p>
-          I study how gene regulatory networks evolve to generate novel morphological traits, utilizing the model organism <em>Bicyclus anynana</em> to understand biological pattern formation.
-        </p>
-        <p>
-          By combining functional genetics, spatial biology, and comparative developmental analyses, my work reveals how conserved genetic modules such as the Wnt, Dpp, and Notch signaling pathways are repurposed during evolution. My approach frequently integrates precise laser microdissection of specific wing sectors, multiplexed gene detection, CRISPR mediated functional knockout, pharmacological assays, and RNA-seq analysis to meticulously map genetic architectures.
-        </p>
-      </div>
-    </section>
-
-     <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
-      <div class="md:col-span-4 lg:order-last">
-        <img src="assets/images/research/ai_robotics.jpg"
-             alt="AI and robotics in biology"
-             class="rounded-xl shadow-md object-cover w-full h-64">
-      </div>
-      <div class="md:col-span-8 space-y-4">
-        <h2 class="text-2xl font-semibold text-purple-700">
-          Artificial Intelligence, Robotics & Automated Biology
-        </h2>
-        <p>
-          I develop custom, open-source laboratory automation systems to bridge the gap between high-throughput biology and precision robotics. Utilizing microcontrollers (Arduino, ESP32) and high-end 3D printing fabrication, I build modular instruments like the NanoPulse microinjectors, the Multiplexer and RemBot for gene localization in fixed tissues, and the FISHER automated aquatic feeding system for behavioral assays.
-        </p>
-        <p>
-          Furthermore, I apply deep learning frameworks (PyTorch, TensorFlow; YOLO, ResNet) to agricultural and biological challenges. Recent platforms like the CORN-DRIVE system utilize edge-AI for real-time plant health detection, combining computer vision pipelines with closed-loop fluidic feedback to accelerate biological discovery.
-        </p>
-      </div>
-    </section>
-
-    <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
-      <div class="md:col-span-4">
-        <img src="assets/images/research/spatial_fish.jpg"
-             alt="Multiplex FISH and spatial transcriptomics"
-             class="rounded-xl shadow-md object-cover w-full h-64">
-      </div>
-      <div class="md:col-span-8 space-y-4">
-        <h2 class="text-2xl font-semibold text-purple-700">
-          Spatial Biology & Multiplex-FISH Technologies
-        </h2>
-        <p>
-          I am the lead developer of the RAM-FISH (Rapid Amplified Multiplexed-FISH) system, a high-resolution imaging platform designed to map gene expression across intact tissues with a strong emphasis on open-source, cost-effective accessibility to lower the barriers for spatial imaging.
-        </p>
-        <p>
-          These methods enable the direct visualization of mRNAs expressed in developing organs and provide a bridge between genomics and morphology. 
-        </p>
-      </div>
-    </section>
-
-    <section class="grid md:grid-cols-12 gap-8 items-center bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 backdrop-blur-md">
-      <div class="md:col-span-4 lg:order-last">
-        <img src="assets/images/research/neurobiology.jpg"
-             alt="Neurobiology and behavior"
-             class="rounded-xl shadow-md object-cover w-full h-64">
-      </div>
-      <div class="md:col-span-8 space-y-4">
-        <h2 class="text-2xl font-semibold text-purple-700">
-          Neurobiology, Behavior & Academic Mentorship
-        </h2>
-        <p>
-          My research explores how animals learn and how specific neural genes modulate behavior, utilizing tools like the AI-driven FISHER system to seamlessly link molecular mechanisms to complex behavioral phenotypes through neurobiological and genetic approaches.
-        </p>
-        <p>
-          Central to all of these scientific endeavors is a deep commitment to mentorship and open science. I am deeply invested in training the next generation of interdisciplinary scientists, having proudly mentored over a dozen undergraduate students, alongside master's candidates and high school researchers, helping them navigate the intersection of biology, robotics, and coding.
-        </p>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="text-center py-6 text-sm text-gray-600">
-    © 2026 Tirtha Das Banerjee · Research, Evolution & AI
-  </footer>
+<script>
+(function () {
+  var b = document.querySelector('.nav-toggle'), l = document.getElementById('nav-links');
+  if (!b || !l) return;
+  b.addEventListener('click', function () {
+    var open = l.classList.toggle('open');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+</script>
 
 </body>
 </html>

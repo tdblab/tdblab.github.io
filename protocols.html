@@ -4,134 +4,103 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Protocols | Tirtha Das Banerjee</title>
+  <meta name="description" content="Biology, robotics and AI protocols by Tirtha Das Banerjee.">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
+<body class="site text-gray-800 min-h-screen flex flex-col ">
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
 
-  <!-- Navbar -->
-  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="index.html" class="text-xl font-semibold text-purple-700">Home</a>
-      <div class="space-x-6 font-medium">
-        <a href="aboutme.html" class="hover:text-purple-600">About Me</a>
-        <a href="research.html" class="hover:text-purple-600">Research</a>
-        <a href="tech.html" class="hover:text-purple-600">Tech</a>
-        <a href="publications.html" class="hover:text-purple-600">Publications</a>
-        <a href="hobbies.html" class="hover:text-purple-600">Hobbies</a>
-        <a href="apps.html" class="hover:text-purple-600">Apps & Tools</a>
-        <a href="protocols.html" class="hover:text-purple-600">Protocols</a>
-        <a href="gallery.html" class="hover:text-purple-600">Gallery</a>
-      </div>
+<nav class="site-nav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Tirtha Das Banerjee</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="aboutme.html">About Me</a>
+      <a href="research.html">Research</a>
+      <a href="tech.html">Tech</a>
+      <a href="publications.html">Publications</a>
+      <a href="students.html">Students</a>
+      <a href="apps.html">Apps &amp; Tools</a>
+      <a href="protocols.html" class="active" aria-current="page">Protocols</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="hobbies.html">Hobbies</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- Hero Section -->
-  <section class="relative flex flex-col items-center justify-center text-center py-16 px-4">
-    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-3 drop-shadow-lg">Protocols</h1>
-    <p class="text-lg text-gray-700 max-w-2xl mx-auto drop-shadow-md">
-      A curated list of all biological, robotics, and AI protocols.
-    </p>
-  </section>
-
-  <!-- Protocol Cards -->
-  <section class="max-w-6xl mx-auto px-6 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-      <!-- RAM-FISH -->
-      <div class="bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md">
-        <h3 class="text-xl font-semibold mb-2">Rapid Amplified Multiplexed FISH (RAM-FISH)</h3>
-        <span class="inline-block bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full mb-3">Biology</span>
-        <p class="text-gray-700 text-sm mb-3">
-          A protocol for spatial mRNA profiling using multiplexed FISH to visualize gene expression in tissues.
-        </p>
-        <p>
-        <a href="assets/pdfs/RAM-FISH.pdf" target="_blank" class="text-purple-600 hover:underline text-sm">View Protocol (PDF)</a>
-        </p>
-        <a href="https://doi.org/10.1101/2024.12.06.627193" target="_blank" class="text-purple-600 hover:underline text-sm">Link</a>
-      </div>
-       
-       <!-- CRISPR-Cas9 -->
-      <div class="bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md">
-        <h3 class="text-xl font-semibold mb-2">CRISPR-Cas9 in butterfly</h3>
-        <span class="inline-block bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full mb-3">Biology</span>
-        <p class="text-gray-700 text-sm mb-3">
-          CRISPR-Cas9 Mediated Genome Editing in Bicyclus anynana Butterflies.
-        </p>
-        <p>
-        <a href="assets/pdfs/banerjee_mps2018.pdf" target="_blank" class="text-purple-600 hover:underline text-sm">View Protocol (PDF)</a>
-        </p>
-        <a href="https://doi.org/10.3390/mps1020016" target="_blank" class="text-purple-600 hover:underline text-sm">Link</a>
-      </div>
-     
-        <!-- Antibody -->
-      <div class="bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md">
-        <h3 class="text-xl font-semibold mb-2">Antibody staining in butterfly</h3>
-        <span class="inline-block bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full mb-3">Biology</span>
-        <p class="text-gray-700 text-sm mb-3">
-          Antibody staining of Butterfly larval and pupal wing discs.
-        </p>
-        <p>
-        <a href="assets/pdfs/antibody_protocol.pdf" target="_blank" class="text-purple-600 hover:underline text-sm">View Protocol (PDF)</a>
-        </p>
-        
-      </div>
-
-      <!-- Enzyme in-situ -->
-      <div class="bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md">
-        <h3 class="text-xl font-semibold mb-2">Enzyme based in-situ hybridization</h3>
-        <span class="inline-block bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full mb-3">Biology</span>
-        <p class="text-gray-700 text-sm mb-3">
-          Enzyme based in-situ hybridization in butterfly larval and pupal wing discs.
-        </p>
-        <p>
-        <a href="assets/pdfs/enzyme_insitu.pdf" target="_blank" class="text-purple-600 hover:underline text-sm">View Protocol (PDF)</a>
-        </p>
-        
-      </div>
-
-      <!-- Dissection -->
-      <div class="bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md">
-        <h3 class="text-xl font-semibold mb-2">Dissection of wing tissue</h3>
-        <span class="inline-block bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full mb-3">Biology</span>
-        <p class="text-gray-700 text-sm mb-3">
-          Dissection of Larval and Pupal Wings of Bicyclus anynana Butterflies
-        </p>
-        <p>
-        <a href="assets/pdfs/dissection.pdf" target="_blank" class="text-purple-600 hover:underline text-sm">View Protocol (PDF)</a>
-        </p>
-        <a href="https://doi.org/10.3390/mps3010005" target="_blank" class="text-purple-600 hover:underline text-sm">Link</a>
-      </div>
-
-      <!-- Multiplexer -->
-      <div class="bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md">
-        <h3 class="text-xl font-semibold mb-2">Multiplexer Fluidic Robot Manual</h3>
-        <span class="inline-block bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded-full mb-3">Robotics</span>
-        <p class="text-gray-700 text-sm mb-3">
-          Automated protocol for tissue staining.
-        </p>
-        <a href="assets/pdfs/multiplexer_v1.pdf" target="_blank" class="text-purple-600 hover:underline text-sm">View Protocol (PDF)</a>
-      </div>
-      
-      <!-- Multiplexer -->
-      <div class="bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md">
-        <h3 class="text-xl font-semibold mb-2">AI-based Image Quality Assessment</h3>
-        <span class="inline-block bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full mb-3">AI & Computer Vision</span>
-        <p class="text-gray-700 text-sm mb-3">
-          A protocol for training deep learning models to evaluate FISH image quality and detect artifacts.
-        </p>
-        <a href="assets/pdfs/AI-image-protocol.pdf" target="_blank" class="text-purple-600 hover:underline text-sm">View Protocol (PDF)</a>
-      </div>
-
-      <!-- Add more protocol cards here -->
-
+<header class="page-head">
+  <h1 class="page-title">Protocols</h1>
+  <div class="title-bar"></div>
+  <p class="page-lead">Step-by-step protocols for biology, robotics and AI work, free to use.</p>
+</header>
+<main class="max-w-6xl mx-auto w-full px-6 pb-16">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="card card-hover p-6 flex flex-col">
+      <span class="badge badge-bio self-start mb-3">Biology</span>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Rapid Amplified Multiplexed FISH (RAM-FISH)</h3>
+      <p class="text-gray-700 text-sm mb-5">A protocol for mapping where mRNAs are made in tissues, using multiplexed FISH.</p>
+      <div class="mt-auto flex flex-wrap gap-2"><a href="assets/pdfs/RAM-FISH.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Protocol (PDF)</a> <a href="https://doi.org/10.1101/2024.12.06.627193" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Paper</a></div>
     </div>
-  </section>
+    <div class="card card-hover p-6 flex flex-col">
+      <span class="badge badge-bio self-start mb-3">Biology</span>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">CRISPR-Cas9 in butterflies</h3>
+      <p class="text-gray-700 text-sm mb-5">CRISPR-Cas9 genome editing in <i>Bicyclus anynana</i> butterflies.</p>
+      <div class="mt-auto flex flex-wrap gap-2"><a href="assets/pdfs/banerjee_mps2018.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Protocol (PDF)</a> <a href="https://doi.org/10.3390/mps1020016" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Paper</a></div>
+    </div>
+    <div class="card card-hover p-6 flex flex-col">
+      <span class="badge badge-bio self-start mb-3">Biology</span>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Antibody staining in butterflies</h3>
+      <p class="text-gray-700 text-sm mb-5">Antibody staining of butterfly larval and pupal wing discs.</p>
+      <div class="mt-auto flex flex-wrap gap-2"><a href="assets/pdfs/antibody_protocol.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Protocol (PDF)</a></div>
+    </div>
+    <div class="card card-hover p-6 flex flex-col">
+      <span class="badge badge-bio self-start mb-3">Biology</span>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Enzyme-based in situ hybridization</h3>
+      <p class="text-gray-700 text-sm mb-5">Enzyme-based in situ hybridization in butterfly larval and pupal wing discs.</p>
+      <div class="mt-auto flex flex-wrap gap-2"><a href="assets/pdfs/enzyme_insitu.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Protocol (PDF)</a></div>
+    </div>
+    <div class="card card-hover p-6 flex flex-col">
+      <span class="badge badge-bio self-start mb-3">Biology</span>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Dissection of wing tissue</h3>
+      <p class="text-gray-700 text-sm mb-5">Dissection of larval and pupal wings of <i>Bicyclus anynana</i> butterflies.</p>
+      <div class="mt-auto flex flex-wrap gap-2"><a href="assets/pdfs/dissection.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Protocol (PDF)</a> <a href="https://doi.org/10.3390/mps3010005" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Paper</a></div>
+    </div>
+    <div class="card card-hover p-6 flex flex-col">
+      <span class="badge badge-robot self-start mb-3">Robotics</span>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Multiplexer fluidic robot manual</h3>
+      <p class="text-gray-700 text-sm mb-5">How to run automated tissue staining on the Multiplexer.</p>
+      <div class="mt-auto flex flex-wrap gap-2"><a href="assets/pdfs/multiplexer_v1.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Protocol (PDF)</a></div>
+    </div>
+    <div class="card card-hover p-6 flex flex-col">
+      <span class="badge badge-ai self-start mb-3">AI &amp; Computer Vision</span>
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">AI-based image quality check</h3>
+      <p class="text-gray-700 text-sm mb-5">Training deep learning models to score FISH image quality and find artifacts.</p>
+      <div class="mt-auto flex flex-wrap gap-2"><a href="assets/pdfs/AI-image-protocol.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Protocol (PDF)</a></div>
+    </div>
+  </div>
+</main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 bg-opacity-80 py-6 text-center text-sm backdrop-blur-md mt-auto">
-    © 2026 Tirtha Das Banerjee. All rights reserved.
-  </footer>
+<footer class="site-footer">
+  &copy; 2026 Tirtha Das Banerjee &middot; National University of Singapore
+</footer>
+
+<script>
+(function () {
+  var b = document.querySelector('.nav-toggle'), l = document.getElementById('nav-links');
+  if (!b || !l) return;
+  b.addEventListener('click', function () {
+    var open = l.classList.toggle('open');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+</script>
 
 </body>
 </html>

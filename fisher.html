@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FISHER_&alpha; | Tirtha Das Banerjee</title>
+  <meta name="description" content="FISHER_alpha: an open-source automatic fish feeder that pairs each feeding with a light cue, for behavior experiments.">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body class="site text-gray-800 min-h-screen flex flex-col ">
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<nav class="site-nav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Tirtha Das Banerjee</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="aboutme.html">About Me</a>
+      <a href="research.html">Research</a>
+      <a href="tech.html" class="active" aria-current="page">Tech</a>
+      <a href="publications.html">Publications</a>
+      <a href="students.html">Students</a>
+      <a href="apps.html">Apps &amp; Tools</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="hobbies.html">Hobbies</a>
+    </div>
+  </div>
+</nav>
+
+<section class="max-w-6xl mx-auto w-full px-6 pt-10">
+  <a href="tech.html" class="link-arrow text-sm">&larr; Back to Tech</a>
+  <div class="feature-dark mt-4 p-5 md:p-8">
+    <div class="video-frame">
+      <video controls autoplay muted loop playsinline preload="metadata" poster="assets/videos/fisher_alpha_poster.jpg" aria-label="FISHER_alpha overview video">
+        <source src="assets/videos/fisher_alpha.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="grid md:grid-cols-5 gap-8 mt-8 items-end">
+      <div class="md:col-span-3">
+        <span class="eyebrow">Open-source behavior hardware</span>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mt-2">FISHER_&alpha;</h1>
+        <p class="text-sm mt-2" style="color:#a99fc9">Flexible Instrument for Stimulus-controlled Habituation and Experimental Reinforcement</p>
+      </div>
+      <p class="md:col-span-2 leading-relaxed">An automatic fish feeder that pairs every feeding with a light cue. It lets researchers study how fish learn, form habits and respond to drugs, with the same timing every time, day after day.</p>
+    </div>
+  </div>
+</section>
+
+<main class="max-w-6xl mx-auto w-full px-6 py-14 space-y-16">
+  <section>
+    <h2 class="section-title">Why we built it</h2>
+    <div class="card p-8 prose-like text-gray-800">
+      <p>Learning experiments in fish need the same thing to happen at the same time, over and over, for days or weeks. Doing that by hand is slow, tiring and easy to get slightly wrong. FISHER_&alpha; sits on top of the tank and does it automatically: it shows a light, delivers the reward, and keeps count.</p>
+      <p>Each unit is built around an Arduino in a 3D-printed case, so it is small, low cost and easy to repeat across many tanks.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">How one trial works</h2>
+    <ol class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <li class="card p-5 flex gap-4 items-start">
+        <span class="step-num">1</span>
+        <div><h3 class="font-bold text-gray-900">Light cue</h3><p class="text-sm text-gray-700 mt-1 leading-relaxed">A red or green LED turns on above the tank. The fish learn to link each color with what comes next.</p></div>
+      </li>
+      <li class="card p-5 flex gap-4 items-start">
+        <span class="step-num">2</span>
+        <div><h3 class="font-bold text-gray-900">Countdown</h3><p class="text-sm text-gray-700 mt-1 leading-relaxed">The OLED screen shows which trial is running and counts down the time left.</p></div>
+      </li>
+      <li class="card p-5 flex gap-4 items-start">
+        <span class="step-num">3</span>
+        <div><h3 class="font-bold text-gray-900">Red trial: food</h3><p class="text-sm text-gray-700 mt-1 leading-relaxed">A servo swings a flap under the food pod, and pellets drop into the tank through a hole in the floor.</p></div>
+      </li>
+      <li class="card p-5 flex gap-4 items-start">
+        <span class="step-num">4</span>
+        <div><h3 class="font-bold text-gray-900">Green trial: air pump</h3><p class="text-sm text-gray-700 mt-1 leading-relaxed">A small air pump runs for 2 seconds while the green light stays on.</p></div>
+      </li>
+      <li class="card p-5 flex gap-4 items-start">
+        <span class="step-num">5</span>
+        <div><h3 class="font-bold text-gray-900">Trial done</h3><p class="text-sm text-gray-700 mt-1 leading-relaxed">The light turns off, the screen goes back home, and the trial count goes up by one.</p></div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 class="section-title">Features</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="card p-6">
+        <h3 class="font-bold text-purple-800 mb-2">Built to run on its own</h3>
+        <p class="text-sm text-gray-700 leading-relaxed">Two rechargeable 21700 batteries power each unit, so it can feed on schedule without anyone in the room.</p>
+      </div>
+      <div class="card p-6">
+        <h3 class="font-bold text-purple-800 mb-2">Keeps time through power loss</h3>
+        <p class="text-sm text-gray-700 leading-relaxed">A real-time clock with its own coin-cell backup keeps the schedule correct even if the main power is switched off.</p>
+      </div>
+      <div class="card p-6">
+        <h3 class="font-bold text-purple-800 mb-2">Simple controls</h3>
+        <p class="text-sm text-gray-700 leading-relaxed">Four buttons and a small OLED screen set the schedule. A battery gauge shows charge at a glance.</p>
+      </div>
+      <div class="card p-6">
+        <h3 class="font-bold text-purple-800 mb-2">Light sensors</h3>
+        <p class="text-sm text-gray-700 leading-relaxed">Two light sensors (LDRs) can read the light around the tank for experiments that need it.</p>
+      </div>
+      <div class="card p-6">
+        <h3 class="font-bold text-purple-800 mb-2">Scales to many tanks</h3>
+        <p class="text-sm text-gray-700 leading-relaxed">Units are small and identical, so a whole rack of tanks can run the same experiment side by side.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card p-8 grid md:grid-cols-3 gap-6 items-center">
+    <div class="md:col-span-2">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Coming next: FISHER EYE</h2>
+      <p class="text-gray-700 leading-relaxed">A version with a built-in camera that looks down into the tank and records a short clip every few minutes, saved by date and time, so behavior can be checked over months.</p>
+    </div>
+    <div class="flex md:justify-end gap-3 flex-wrap">
+      <a href="gallery/fisher_robot.html" class="btn btn-primary">See build photos &rarr;</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  &copy; 2026 Tirtha Das Banerjee &middot; National University of Singapore
+</footer>
+
+<script>
+(function () {
+  var b = document.querySelector('.nav-toggle'), l = document.getElementById('nav-links');
+  if (!b || !l) return;
+  b.addEventListener('click', function () {
+    var open = l.classList.toggle('open');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+</script>
+
+</body>
+</html>

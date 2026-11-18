@@ -4,540 +4,395 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publications | Tirtha Das Banerjee</title>
+  <meta name="description" content="Publications of Tirtha Das Banerjee: evo-devo, spatial biology, neurobiology and methods.">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body class="relative bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
+<body class="site text-gray-800 min-h-screen flex flex-col ">
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
 
-  <!-- Navbar -->
-  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md z-50">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="index.html" class="text-xl font-semibold text-purple-700">Home</a>
-      <div class="space-x-6 font-medium">
-        <a href="aboutme.html" class="hover:text-purple-600">About Me</a>
-        <a href="research.html" class="hover:text-purple-600">Research</a>
-        <a href="tech.html" class="hover:text-purple-600">Tech</a>
-        <a href="publications.html" class="hover:text-purple-600">Publications</a>
-        <a href="hobbies.html" class="hover:text-purple-600">Hobbies</a>
-        <a href="apps.html" class="hover:text-purple-600">Apps & Tools</a>
-        <a href="protocols.html" class="hover:text-purple-600">Protocols</a>
-        <a href="gallery.html" class="hover:text-purple-600">Gallery</a>
-      </div>
+<nav class="site-nav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Tirtha Das Banerjee</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="aboutme.html">About Me</a>
+      <a href="research.html">Research</a>
+      <a href="tech.html">Tech</a>
+      <a href="publications.html" class="active" aria-current="page">Publications</a>
+      <a href="students.html">Students</a>
+      <a href="apps.html">Apps &amp; Tools</a>
+      <a href="protocols.html">Protocols</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="hobbies.html">Hobbies</a>
     </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <p class="eyebrow eyebrow-dark mb-3">Research output</p>
+  <h1 class="page-title">Publications</h1>
+  <div class="title-bar"></div>
+  <p class="page-lead">23 research articles, methods papers and journal covers, newest first. Click a year to jump to it.</p>
+</header>
+<main class="max-w-6xl mx-auto w-full px-6 pb-16">
+  <nav class="year-nav mb-6" aria-label="Jump to year">
+    <a href="#y2026">2026</a>
+    <a href="#y2025">2025</a>
+    <a href="#y2024">2024</a>
+    <a href="#y2023">2023</a>
+    <a href="#y2022">2022</a>
+    <a href="#y2021">2021</a>
+    <a href="#y2020">2020</a>
+    <a href="#y2019">2019</a>
+    <a href="#y2018">2018</a>
+    <a href="#y2017">2017</a>
+    <a href="#y2015">2015</a>
   </nav>
-
-  <!-- Page Header -->
-  <section class="relative flex flex-col items-center justify-center text-center py-16 px-4 z-10">
-    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-3 drop-shadow-lg">Publications</h1>
-    <p class="text-lg text-gray-700 max-w-2xl mx-auto drop-shadow-md">
-      A curated list of research articles, reviews, and cover art contributions - organized by year.
-    </p>
-  </section>
-
-  <!-- Publications List -->
-  <section class="relative z-10 max-w-6xl mx-auto px-6 py-8 space-y-12">
-
-     <!-- YEAR 2026 -->
-      <div>
-          <h2 class="text-2xl font-semibold text-purple-700 mb-6 border-b border-purple-300 pb-2">2026</h2>
-
-      <!-- Banerjee et al., bioRxiv -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-        <div class="md:col-span-3 flex justify-center items-start">
-          <img src="assets/images/publications/ramfish.jpg" alt="Banerjee et al 2026" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-        </div>
-        <div class="md:col-span-9 space-y-2">
-          <h3 class="text-xl font-semibold text-gray-900">A spatial mRNA profiling workflow using Rapid Amplified Multiplex FISH (RAMFISH)</h3>
-          <p class="text-gray-700 text-sm">Banerjee, TD; Raine, J; Lee JCH; Chen KH; Ajay, S; Monteiro, A. bioRxiv. 2026.</p>
-          <div class="flex space-x-4">
-            <a href="assets/pdfs/RAM-FISH.pdf" class="text-purple-600 hover:underline">PDF</a>
-            <a href="https://doi.org/10.1101/2024.12.06.627193" class="text-purple-600 hover:underline">DOI</a>
-          </div>
-        </div>
-      </div>
-       
-       <!-- Lee et al., bioRxiv -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-        <div class="md:col-span-3 flex justify-center items-start">
-          <img src="assets/images/publications/lee_2026.jpg" alt="Lee et al 2026" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-        </div>
-        <div class="md:col-span-9 space-y-2">
-          <h3 class="text-xl font-semibold text-gray-900">Parallels in leg and wing proximal-distal patterning in Holometabola</h3>
-          <p class="text-gray-700 text-sm">Lee JCH; Banerjee, TD; Monteiro, A. bioRxiv. 2026.</p>
-          <div class="flex space-x-4">
-            <a href="assets/pdfs/Lee_bioRxiv_2026.pdf" class="text-purple-600 hover:underline">PDF</a>
-            <a href="https://doi.org/10.64898/2026.05.08.723717" class="text-purple-600 hover:underline">DOI</a>
-          </div>
-        </div>
-      </div>
-
-
-      
-
-          <!-- Goel et al., iScience -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-        <div class="md:col-span-3 flex justify-center items-start">
-          <img src="assets/images/publications/goel2025_small.jpg" alt="Goel et al 2025" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-        </div>
-        <div class="md:col-span-9 space-y-2">
-          <h3 class="text-xl font-semibold text-gray-900">Disruption of chrna5 blunts aversion and adaptive transcriptomic responses to nicotine and alcohol</h3>
-          <p class="text-gray-700 text-sm">Goel, T., Raine, J., Kibat, C., Collado, JW., Banerjee, TD, Ajay, S. iScience. 2026.</p>
-          <div class="flex space-x-4">
-            <a href="assets/pdfs/goel2026.pdf" class="text-purple-600 hover:underline">PDF</a>
-            <a href="https://doi.org/10.1016/j.isci.2026.114735" class="text-purple-600 hover:underline">DOI</a>
-          </div>
-        </div>
-      </div>
-
-     </div>
-
-    <!-- YEAR 2025 -->
-    <div>
-      <h2 class="text-2xl font-semibold text-purple-700 mb-6 border-b border-purple-300 pb-2">2025</h2>
-
-      <!-- Banerjee and Monteiro, Communications Biology -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md">
-        <div class="md:col-span-3 flex justify-center items-start">
-          <img src="assets/images/publications/banerjee2025.jpg" alt="Tian et al 2025" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-        </div>
-        <div class="md:col-span-9 space-y-2">
-          <h3 class="text-xl font-semibold text-gray-900">Shared regulatory networks link vein positioning and eyespot ring formation in butterflies</h3>
-          <p class="text-gray-700 text-sm">Banerjee, TD and Monteiro, A. Communications Biology 2025.</p>
-          <div class="flex space-x-4">
-            <a href="assets/pdfs/Banerjeee2025.pdf" class="text-purple-600 hover:underline">PDF</a>
-            <a href="https://doi.org/10.1038/s42003-025-09356-2" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-          </div>
-        </div>
-      </div>
-
-
-
-
-      <!-- Tian et al., Nat Ecol Evol -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md">
-        <div class="md:col-span-3 flex justify-center items-start">
-          <img src="assets/images/publications/tian2025_small.jpg" alt="Tian et al 2025" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-        </div>
-        <div class="md:col-span-9 space-y-2">
-          <h3 class="text-xl font-semibold text-gray-900">A novel Hox gene promoter fuels the evolution of adaptive phenotypic plasticity</h3>
-          <p class="text-gray-700 text-sm">Tian, S., Lee, B., Banerjee, TD, Murugesan, S. N., Monteiro, A. Nat. Ecol. Evol. 2025.</p>
-          <div class="flex space-x-4">
-            <a href="assets/pdfs/tian2025.pdf" class="text-purple-600 hover:underline">PDF</a>
-            <a href="https://doi.org/10.1038/s41559-025-02891-5" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-            
-            <a href="https://www.eurekalert.org/news-releases/1103261" target="_blank" class="text-purple-600 hover:underline">News1</a>
-
-            <a href="https://scienmag.com/how-a-simple-dna-switch-enables-tropical-butterflies-to-change-wing-patterns-seasonally-insights-from-an-nus-study/" target="_blank" class="text-purple-600 hover:underline">News2</a>
-
-            <a href="https://naukatv.ru/news/pereklyuchatel_dlya_smeny_sezonnogo_naryada_nashli_v_dnk_babochek" target="_blank" class="text-purple-600 hover:underline">News3</a>
-
-            <a href="https://www.msn.com/en-gb/news/world/simple-genetic-switch-can-underlie-temperature-mediated-plasticity-in-butterfly-wing-patterns/ar-AA1PgEJI" target="_blank" class="text-purple-600 hover:underline">News4</a>
-
-            <a href="https://www.asianscientist.com/2025/12/environment/simple-dna-switch-lets-butterflies-change-wing-spots/" target="_blank" class="text-purple-600 hover:underline">Blog</a>  
+  <p class="text-center text-sm text-gray-600 mb-10">* co-first author &nbsp;&middot;&nbsp; # co-corresponding author</p>
+  <div class="space-y-14">
+  <section id="y2026" class="year-block">
+    <h2 class="section-title">2026</h2>
+    <div class="space-y-6">
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/lee_2026.jpg" alt="Lee J 2026" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-new">Just published</span> <span class="badge badge-role">Co-corresponding author</span> <span class="badge badge-role">Open access</span></div>
+        <h3 class="pub-title">Parallels in leg and wing proximal-distal patterning in Diptera and Lepidoptera</h3>
+        <p class="pub-authors">Lee J, <b>Banerjee TD</b>, Monteiro A</p>
+        <p class="pub-venue"><i>Developmental Biology Advances</i> 17: 25 &middot; 2026</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/Lee_2026_DevBiolAdv.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1186/s13227-026-00279-5" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
         
-          </div>
-        </div>
       </div>
-       
-       
-
-      <!-- Raine et al., J Neurosci -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-        <div class="md:col-span-3 flex justify-center items-start">
-          <img src="assets/images/publications/raine2025_small.jpg" alt="Raine et al 2025" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-        </div>
-        <div class="md:col-span-9 space-y-2">
-          <h3 class="text-xl font-semibold text-gray-900">chrna3 modulates alcohol response</h3>
-          <p class="text-gray-700 text-sm">Raine J., Kibat C., Banerjee TD., Monteiro A., Mathuru AS. J Neurosci. Sep 24:e0304252025. Epub ahead of print.</p>
-          <div class="flex space-x-4">
-            <a href="assets/pdfs/raine2025.pdf" class="text-purple-600 hover:underline">PDF</a>
-            <a href="https://doi.org/10.1523/JNEUROSCI.0304-25.2025" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-            <p>
-            <a href="https://medicine.nus.edu.sg/news/increased-risk-of-developing-alcohol-addiction-linked-to-gene-mutation/" target="_blank" class="text-purple-600 hover:underline">News1</a>
-            </p>
-            <p>
-            <a href="https://www.psypost.org/single-gene-mutation-linked-to-increased-alcohol-tolerance-and-consumption/" target="_blank" class="text-purple-600 hover:underline">News2</a>
-            </p>
-            <p>
-            <a href="https://medicalxpress.com/news/2025-10-alcohol-addiction-linked-gene-mutation.html" target="_blank" class="text-purple-600 hover:underline">News3</a>
-            </p>
-            
-          </div>
-        </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/ramfish.jpg" alt="Banerjee TD 2026" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-pre">Preprint</span> <span class="badge badge-role">First author</span></div>
+        <h3 class="pub-title">A spatial mRNA profiling workflow using Rapid Amplified Multiplex FISH (RAMFISH)</h3>
+        <p class="pub-authors"><b>Banerjee TD</b>, Raine J, Lee JCH, Chen KH, Ajay S, Monteiro A</p>
+        <p class="pub-venue"><i>bioRxiv</i> &middot; 2026</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/RAM-FISH.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1101/2024.12.06.627193" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
       </div>
-
-      
-
-      <!-- Banerjee et al., Methods & Protocol (Cover) -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-        <div class="md:col-span-3 flex justify-center items-start">
-          <img src="assets/images/publications/cover_methods_protocols.jpg" alt="Methods & Protocol Cover" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-        </div>
-        <div class="md:col-span-9 space-y-2">
-          <h3 class="text-xl font-semibold text-gray-900">Mapping Gene Expression in Whole Larval Brains of Bicyclus anynana Butterflies</h3>
-          <p class="text-gray-700 text-sm">Banerjee, TD*#, Zhang, L*. and Monteiro, A#. Methods Protoc. 8, 2. (*Co-first author and #Co-corresponding author)</p>
-          <div class="flex space-x-4">
-            <a href="assets/pdfs/banerjee_methods2025.pdf" class="text-purple-600 hover:underline">PDF</a>
-            <a href="https://doi.org/10.3390/mps8020031" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-          </div>
-        </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/goel2025_small.jpg" alt="Goel T 2026" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        
+        <h3 class="pub-title">Disruption of <i>chrna5</i> blunts aversion and adaptive transcriptomic responses to nicotine and alcohol</h3>
+        <p class="pub-authors">Goel T, Raine J, Kibat C, Collado JW, <b>Banerjee TD</b>, Ajay S</p>
+        <p class="pub-venue"><i>iScience</i> &middot; 2026</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/goel2026.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1016/j.isci.2026.114735" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
       </div>
+    </article>
     </div>
-
-    <!-- YEAR 2024 -->
-    <div class="mt-12">
-      <h2 class="text-2xl font-semibold text-purple-700 mb-6 border-b border-purple-300 pb-2">2024</h2>
-
-      <!-- Banerjee et al., Optix Frontiers -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-        <div class="md:col-span-3 flex justify-center items-start">
-          <img src="assets/images/publications/banerjee_optix2024_small.jpg" alt="Banerjee et al 2024" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-        </div>
-        <div class="md:col-span-9 space-y-2">
-          <h3 class="text-xl font-semibold text-gray-900">Optix regulates nanomorphology of butterfly scales primarily via its effects on pigmentation</h3>
-          <p class="text-gray-700 text-sm">Banerjee TD*#, Finet C*#, Seah KS, Monteiro A. Frontiers in Ecology and Evolution. (*Co-first author and #Co-corresponding author)</p>
-          <div class="flex space-x-4">
-            <a href="assets/pdfs/banerjee_optix2024.pdf" class="text-purple-600 hover:underline">PDF</a>
-            <a href="https://doi.org/10.3389/fevo.2024.1392050" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tian et al., Science -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-        <div class="md:col-span-3 flex justify-center items-start">
-          <img src="assets/images/publications/tian2024_small.jpg" alt="Tian et al 2024" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-        </div>
-        <div class="md:col-span-9 space-y-2">
-          <h3 class="text-xl font-semibold text-gray-900">A microRNA is the effector gene of a classic evolutionary hotspot locus</h3>
-          <p class="text-gray-700 text-sm">Tian, S., Asano, Y., Banerjee, TD, Komata, S., Liang, J., et al. Science. 2024.</p>
-          <div class="flex space-x-4">
-            <a href="assets/pdfs/tian2024.pdf" class="text-purple-600 hover:underline">PDF</a>
-            <a href="https://doi.org/10.1126/science.adp7899" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-            <p>
-            <a href="https://www.eurekalert.org/news-releases/1067340" target="_blank" class="text-purple-600 hover:underline">News1</a>
-            </p>
-            <p>
-            <a href="https://zap.aeiou.pt/misterio-evolutivo-cores-asas-borboletas-647825" target="_blank" class="text-purple-600 hover:underline">News2</a>
-            </p>
-            <p>
-            <a href="https://www.ebiotrade.com/newsf/2024-12/20241216061053900.htm" target="_blank" class="text-purple-600 hover:underline">News3</a>
-            </p>
-            <p>
-            <a href="https://www.technologynetworks.com/tn/news/small-rnas-hold-the-key-to-butterfly-wing-color-diversity-394084" class="text-purple-600 hover:underline">News4</a>
-            </p>
-            <p>
-            <a href="https://www.sciencedaily.com/releases/2024/12/241206111954.htm" class="text-purple-600 hover:underline">News5</a>
-            </p>
-          </div>
-        </div>
-      </div>
-
-    <!-- Prakash et al., Cell Reports -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/prakash2024_small.jpg" alt="Prakash et al 2022" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">The molecular basis of scale development highlighted by a single-cell atlas of Bicyclus anynana butterfly pupal forewings</h3>
-      <p class="text-gray-700 text-sm">Prakash A., Dion E., Banerjee TD, Monteiro A. Cell Reports. 2022.</p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/prakash2024.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://doi.org/10.1016/j.celrep.2022.111052" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-      
-
-    </div>
-
-    <!-- YEAR 2023 -->
-    <div class="mt-12">
-      <h2 class="text-2xl font-semibold text-purple-700 mb-6 border-b border-purple-300 pb-2">2023</h2>
-
-      <!-- Banerjee et al., Science Advances (Cover) -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-        <div class="md:col-span-3 flex justify-center items-start">
-          <img src="assets/images/publications/cover_science_advances.jpg" alt="Science Advances Cover" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-        </div>
-        <div class="md:col-span-9 space-y-2">
-          <h3 class="text-xl font-semibold text-gray-900">Spatial and temporal regulation of Wnt signaling pathway members in the development of butterfly wing patterns</h3>
-          <p class="text-gray-700 text-sm">Banerjee TD#, Murugesan SN, Connahs H, Monteiro A#. Science Advances. (#Co-corresponding author)</p>
-          <div class="flex space-x-4">
-            <a href="assets/pdfs/banerjee_sciadv2023.pdf" class="text-purple-600 hover:underline">PDF</a>
-            <a href="https://doi.org/10.1126/sciadv.adg3877" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-            <p>
-            <a href="https://bioengineer.org/nus-study-a-patchwork-of-wnt-signalling-ligands-and-receptors-pattern-the-colours-on-the-wings-of-butterflies/" target="_blank" class="text-purple-600 hover:underline">News1</a>
-            </p>
-            <p>
-            <a href="https://www.eurekalert.org/news-releases/997601" target="_blank" class="text-purple-600 hover:underline">News2</a>
-            </p>
-            <p>
-            <a href="https://www.science.nus.edu.sg/blog/2023/08/a-patchwork-of-wnt-signalling-ligands-and-receptors-pattern-the-colours-on-the-wings-of-butterflies/" target="_blank" class="text-purple-600 hover:underline">News3</a>
-            </p>
-            <p>
-            <a href="https://thenode.biologists.com/patterning-the-butterfly-wing-through-wnt-signaling/research/" target="_blank" class="text-purple-600 hover:underline">Blog</a>
-            </p>
-          </div>
-        </div>
-      </div>
-
-     
-
-      <!-- How et al., Scientific Reports -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-        <div class="md:col-span-3 flex justify-center items-start">
-          <img src="assets/images/publications/how2023_small.jpg" alt="How et al 2023" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-        </div>
-        <div class="md:col-span-9 space-y-2">
-          <h3 class="text-xl font-semibold text-gray-900">vermilion and cinnabar are involved in ommochrome pigment biosynthesis in eyes but not wings of Bicyclus anynana butterflies</h3>
-          <p class="text-gray-700 text-sm">How S*, Banerjee TD*#, Monteiro A#. Scientific Reports. (*Co-first author and #Co-corresponding author)</p>
-          <div class="flex space-x-4">
-            <a href="assets/pdfs/how2023.pdf" class="text-purple-600 hover:underline">PDF</a>
-            <a href="https://doi.org/10.1038/s41598-023-36491-9" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- YEAR 2022 -->
-<div class="mt-12">
-  <h2 class="text-2xl font-semibold text-purple-700 mb-6 border-b border-purple-300 pb-2">2022</h2>
-
-  
-
-  <!-- Banerjee et al., Methods Protocol -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/banerjee_methods2022_small.jpg" alt="Banerjee Methods 2022" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">Laser Microdissection-Mediated Isolation of Butterfly Wing Tissue for Spatial Transcriptomics</h3>
-      <p class="text-gray-700 text-sm">Banerjee, TD#, Tian, S., Monteiro, A#. Methods Protocol. (#Co-corresponding author)</p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/banerjee_methods2022.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://doi.org/10.3390/mps5040067" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Prakash et al., Cell Reports -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/prakash2022_small.jpg" alt="Prakash el al., 2022" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">Antennapedia and optix regulate metallic silver wing scale development and cell shape in Bicyclus anynana butterflies Graphical</h3>
-      <p class="text-gray-700 text-sm">Prakash A, Finet C, Banerjee, TD, Saranathan V, Monteiro, A. Cell Reports </p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/prakash2022.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://doi.org/10.1016/j.celrep.2022.111052" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Wee et al., EvoDevo -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/wee2022_small.jpg" alt="Wee et al 2022" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">Distal-Less and Spalt Are Distal Organisers of Pierid Wing Patterns</h3>
-      <p class="text-gray-700 text-sm">Wee J.L.Q., Banerjee TD., Prakash A., Seah K.S., Monteiro A. EvoDevo. 13, 1–14, 2022.</p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/wee2022.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://doi.org/10.1186/s13227-022-00197-2" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- YEAR 2021 -->
-<div class="mt-12">
-  <h2 class="text-2xl font-semibold text-purple-700 mb-6 border-b border-purple-300 pb-2">2021</h2>
-
-<!-- Banerjee TD, PhD -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/phd_thesis.jpg" alt="Banerjee Development 2020" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">Molecular mechanisms underlying simplification of venation patterns in holometabolous insects</h3>
-      <p class="text-gray-700 text-sm">Banerjee TD. PhD </p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/phd_thesis.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://doi.org/" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-
-
-</div>
-
-
-
-
-<!-- YEAR 2020 -->
-<div class="mt-12">
-  <h2 class="text-2xl font-semibold text-purple-700 mb-6 border-b border-purple-300 pb-2">2020</h2>
-
-  <!-- Banerjee & Monteiro, Development -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/banerjee_dev2020_small.jpg" alt="Banerjee Development 2020" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">Molecular mechanisms underlying simplification of venation patterns in holometabolous insects</h3>
-      <p class="text-gray-700 text-sm">Banerjee TD# and Monteiro A#. Development. (#Co-corresponding author)</p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/banerjee_dev2020.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://journals.biologists.com/dev/article/147/23/dev196394/226027/Molecular-mechanisms-underlying-simplification-of" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Banerjee et al., Frontiers in Ecology and Evolution -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/banerjee_fevo2020_small.jpg" alt="Banerjee Frontiers 2020" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">Expression of Multiple engrailed Family Genes in Eye-spots of Bicyclus anynana Butterflies Does Not Implicate the Duplication Events in the Evolution of This Morphological Novelty</h3>
-      <p class="text-gray-700 text-sm">Banerjee TD#, Ramos D, Monteiro A#. Frontiers in Ecology and Evolution. 8:227. (#Co-corresponding author)</p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/banerjee_fevo2020.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://doi.org/10.3389/fevo.2020.00227" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Banerjee & Monteiro, Methods & Protocol -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/banerjee_mps2020_small.jpg" alt="Banerjee MPS 2020" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">Dissection of Larval and Pupal Wings of Bicyclus anynana Butterflies</h3>
-      <p class="text-gray-700 text-sm">Banerjee TD# and Monteiro A#. Methods & Protocol. 3, 5. (#Co-corresponding author)</p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/banerjee_mps2020.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://doi.org/10.3390/mps3010005" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- YEAR 2019 -->
-<div class="mt-12">
-  <h2 class="text-2xl font-semibold text-purple-700 mb-6 border-b border-purple-300 pb-2">2019</h2>
-
-  <!-- Connahs et al., Development -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/connahs2019_small.jpg" alt="Connahs et al 2019" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">Activation of butterfly eyespots by Distal-less is consistent with a reaction-diffusion process</h3>
-      <p class="text-gray-700 text-sm">Connahs H, Tlili S, van Creij J, Loo TYJ, Banerjee TD, Saunders TE, Monteiro A. Development. 146, 1–12, 2019.</p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/connahs2019.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://doi.org/10.1242/dev.169367" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- YEAR 2018 -->
-<div class="mt-12">
-  <h2 class="text-2xl font-semibold text-purple-700 mb-6 border-b border-purple-300 pb-2">2018</h2>
-
-  <!-- Banerjee & Monteiro, Methods & Protocol -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/banerjee_mps2018_small.jpg" alt="Banerjee MPS 2018" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">CRISPR-Cas9 Mediated Genome Editing in Bicyclus anynana Butterflies</h3>
-      <p class="text-gray-700 text-sm">Banerjee TD# and Monteiro A#. Methods & Protocol. (#Co-corresponding author)</p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/banerjee_mps2018.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://doi.org/10.3390/mps1020016" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- YEAR 2017 -->
-<div class="mt-12">
-  <h2 class="text-2xl font-semibold text-purple-700 mb-6 border-b border-purple-300 pb-2">2017</h2>
-
-  <!-- Pal et al., Genomics -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/pal2017_small.jpg" alt="Pal et al 2017" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">Genome analysis of crude oil degrading Franconibacter pulveris strain DJ34 revealed its genetic basis for hydrocarbon degradation and survival in oil contaminated environment</h3>
-      <p class="text-gray-700 text-sm">Pal S, Kundu A, Banerjee TD, et al. Genomics. 109, 374–382, 2017.</p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/pal2017.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://doi.org/10.1016/j.ygeno.2017.06.002" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- YEAR 2015 -->
-<div class="mt-12">
-  <h2 class="text-2xl font-semibold text-purple-700 mb-6 border-b border-purple-300 pb-2">2015</h2>
-
-  <!-- Pal et al., Genome Announcement -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/pal2015_small.jpg" alt="Pal et al 2015" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">Genome Sequence of Hydrocarbon-Degrading Cronobacter sp. Strain DJ34 Isolated from Crude Oil-Containing Sludge from the Duliajan</h3>
-      <p class="text-gray-700 text-sm">Pal S, Banerjee TD, et al. Genome Announcement. 3, 2011–2012, 2015.</p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/pal2015.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://doi.org/10.1128/genomeA.01321-15" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Paul et al., Bioresource Technology -->
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white bg-opacity-90 p-6 rounded-xl shadow-lg hover:shadow-2xl transition backdrop-blur-md mt-6">
-    <div class="md:col-span-3 flex justify-center items-start">
-      <img src="assets/images/publications/paul2015_small.jpg" alt="Paul et al 2015" class="rounded-lg shadow-md object-cover w-full max-w-xs">
-    </div>
-    <div class="md:col-span-9 space-y-2">
-      <h3 class="text-xl font-semibold text-gray-900">Arsenic biotransformation and release by bacteria indigenous to arsenic contaminated groundwater</h3>
-      <p class="text-gray-700 text-sm">Paul D, Kazy SK, Banerjee TD, et al. Bioresource Technology. 188, 14–23, 2015.</p>
-      <div class="flex space-x-4">
-        <a href="assets/pdfs/paul2015.pdf" class="text-purple-600 hover:underline">PDF</a>
-        <a href="https://doi.org/10.1016/j.biortech.2015.02.039" target="_blank" class="text-purple-600 hover:underline">DOI</a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-    
   </section>
+  <section id="y2025" class="year-block">
+    <h2 class="section-title">2025</h2>
+    <div class="space-y-6">
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/banerjee2025.jpg" alt="Banerjee TD 2025" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-role">First author</span></div>
+        <h3 class="pub-title">Shared regulatory networks link vein positioning and eyespot ring formation in butterflies</h3>
+        <p class="pub-authors"><b>Banerjee TD</b>, Monteiro A</p>
+        <p class="pub-venue"><i>Communications Biology</i> &middot; 2025</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/Banerjeee2025.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1038/s42003-025-09356-2" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/tian2025_small.jpg" alt="Tian S 2025" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        
+        <h3 class="pub-title">A novel <i>Hox</i> gene promoter fuels the evolution of adaptive phenotypic plasticity</h3>
+        <p class="pub-authors">Tian S, Lee B, <b>Banerjee TD</b>, Murugesan SN, Monteiro A</p>
+        <p class="pub-venue"><i>Nature Ecology &amp; Evolution</i> &middot; 2025</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/tian2025.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1038/s41559-025-02891-5" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        <div class="flex flex-wrap items-center gap-2 pt-1"><span class="news-label">In the news</span><a href="https://www.eurekalert.org/news-releases/1103261" target="_blank" rel="noopener" class="chip">EurekAlert!</a> <a href="https://scienmag.com/how-a-simple-dna-switch-enables-tropical-butterflies-to-change-wing-patterns-seasonally-insights-from-an-nus-study/" target="_blank" rel="noopener" class="chip">Scienmag</a> <a href="https://naukatv.ru/news/pereklyuchatel_dlya_smeny_sezonnogo_naryada_nashli_v_dnk_babochek" target="_blank" rel="noopener" class="chip">Nauka TV (Russian)</a> <a href="https://www.msn.com/en-gb/news/world/simple-genetic-switch-can-underlie-temperature-mediated-plasticity-in-butterfly-wing-patterns/ar-AA1PgEJI" target="_blank" rel="noopener" class="chip">MSN</a> <a href="https://www.asianscientist.com/2025/12/environment/simple-dna-switch-lets-butterflies-change-wing-spots/" target="_blank" rel="noopener" class="chip">Asian Scientist</a></div>
+      </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/raine2025_small.jpg" alt="Raine J 2025" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        
+        <h3 class="pub-title"><i>chrna3</i> modulates alcohol response</h3>
+        <p class="pub-authors">Raine J, Kibat C, <b>Banerjee TD</b>, Monteiro A, Mathuru AS</p>
+        <p class="pub-venue"><i>Journal of Neuroscience</i> &middot; 2025</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/raine2025.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1523/JNEUROSCI.0304-25.2025" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        <div class="flex flex-wrap items-center gap-2 pt-1"><span class="news-label">In the news</span><a href="https://medicine.nus.edu.sg/news/increased-risk-of-developing-alcohol-addiction-linked-to-gene-mutation/" target="_blank" rel="noopener" class="chip">NUS Medicine</a> <a href="https://www.psypost.org/single-gene-mutation-linked-to-increased-alcohol-tolerance-and-consumption/" target="_blank" rel="noopener" class="chip">PsyPost</a> <a href="https://medicalxpress.com/news/2025-10-alcohol-addiction-linked-gene-mutation.html" target="_blank" rel="noopener" class="chip">Medical Xpress</a></div>
+      </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/cover_methods_protocols.jpg" alt="Banerjee TD 2025" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-cover">Journal cover</span> <span class="badge badge-role">Co-first author</span> <span class="badge badge-role">Co-corresponding author</span></div>
+        <h3 class="pub-title">Mapping gene expression in whole larval brains of <i>Bicyclus anynana</i> butterflies</h3>
+        <p class="pub-authors"><b>Banerjee TD</b>*#, Zhang L*, Monteiro A#</p>
+        <p class="pub-venue"><i>Methods and Protocols</i> 8(2): 31 &middot; 2025</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/banerjee_methods2025.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.3390/mps8020031" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    </div>
+  </section>
+  <section id="y2024" class="year-block">
+    <h2 class="section-title">2024</h2>
+    <div class="space-y-6">
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/banerjee_optix2024_small.jpg" alt="Banerjee TD 2024" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-role">Co-first author</span> <span class="badge badge-role">Co-corresponding author</span></div>
+        <h3 class="pub-title"><i>Optix</i> regulates nanomorphology of butterfly scales primarily via its effects on pigmentation</h3>
+        <p class="pub-authors"><b>Banerjee TD</b>*#, Finet C*#, Seah KS, Monteiro A</p>
+        <p class="pub-venue"><i>Frontiers in Ecology and Evolution</i> &middot; 2024</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/banerjee_optix2024.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.3389/fevo.2024.1392050" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/tian2024_small.jpg" alt="Tian S 2024" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        
+        <h3 class="pub-title">A microRNA is the effector gene of a classic evolutionary hotspot locus</h3>
+        <p class="pub-authors">Tian S, Asano Y, <b>Banerjee TD</b>, Komata S, Liang J, et al.</p>
+        <p class="pub-venue"><i>Science</i> &middot; 2024</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/tian2024.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1126/science.adp7899" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        <div class="flex flex-wrap items-center gap-2 pt-1"><span class="news-label">In the news</span><a href="https://www.eurekalert.org/news-releases/1067340" target="_blank" rel="noopener" class="chip">EurekAlert!</a> <a href="https://zap.aeiou.pt/misterio-evolutivo-cores-asas-borboletas-647825" target="_blank" rel="noopener" class="chip">ZAP (Portuguese)</a> <a href="https://www.ebiotrade.com/newsf/2024-12/20241216061053900.htm" target="_blank" rel="noopener" class="chip">eBiotrade (Chinese)</a> <a href="https://www.technologynetworks.com/tn/news/small-rnas-hold-the-key-to-butterfly-wing-color-diversity-394084" target="_blank" rel="noopener" class="chip">Technology Networks</a> <a href="https://www.sciencedaily.com/releases/2024/12/241206111954.htm" target="_blank" rel="noopener" class="chip">ScienceDaily</a></div>
+      </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/prakash2024_small.jpg" alt="Prakash A 2024" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        
+        <h3 class="pub-title">The molecular basis of scale development highlighted by a single-cell atlas of <i>Bicyclus anynana</i> butterfly pupal forewings</h3>
+        <p class="pub-authors">Prakash A, Dion E, <b>Banerjee TD</b>, Monteiro A</p>
+        <p class="pub-venue"><i>Cell Reports</i> 43(5): 114147 &middot; 2024</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/prakash2024.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1016/j.celrep.2024.114147" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    </div>
+  </section>
+  <section id="y2023" class="year-block">
+    <h2 class="section-title">2023</h2>
+    <div class="space-y-6">
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/cover_science_advances.jpg" alt="Banerjee TD 2023" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-cover">Journal cover</span> <span class="badge badge-role">Co-corresponding author</span></div>
+        <h3 class="pub-title">Spatial and temporal regulation of Wnt signaling pathway members in the development of butterfly wing patterns</h3>
+        <p class="pub-authors"><b>Banerjee TD</b>#, Murugesan SN, Connahs H, Monteiro A#</p>
+        <p class="pub-venue"><i>Science Advances</i> &middot; 2023</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/banerjee_sciadv2023.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1126/sciadv.adg3877" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        <div class="flex flex-wrap items-center gap-2 pt-1"><span class="news-label">In the news</span><a href="https://www.science.nus.edu.sg/blog/2023/08/a-patchwork-of-wnt-signalling-ligands-and-receptors-pattern-the-colours-on-the-wings-of-butterflies/" target="_blank" rel="noopener" class="chip">NUS Science</a> <a href="https://www.eurekalert.org/news-releases/997601" target="_blank" rel="noopener" class="chip">EurekAlert!</a> <a href="https://bioengineer.org/nus-study-a-patchwork-of-wnt-signalling-ligands-and-receptors-pattern-the-colours-on-the-wings-of-butterflies/" target="_blank" rel="noopener" class="chip">Bioengineer.org</a> <a href="https://thenode.biologists.com/patterning-the-butterfly-wing-through-wnt-signaling/research/" target="_blank" rel="noopener" class="chip">The Node (blog)</a></div>
+      </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/how2023_small.jpg" alt="How S 2023" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-role">Co-first author</span> <span class="badge badge-role">Co-corresponding author</span></div>
+        <h3 class="pub-title"><i>vermilion</i> and <i>cinnabar</i> are involved in ommochrome pigment biosynthesis in eyes but not wings of <i>Bicyclus anynana</i> butterflies</h3>
+        <p class="pub-authors">How S*, <b>Banerjee TD</b>*#, Monteiro A#</p>
+        <p class="pub-venue"><i>Scientific Reports</i> &middot; 2023</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/how2023.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1038/s41598-023-36491-9" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    </div>
+  </section>
+  <section id="y2022" class="year-block">
+    <h2 class="section-title">2022</h2>
+    <div class="space-y-6">
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/banerjee_methods2022_small.jpg" alt="Banerjee TD 2022" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-role">Co-corresponding author</span></div>
+        <h3 class="pub-title">Laser microdissection-mediated isolation of butterfly wing tissue for spatial transcriptomics</h3>
+        <p class="pub-authors"><b>Banerjee TD</b>#, Tian S, Monteiro A#</p>
+        <p class="pub-venue"><i>Methods and Protocols</i> &middot; 2022</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/banerjee_methods2022.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.3390/mps5040067" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/prakash2022_small.jpg" alt="Prakash A 2022" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        
+        <h3 class="pub-title"><i>Antennapedia</i> and <i>optix</i> regulate metallic silver wing scale development and cell shape in <i>Bicyclus anynana</i> butterflies</h3>
+        <p class="pub-authors">Prakash A, Finet C, <b>Banerjee TD</b>, Saranathan V, Monteiro A</p>
+        <p class="pub-venue"><i>Cell Reports</i> &middot; 2022</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/prakash2022.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1016/j.celrep.2022.111052" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/wee2022_small.jpg" alt="Wee JLQ 2022" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        
+        <h3 class="pub-title"><i>Distal-less</i> and <i>spalt</i> are distal organisers of Pierid wing patterns</h3>
+        <p class="pub-authors">Wee JLQ, <b>Banerjee TD</b>, Prakash A, Seah KS, Monteiro A</p>
+        <p class="pub-venue"><i>EvoDevo</i> 13: 1&ndash;14 &middot; 2022</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/wee2022.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1186/s13227-022-00197-2" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    </div>
+  </section>
+  <section id="y2021" class="year-block">
+    <h2 class="section-title">2021</h2>
+    <div class="space-y-6">
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/phd_thesis.jpg" alt="Banerjee TD 2021" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-role">PhD thesis</span></div>
+        <h3 class="pub-title">Molecular mechanisms underlying simplification of venation patterns in holometabolous insects</h3>
+        <p class="pub-authors"><b>Banerjee TD</b></p>
+        <p class="pub-venue">PhD thesis, National University of Singapore &middot; 2021</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/phd_thesis.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a></div>
+        
+      </div>
+    </article>
+    </div>
+  </section>
+  <section id="y2020" class="year-block">
+    <h2 class="section-title">2020</h2>
+    <div class="space-y-6">
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/banerjee_dev2020_small.jpg" alt="Banerjee TD 2020" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-role">Co-corresponding author</span></div>
+        <h3 class="pub-title">Molecular mechanisms underlying simplification of venation patterns in holometabolous insects</h3>
+        <p class="pub-authors"><b>Banerjee TD</b>#, Monteiro A#</p>
+        <p class="pub-venue"><i>Development</i> 147(23): dev196394 &middot; 2020</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/banerjee_dev2020.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1242/dev.196394" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/banerjee_fevo2020_small.jpg" alt="Banerjee TD 2020" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-role">Co-corresponding author</span></div>
+        <h3 class="pub-title">Expression of multiple <i>engrailed</i> family genes in eyespots of <i>Bicyclus anynana</i> butterflies does not implicate the duplication events in the evolution of this morphological novelty</h3>
+        <p class="pub-authors"><b>Banerjee TD</b>#, Ramos D, Monteiro A#</p>
+        <p class="pub-venue"><i>Frontiers in Ecology and Evolution</i> 8: 227 &middot; 2020</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/banerjee_fevo2020.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.3389/fevo.2020.00227" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/banerjee_mps2020_small.jpg" alt="Banerjee TD 2020" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-role">Co-corresponding author</span></div>
+        <h3 class="pub-title">Dissection of larval and pupal wings of <i>Bicyclus anynana</i> butterflies</h3>
+        <p class="pub-authors"><b>Banerjee TD</b>#, Monteiro A#</p>
+        <p class="pub-venue"><i>Methods and Protocols</i> 3: 5 &middot; 2020</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/banerjee_mps2020.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.3390/mps3010005" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    </div>
+  </section>
+  <section id="y2019" class="year-block">
+    <h2 class="section-title">2019</h2>
+    <div class="space-y-6">
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/connahs2019_small.jpg" alt="Connahs H 2019" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        
+        <h3 class="pub-title">Activation of butterfly eyespots by <i>Distal-less</i> is consistent with a reaction-diffusion process</h3>
+        <p class="pub-authors">Connahs H, Tlili S, van Creij J, Loo TYJ, <b>Banerjee TD</b>, Saunders TE, Monteiro A</p>
+        <p class="pub-venue"><i>Development</i> 146: 1&ndash;12 &middot; 2019</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/connahs2019.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1242/dev.169367" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    </div>
+  </section>
+  <section id="y2018" class="year-block">
+    <h2 class="section-title">2018</h2>
+    <div class="space-y-6">
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/banerjee_mps2018_small.jpg" alt="Banerjee TD 2018" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        <div class="flex flex-wrap gap-2"><span class="badge badge-role">Co-corresponding author</span></div>
+        <h3 class="pub-title">CRISPR-Cas9 mediated genome editing in <i>Bicyclus anynana</i> butterflies</h3>
+        <p class="pub-authors"><b>Banerjee TD</b>#, Monteiro A#</p>
+        <p class="pub-venue"><i>Methods and Protocols</i> 1(2): 16 &middot; 2018</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/banerjee_mps2018.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.3390/mps1020016" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    </div>
+  </section>
+  <section id="y2017" class="year-block">
+    <h2 class="section-title">2017</h2>
+    <div class="space-y-6">
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/pal2017_small.jpg" alt="Pal S 2017" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        
+        <h3 class="pub-title">Genome analysis of crude oil degrading <i>Franconibacter pulveris</i> strain DJ34 revealed its genetic basis for hydrocarbon degradation and survival in oil contaminated environment</h3>
+        <p class="pub-authors">Pal S, Kundu A, <b>Banerjee TD</b>, et al.</p>
+        <p class="pub-venue"><i>Genomics</i> 109: 374&ndash;382 &middot; 2017</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/pal2017.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1016/j.ygeno.2017.06.002" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    </div>
+  </section>
+  <section id="y2015" class="year-block">
+    <h2 class="section-title">2015</h2>
+    <div class="space-y-6">
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/pal2015_small.jpg" alt="Pal S 2015" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        
+        <h3 class="pub-title">Genome sequence of hydrocarbon-degrading <i>Cronobacter</i> sp. strain DJ34 isolated from crude oil-containing sludge from the Duliajan Oil Fields, Assam, India</h3>
+        <p class="pub-authors">Pal S, <b>Banerjee TD</b>, et al.</p>
+        <p class="pub-venue"><i>Genome Announcements</i> 3 &middot; 2015</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/pal2015.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1128/genomeA.01321-15" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    <article class="card card-hover grid grid-cols-1 md:grid-cols-12 gap-6 p-6 items-start">
+      <div class="md:col-span-3 flex justify-center"><img src="assets/images/publications/paul2015_small.jpg" alt="Paul D 2015" class="pub-thumb" loading="lazy"></div>
+      <div class="md:col-span-9 space-y-3">
+        
+        <h3 class="pub-title">Arsenic biotransformation and release by bacteria indigenous to arsenic contaminated groundwater</h3>
+        <p class="pub-authors">Paul D, Kazy SK, <b>Banerjee TD</b>, et al.</p>
+        <p class="pub-venue"><i>Bioresource Technology</i> 188: 14&ndash;23 &middot; 2015</p>
+        <div class="flex flex-wrap gap-2 pt-1"><a href="assets/pdfs/paul2015.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm">PDF</a> <a href="https://doi.org/10.1016/j.biortech.2015.02.039" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Article &#8599;</a></div>
+        
+      </div>
+    </article>
+    </div>
+  </section>
+  </div>
+</main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 bg-opacity-80 py-6 text-center text-gray-600 text-sm backdrop-blur-md mt-auto relative z-10">
-    © 2026 Tirtha Das Banerjee. All rights reserved.
-  </footer>
+<footer class="site-footer">
+  &copy; 2026 Tirtha Das Banerjee &middot; National University of Singapore
+</footer>
+
+<script>
+(function () {
+  var b = document.querySelector('.nav-toggle'), l = document.getElementById('nav-links');
+  if (!b || !l) return;
+  b.addEventListener('click', function () {
+    var open = l.classList.toggle('open');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+</script>
 
 </body>
 </html>

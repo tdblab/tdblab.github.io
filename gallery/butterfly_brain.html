@@ -6,26 +6,34 @@
   <title>Multiplex FISH Gallery | Tirtha Das Banerjee</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 
-<body class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 text-gray-800 min-h-screen flex flex-col">
+<body class="site text-gray-800 min-h-screen flex flex-col">
 
   <!-- Navbar -->
-  <nav class="bg-white bg-opacity-80 shadow-md sticky top-0 backdrop-blur-md z-50">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="../index.html" class="text-xl font-semibold text-purple-700">Home</a>
-      <div class="space-x-6 font-medium">
-        <a href="../aboutme.html" class="hover:text-purple-600">About Me</a>
-        <a href="../research.html" class="hover:text-purple-600">Research</a>
-        <a href="../tech.html" class="hover:text-purple-600">Tech</a>
-        <a href="../publications.html" class="hover:text-purple-600">Publications</a>
-        <a href="../hobbies.html" class="hover:text-purple-600">Hobbies</a>
-        <a href="../apps.html" class="hover:text-purple-600">Apps & Tools</a>
-        <a href="../protocols.html" class="hover:text-purple-600">Protocols</a>
-        <a href="../gallery.html" class="hover:text-purple-600">Gallery</a>
-      </div>
+  <nav class="site-nav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand">Tirtha Das Banerjee</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="../aboutme.html">About Me</a>
+      <a href="../research.html">Research</a>
+      <a href="../tech.html">Tech</a>
+      <a href="../publications.html">Publications</a>
+      <a href="../students.html">Students</a>
+      <a href="../apps.html">Apps &amp; Tools</a>
+      <a href="../protocols.html">Protocols</a>
+      <a href="../gallery.html" class="active" aria-current="page">Gallery</a>
+      <a href="../hobbies.html">Hobbies</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
   <!-- Page Header -->
   <section class="text-center py-16 px-4">
@@ -282,9 +290,19 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-100 bg-opacity-80 py-6 text-center text-sm backdrop-blur-md mt-auto">
-    © 2026 Tirtha Das Banerjee. All rights reserved.
-  </footer>
+  <footer class="site-footer">
+  &copy; 2026 Tirtha Das Banerjee &middot; National University of Singapore
+</footer>
 
+<script>
+(function () {
+  var b = document.querySelector('.nav-toggle'), l = document.getElementById('nav-links');
+  if (!b || !l) return;
+  b.addEventListener('click', function () {
+    var open = l.classList.toggle('open');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+</script>
 </body>
 </html>
